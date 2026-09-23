@@ -4,7 +4,7 @@ table {
   font-family: sans-serif;
   font-size: 0.8rem;
   letter-spacing: 1px;
-  margin:auto;
+  margin: auto;
   width: 80%;
 }
 
@@ -39,4 +39,11 @@ tfoot th {
 
 tfoot td {
   font-weight: bold;
+}
+
+.piloto,
+.bandera {
+  width: 24px;
+  height: 16px;
+  object-fit: contain;
 }
