@@ -12,11 +12,6 @@ Web de telemetría de Fórmula 1 para visualizar datos de rendimiento de los aut
 - Comparación entre pilotos
 - Gráficos de vueltas
 
-## Tecnologías
-
-- HTML
-- CSS
-- JavaScript
 
 ## Objetivo
 
