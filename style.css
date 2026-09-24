@@ -1,9 +1,8 @@
-body{
-  font-family: "Barlow","Comic Sans MS";
-  background-color: #0B0E12;
+body {
+  font-family: "Barlow", "Comic Sans MS";
+  background-color: #0b0e12;
   color: #fff;
 }
-
 
 table {
   background-color: rgb(0, 217, 255);
@@ -14,7 +13,7 @@ table {
   margin: auto;
   width: 80%;
   box-shadow: 0px 0px 10px #888;
-  text-align:center;
+  text-align: center;
   font-family: "Barlow";
 }
 
@@ -39,10 +38,9 @@ td:last-of-type {
   text-align: center;
 }
 
-tbody{
+tbody {
   background-color: #999;
 }
-
 
 tfoot th {
   text-align: right;
@@ -59,11 +57,17 @@ tfoot td {
   object-fit: contain;
 }
 
-.Colapinto{
-  color:#006eff;
+.logo-equipo {
+  width: 24px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.Colapinto {
+  color: #006eff;
   text-shadow: 0px 0px 10px #006eff;
 }
 
-#posicion{
+#posicion {
   width: 3%;
 }
