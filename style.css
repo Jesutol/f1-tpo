@@ -51,12 +51,13 @@ tfoot td {
 }
 
 .piloto,
-.bandera {
-  width: 24px;
-  height: 16px;
-  object-fit: contain;
+.equipo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
+.bandera,
 .logo-equipo {
   width: 24px;
   height: 16px;
