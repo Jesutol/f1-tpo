@@ -1,4 +1,6 @@
 body {
+  margin: 0;
+  padding: 32px 16px;
   font-family: "Barlow", "Comic Sans MS";
   background-color: #0b0e12;
   color: #fff;
@@ -11,7 +13,7 @@ table {
   font-size: 0.8rem;
   letter-spacing: 1px;
   margin: auto;
-  width: 80%;
+  width: 100%;
   box-shadow: 0px 0px 10px #888;
   text-align: center;
   font-family: "Barlow";
@@ -39,7 +41,7 @@ td:last-of-type {
 }
 
 tbody {
-  background-color: #999;
+  background-color: #171e27;
 }
 
 tfoot th {
@@ -71,4 +73,131 @@ tfoot td {
 
 #posicion {
   width: 3%;
+}
+
+.encabezado,
+main {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.encabezado {
+  border-top: 4px solid #e10600;
+  padding: 24px 0;
+}
+
+h1 {
+  margin: 12px 0;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+}
+
+.marca {
+  color: #ff6b65;
+  font-weight: 700;
+}
+
+.encabezado p,
+.nota,
+.fuente {
+  line-height: 1.5;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+table {
+  min-width: 720px;
+}
+
+caption {
+  caption-side: top;
+  text-align: left;
+  padding: 16px 0;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #202a36;
+}
+
+.puntos {
+  color: #6ce6c4;
+  font-weight: 700;
+  font-family: "DM Mono", monospace;
+}
+
+.nota,
+.fuente {
+  color: #b9c3d0;
+  font-size: 0.9rem;
+}
+
+a {
+  color: #6ce6c4;
+}
+
+.estrategia,
+.leyenda-neumaticos,
+.leyenda-neumaticos > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.estrategia {
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.leyenda-neumaticos {
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin-top: 24px;
+  font-size: 0.9rem;
+}
+
+.neumatico {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  box-sizing: border-box;
+  border: 3px solid currentColor;
+  border-radius: 50%;
+  background-color: #111;
+  font-weight: 700;
+  text-shadow: none;
+}
+
+.blando { color: #ff5555; }
+.medio { color: #ffd43b; }
+.duro { color: #fff; }
+.intermedio { color: #4ade80; }
+.lluvia { color: #60a5fa; }
+
+.dato-pendiente,
+.pit-stops {
+  color: #b9c3d0;
+  text-shadow: none;
+}
+
+.pit-stops summary {
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 6px;
+}
+
+.pit-stops summary:focus-visible {
+  outline: 2px solid #6ce6c4;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.detalle-paradas,
+.pit-stops ul {
+  max-width: 220px;
+  text-align: left;
+  line-height: 1.6;
 }
