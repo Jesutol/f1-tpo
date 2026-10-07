@@ -57,6 +57,7 @@ tfoot td {
   display: flex;
   align-items: center;
   gap: 8px;
+  text-align: left;
 }
 
 .bandera,
@@ -199,11 +200,21 @@ a {
   text-shadow: none;
 }
 
-.blando { color: #ff5555; }
-.medio { color: #ffd43b; }
-.duro { color: #fff; }
-.intermedio { color: #4ade80; }
-.lluvia { color: #60a5fa; }
+.blando {
+  color: #ff5555;
+}
+.medio {
+  color: #ffd43b;
+}
+.duro {
+  color: #fff;
+}
+.intermedio {
+  color: #4ade80;
+}
+.lluvia {
+  color: #60a5fa;
+}
 
 .dato-pendiente,
 .pit-stops {
