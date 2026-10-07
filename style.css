@@ -150,6 +150,7 @@ tbody tr:nth-child(even) {
 }
 
 .puntos {
+  /* color: #6ce6c4; */
   color: #6ce6c4;
   font-weight: 700;
   font-family: "DM Mono", monospace;
@@ -239,4 +240,157 @@ a {
   max-width: 220px;
   text-align: left;
   line-height: 1.6;
+}
+
+/* Inicio: distribución y listas; los colores y fuentes vienen del estilo común. */
+.inicio-presentacion,
+.inicio-titulo-seccion,
+.inicio-proxima-resumen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.inicio-tarjeta {
+  padding: 16px;
+  background-color: #171e27;
+}
+
+.inicio-proxima {
+  margin-top: 24px;
+}
+.inicio h2 {
+  margin: 0 0 12px;
+}
+.inicio h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+.inicio-etiqueta {
+  color: #ff6b65;
+}
+
+.inicio-subtitulo,
+.inicio-actualizacion,
+.inicio-insignia,
+.inicio-nota,
+.inicio-pie {
+  color: #b9c3d0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.inicio-podio,
+.inicio-constructores,
+.inicio-agenda {
+  padding: 0;
+  list-style: none;
+}
+
+.inicio-piloto-podio,
+.inicio-constructor {
+  display: grid;
+  grid-template-columns: 20px 24px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 6px 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid #aaa5;
+}
+
+.inicio-piloto-podio .inicio-posicion,
+.inicio-logo-podio {
+  grid-row: 1 / 3;
+}
+
+.inicio-logo-podio,
+.inicio-constructor img {
+  width: 24px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.inicio-mercedes img {
+  filter: brightness(0) invert(1);
+}
+
+.inicio-piloto-podio p {
+  grid-column: 3;
+  grid-row: 2;
+  margin: 0;
+  color: #b9c3d0;
+  font-size: 0.8rem;
+}
+
+.inicio-resultado {
+  grid-column: 4;
+  grid-row: 1;
+  font-size: 0.8rem;
+}
+.inicio-puntos-gp {
+  grid-column: 4;
+  grid-row: 2;
+  font-size: 0.8rem;
+}
+.inicio-constructor p {
+  margin: 0;
+}
+.inicio-constructor p span {
+  margin-left: 4px;
+  font-size: 0.8rem;
+}
+
+.inicio-resultado,
+.inicio-puntos-gp,
+.inicio-fecha-carrera {
+  text-align: right;
+}
+.inicio-fecha-carrera strong {
+  font-size: 1.5rem;
+}
+
+.inicio-datos-circuito,
+.inicio-agenda {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  padding: 16px 0;
+  border-block: 1px solid #aaa5;
+}
+
+.inicio-datos-circuito dt {
+  color: #b9c3d0;
+  font-size: 0.8rem;
+}
+.inicio-datos-circuito dd {
+  margin: 8px 0 0;
+}
+.inicio-agenda time {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+.inicio-pie {
+  max-width: 1000px;
+  margin: 24px auto 0;
+}
+
+@media (max-width: 700px) {
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+  .inicio-fecha-carrera {
+    text-align: left;
+  }
+}
+
+.inicio-enlace {
+  color: #ffffff;
 }

@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>F1 Telemetry | Principal</title>
+    <title>F1 Telemetry | Inicio</title>
     <link rel="stylesheet" href="./style.css" />
-     <link
+    <link
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class="inicio">
     <header class="encabezado">
       <nav class="navegacion" aria-label="Navegación principal">
         <a href="./principal.html" aria-current="page">Inicio</a>
@@ -18,6 +18,190 @@
         <a href="./campeonato.html">Pilotos y constructores</a>
       </nav>
       <p class="marca">F1 Telemetry · Temporada 2026</p>
+      <div class="inicio-presentacion">
+        <div>
+          <h1>Resumen temporada 2026 de F1</h1>
+          <p class="inicio-descripcion">
+            El ultimo podio, top 3 de constructores y proxima carrera.
+          </p>
+        </div>
+        <p class="inicio-actualizacion">
+          Actualizado<br /><time datetime="2026-10-07"
+            >7 de octubre de 2026</time
+          >
+        </p>
+      </div>
     </header>
+
+    <main class="inicio-contenido">
+      <div class="card-container">
+        <section class="inicio-tarjeta" aria-labelledby="titulo-podio">
+          <div class="inicio-titulo-seccion">
+            <div>
+              <p class="inicio-etiqueta">Último Gran Premio</p>
+              <h2 id="titulo-podio">Podio de la carrera</h2>
+            </div>
+            <span class="inicio-insignia">Finalizado</span>
+          </div>
+          <p class="inicio-carrera">GP de Baréin en Malasia</p>
+          <p class="inicio-subtitulo">
+            Sepang · <time datetime="2026-10-04">4 de octubre de 2026</time>
+          </p>
+
+          <ol
+            class="inicio-podio"
+            aria-label="Primeros tres pilotos de la carrera"
+          >
+            <li class="inicio-piloto-podio inicio-primero inicio-redbull">
+              <span class="inicio-posicion" aria-label="Primer puesto">1</span>
+              <img
+                class="inicio-logo-podio"
+                src="recursos/logos-equipos/redbull_racing.svg"
+                alt=""
+              />
+              <h3>Max <span>Verstappen</span></h3>
+              <p>Red Bull Racing</p>
+              <span class="inicio-resultado">1:47:14.808</span>
+              <span> <span class="puntos">25</span> puntos</span>
+            </li>
+            <li class="inicio-piloto-podio inicio-segundo inicio-mercedes">
+              <span class="inicio-posicion" aria-label="Segundo puesto">2</span>
+              <img
+                class="inicio-logo-podio"
+                src="recursos/logos-equipos/mercedes.svg"
+                alt=""
+              />
+              <h3>Kimi <span>Antonelli</span></h3>
+              <p>Mercedes</p>
+              <span class="inicio-resultado">+2.307 s</span>
+              <span> <span class="puntos">18</span> puntos</span>
+            </li>
+            <li class="inicio-piloto-podio inicio-tercero inicio-ferrari">
+              <span class="inicio-posicion" aria-label="Tercer puesto">3</span>
+              <img
+                class="inicio-logo-podio"
+                src="recursos/logos-equipos/ferrari.svg"
+                alt=""
+              />
+              <h3>Lewis <span>Hamilton</span></h3>
+              <p>Ferrari</p>
+              <span class="inicio-resultado">+4.919 s</span>
+              <span> <span class="puntos">15</span> puntos</span>
+            </li>
+          </ol>
+
+          <a class="inicio-enlace" href="./index.html"
+            >Ver resultados completos <span aria-hidden="true">→</span></a
+          >
+        </section>
+
+        <section class="inicio-tarjeta" aria-labelledby="titulo-constructores">
+          <p class="inicio-etiqueta">Campeonato 2026</p>
+          <h2 id="titulo-constructores">Top 3 de constructores</h2>
+          <p class="inicio-subtitulo">Puntos acumulados después de Sepang.</p>
+
+          <ol
+            class="inicio-constructores"
+            aria-label="Primeros tres equipos del campeonato"
+          >
+            <li class="inicio-constructor inicio-mercedes">
+              <span class="inicio-puesto-equipo" aria-label="Primer puesto"
+                >01</span
+              >
+              <img src="recursos/logos-equipos/mercedes.svg" alt="" />
+              <h3>Mercedes</h3>
+              <p><strong class="puntos">556</strong><span>puntos</span></p>
+            </li>
+            <li class="inicio-constructor inicio-ferrari">
+              <span class="inicio-puesto-equipo" aria-label="Segundo puesto"
+                >02</span
+              >
+              <img src="recursos/logos-equipos/ferrari.svg" alt="" />
+              <h3>Ferrari</h3>
+              <p><strong class="puntos">405</strong><span>puntos</span></p>
+            </li>
+            <li class="inicio-constructor inicio-mclaren">
+              <span class="inicio-puesto-equipo" aria-label="Tercer puesto"
+                >03</span
+              >
+              <img src="recursos/logos-equipos/mclaren.svg" alt="" />
+              <h3>McLaren</h3>
+              <p><strong class="puntos">316</strong><span>puntos</span></p>
+            </li>
+          </ol>
+
+          <a class="inicio-enlace" href="./campeonato.html"
+            >Ver campeonato completo <span aria-hidden="true">→</span></a
+          >
+        </section>
+      </div>
+
+      <section
+        class="inicio-tarjeta inicio-proxima"
+        aria-labelledby="titulo-proxima"
+      >
+        <div class="inicio-proxima-resumen">
+          <div>
+            <p class="inicio-etiqueta">Próxima carrera</p>
+            <h2 id="titulo-proxima">Gran Premio de Singapur</h2>
+            <p class="inicio-subtitulo">Marina Bay Street Circuit · Singapur</p>
+            <span class="inicio-insignia">Fin de semana Sprint</span>
+          </div>
+          <div class="inicio-fecha-carrera">
+            <p>
+              <time datetime="2026-10-11T09:00:00-03:00"
+                >Domingo 11 de octubre<br /><strong>09:00</strong></time
+              >
+            </p>
+            <span>Hora de Argentina · UTC−3</span>
+          </div>
+        </div>
+
+        <dl class="inicio-datos-circuito">
+          <div>
+            <dt>Fin de semana</dt>
+            <dd>9–11 oct. 2026</dd>
+          </div>
+          <div>
+            <dt>Longitud</dt>
+            <dd>4,927 km</dd>
+          </div>
+          <div>
+            <dt>Vueltas</dt>
+            <dd>62</dd>
+          </div>
+          <div>
+            <dt>Distancia</dt>
+            <dd>305,337 km</dd>
+          </div>
+        </dl>
+
+        <h3 class="inicio-titulo-horarios">
+          Agenda del fin de semana <span>· Hora de Argentina</span>
+        </h3>
+        <ul class="inicio-agenda">
+          <li>
+            <span>Práctica libre 1</span
+            ><time datetime="2026-10-09T05:30:00-03:00">Vie. 9 · 05:30</time>
+          </li>
+          <li>
+            <span>Clasificación Sprint</span
+            ><time datetime="2026-10-09T09:30:00-03:00">Vie. 9 · 09:30</time>
+          </li>
+          <li>
+            <span>Sprint</span
+            ><time datetime="2026-10-10T06:00:00-03:00">Sáb. 10 · 06:00</time>
+          </li>
+          <li>
+            <span>Clasificación</span
+            ><time datetime="2026-10-10T10:00:00-03:00">Sáb. 10 · 10:00</time>
+          </li>
+          <li class="inicio-agenda-carrera">
+            <span>Carrera</span
+            ><time datetime="2026-10-11T09:00:00-03:00">Dom. 11 · 09:00</time>
+          </li>
+        </ul>
+      </section>
+    </main>
   </body>
 </html>
