@@ -1,17 +1,13 @@
 # F1 Telemetry Web
 
-Web de telemetría de Fórmula 1 para visualizar datos de rendimiento de los autos y pilotos.
+Web de telemetría de Fórmula 1 para visualizar informacion del campeonato.
 
 ## Características
 
-- Visualización de telemetría
-- Datos de velocidad
-- RPM
-- Marchas
-- Acelerador y freno
-- Comparación entre pilotos
-- Gráficos de vueltas
-
+- Posiciones
+- Campeonato
+- Neumaticos
+- Pit Stops
 
 ## Objetivo
 
@@ -20,4 +16,3 @@ El objetivo del proyecto es mostrar datos de telemetría de Fórmula 1 de forma 
 ## Estado del proyecto
 
 En desarrollo.
-
