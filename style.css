@@ -240,3 +240,403 @@ a {
   text-align: left;
   line-height: 1.6;
 }
+
+/* Página de inicio. Las clases inicio-* no afectan las tablas de otras páginas. */
+.inicio {
+  font-family: "Barlow", Arial, sans-serif;
+  background: radial-gradient(ellipse at top, #1c1216 0, #0b0e12 65%);
+}
+
+.inicio *,
+.inicio *::before,
+.inicio *::after {
+  box-sizing: border-box;
+}
+
+.inicio .navegacion a {
+  background-color: #171e27;
+  border: 1px solid #303a48;
+}
+
+.inicio .navegacion a:hover,
+.inicio .navegacion a[aria-current="page"] {
+  background-color: #e10600;
+  border-color: #e10600;
+}
+
+.inicio .navegacion a[aria-current="page"] {
+  box-shadow: none;
+}
+
+.inicio-presentacion,
+.inicio-titulo-seccion,
+.inicio-proxima-resumen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.inicio h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  letter-spacing: -1px;
+}
+
+.inicio-descripcion,
+.inicio-subtitulo,
+.inicio-actualizacion,
+.inicio-nota,
+.inicio-pie {
+  color: #b9c3d0;
+}
+
+.inicio-descripcion {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.inicio-actualizacion {
+  flex-shrink: 0;
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.inicio-actualizacion time {
+  color: #fff;
+}
+
+.inicio-contenido {
+  display: grid;
+  gap: 24px;
+}
+
+.inicio-resumen {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 24px;
+}
+
+.inicio-tarjeta {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid #2b3442;
+  border-radius: 12px;
+  background-color: #121820;
+}
+
+.inicio h2 {
+  margin: 0;
+  font-size: clamp(1.35rem, 3vw, 1.6rem);
+}
+
+.inicio-etiqueta {
+  margin: 0 0 8px;
+  color: #ff7872;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.inicio-insignia {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid #3c495b;
+  border-radius: 5px;
+  color: #d4dde8;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.inicio-carrera {
+  margin: 20px 0 4px;
+  font-weight: 600;
+}
+
+.inicio-subtitulo {
+  margin: 8px 0 0;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.inicio-podio,
+.inicio-constructores,
+.inicio-agenda {
+  margin: 24px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.inicio-podio {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  align-items: end;
+}
+
+.inicio-redbull { --color-equipo: #5895f1; }
+.inicio-mercedes { --color-equipo: #40dec6; }
+.inicio-ferrari { --color-equipo: #ff565e; }
+.inicio-mclaren { --color-equipo: #ff9c37; }
+
+.inicio-piloto-podio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 8px;
+  border: 1px solid #303c4c;
+  border-top: 3px solid var(--color-equipo);
+  border-radius: 8px;
+  background-color: #1b2531;
+  text-align: center;
+}
+
+.inicio-primero {
+  grid-column: 2;
+  grid-row: 1;
+  padding-top: 36px;
+  background: linear-gradient(#293342, #1b2531);
+}
+
+.inicio-segundo { grid-column: 1; grid-row: 1; }
+.inicio-tercero { grid-column: 3; grid-row: 1; }
+
+.inicio-posicion {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  background-color: #ffda67;
+  color: #10151c;
+  font-weight: 700;
+}
+
+.inicio-segundo .inicio-posicion { background-color: #d4dce7; }
+.inicio-tercero .inicio-posicion { background-color: #eba26d; }
+
+.inicio-logo-podio {
+  width: 44px;
+  height: 32px;
+  object-fit: contain;
+}
+
+/* El SVG de Mercedes es negro: se vuelve blanco sobre el fondo oscuro. */
+.inicio-mercedes img {
+  filter: brightness(0) invert(1);
+}
+
+.inicio-piloto-podio h3 {
+  margin: 14px 0 6px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.inicio-piloto-podio h3 span { display: block; }
+
+.inicio-piloto-podio p {
+  min-height: 32px;
+  margin: 0 0 12px;
+  color: #b9c3d0;
+  font-size: 0.75rem;
+}
+
+.inicio-resultado,
+.inicio-fecha-carrera strong,
+.inicio-constructor strong,
+.inicio-agenda time {
+  font-family: "DM Mono", monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.inicio-resultado { font-size: 0.8rem; }
+
+.inicio-puntos-gp {
+  margin-top: 8px;
+  color: var(--color-equipo);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.inicio-enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  color: #ff7872;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.inicio-enlace:hover { text-decoration: underline; }
+
+.inicio-enlace:focus-visible,
+.inicio-pie a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.inicio-constructores {
+  display: grid;
+  gap: 12px;
+}
+
+.inicio-constructor {
+  display: grid;
+  grid-template-columns: 24px 32px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 12px;
+  border: 1px solid #303c4c;
+  border-left: 3px solid var(--color-equipo);
+  border-radius: 8px;
+  background-color: #1b2531;
+}
+
+.inicio-puesto-equipo {
+  color: #b9c3d0;
+  font-size: 0.85rem;
+}
+
+.inicio-constructor img {
+  width: 32px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.inicio-constructor h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.inicio-constructor p {
+  margin: 0;
+  text-align: right;
+}
+
+.inicio-constructor strong {
+  display: block;
+  font-size: 1.2rem;
+}
+
+.inicio-constructor p span {
+  color: #b9c3d0;
+  font-size: 0.75rem;
+}
+
+.inicio-proxima {
+  border-top: 3px solid #e10600;
+}
+
+.inicio-proxima .inicio-insignia { margin-top: 14px; }
+
+.inicio-fecha-carrera {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.inicio-fecha-carrera p {
+  margin: 0 0 6px;
+  line-height: 1.5;
+}
+
+.inicio-fecha-carrera strong { font-size: 2rem; }
+
+.inicio-fecha-carrera > span {
+  color: #b9c3d0;
+  font-size: 0.8rem;
+}
+
+.inicio-datos-circuito {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+  padding: 20px 0;
+  border-top: 1px solid #2b3442;
+  border-bottom: 1px solid #2b3442;
+}
+
+.inicio-datos-circuito dt {
+  margin-bottom: 8px;
+  color: #b9c3d0;
+  font-size: 0.8rem;
+}
+
+.inicio-datos-circuito dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.inicio-titulo-horarios {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.inicio-titulo-horarios span {
+  color: #b9c3d0;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.inicio-agenda {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.inicio-agenda li {
+  padding: 14px 12px;
+  border: 1px solid #303c4c;
+  border-radius: 6px;
+  background-color: #1b2531;
+}
+
+.inicio-agenda li > span {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+}
+
+.inicio-agenda time {
+  color: #b9c3d0;
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.inicio-agenda .inicio-agenda-carrera {
+  border-color: #ff7872;
+  background-color: #321b22;
+}
+
+.inicio-agenda-carrera time { color: #fff; }
+.inicio-nota { margin: 0; font-size: 0.8rem; }
+
+.inicio-pie {
+  max-width: 1000px;
+  margin: 24px auto 0;
+  padding-top: 8px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 800px) {
+  .inicio-resumen { grid-template-columns: 1fr; }
+  .inicio-actualizacion { display: none; }
+  .inicio-agenda { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 480px) {
+  .inicio-tarjeta { padding: 18px; }
+  .inicio-titulo-seccion,
+  .inicio-proxima-resumen { flex-direction: column; align-items: flex-start; }
+  .inicio-fecha-carrera { text-align: left; }
+  .inicio-datos-circuito { grid-template-columns: repeat(2, 1fr); }
+  .inicio-podio { gap: 6px; }
+  .inicio-piloto-podio { padding-inline: 4px; }
+  .inicio-piloto-podio h3 { font-size: 0.8rem; }
+  .inicio-resultado { font-size: 0.65rem; }
+  .inicio-constructor { gap: 8px; }
+}
