@@ -1,79 +1,14 @@
+/* Estilos generales */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 32px 16px;
-  font-family: "Barlow", "Comic Sans MS";
-  background-color: #0b0e12;
+  font-family: "Barlow", sans-serif;
   color: #fff;
-}
-
-table {
-  background-color: rgb(0, 217, 255);
-  border-collapse: collapse;
-  font-family: sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  margin: auto;
-  width: 100%;
-  box-shadow: 0px 0px 10px #888;
-  text-align: center;
-  font-family: "Barlow";
-}
-
-caption {
-  caption-side: bottom;
-  padding: 10px;
-  font-weight: bold;
-}
-
-thead,
-tfoot {
-  background-color: rgb(25, 39, 49);
-}
-
-th,
-td {
-  padding: 8px 10px;
-  border-bottom: 1px solid #aaa5;
-}
-
-td:last-of-type {
-  text-align: center;
-}
-
-tbody {
-  background-color: #171e27;
-}
-
-tfoot th {
-  text-align: right;
-}
-
-tfoot td {
-  font-weight: bold;
-}
-
-.piloto,
-.equipo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-align: left;
-}
-
-.bandera,
-.logo-equipo {
-  width: 24px;
-  height: 16px;
-  object-fit: contain;
-}
-
-.Colapinto {
-  color: #006eff;
-  text-shadow: 0px 0px 10px #006eff;
-}
-
-#posicion {
-  width: 3%;
+  background-color: #0b0e12;
 }
 
 .encabezado,
@@ -92,9 +27,32 @@ h1 {
   font-size: clamp(1.8rem, 5vw, 3rem);
 }
 
-.marca {
+.marca,
+.inicio-etiqueta {
   color: #ff6b65;
+}
+
+.marca {
   font-weight: 700;
+}
+
+.encabezado p,
+.nota {
+  line-height: 1.5;
+}
+
+.nota {
+  color: #b9c3d0;
+  font-size: 0.9rem;
+}
+
+a {
+  color: #6ce6c4;
+}
+
+:focus-visible {
+  outline: 2px solid #6ce6c4;
+  outline-offset: 4px;
 }
 
 .navegacion {
@@ -105,11 +63,11 @@ h1 {
 
 .navegacion a {
   padding: 10px 18px;
-  background-color: #e10600;
-  color: #fff;
-  text-decoration: none;
   border-radius: 6px;
-  font-weight: bold;
+  color: #fff;
+  background-color: #e10600;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .navegacion a:hover {
@@ -120,70 +78,87 @@ h1 {
   box-shadow: inset 0 0 0 2px #fff;
 }
 
-.navegacion a:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 4px;
+.bandera,
+.logo-equipo {
+  width: 24px;
+  height: 16px;
+  object-fit: contain;
+  vertical-align: middle;
 }
 
-.encabezado p,
-.nota,
-.fuente {
-  line-height: 1.5;
+.logo-mercedes {
+  filter: brightness(0) invert(1);
 }
 
+.puntos {
+  color: #6ce6c4;
+  font-family: "DM Mono", monospace;
+  font-weight: 500;
+}
+
+/* Tablas: el desplazamiento queda dentro del contenedor. */
 .tabla-contenedor {
   overflow-x: auto;
 }
 
 table {
+  width: 100%;
   min-width: 720px;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-align: center;
+  box-shadow: 0 0 10px #888;
 }
 
 caption {
-  caption-side: top;
-  text-align: left;
   padding: 16px 0;
+  text-align: left;
+  font-weight: 700;
+}
+
+thead {
+  background-color: #192731;
+}
+
+tbody {
+  background-color: #171e27;
+}
+
+th,
+td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #aaa5;
 }
 
 tbody tr:nth-child(even) {
   background-color: #202a36;
 }
 
-.puntos {
-  /* color: #6ce6c4; */
-  color: #6ce6c4;
-  font-weight: 700;
-  font-family: "DM Mono", monospace;
-}
-
-.nota,
-.fuente {
-  color: #b9c3d0;
-  font-size: 0.9rem;
-}
-
-a {
-  color: #6ce6c4;
-}
-
-.estrategia,
-.leyenda-neumaticos,
-.leyenda-neumaticos > span {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.estrategia {
-  justify-content: center;
+/* Las celdas conservan su comportamiento de tabla, sin display: flex. */
+.piloto,
+.equipo {
+  text-align: left;
   white-space: nowrap;
 }
 
-.leyenda-neumaticos {
-  flex-wrap: wrap;
-  gap: 12px 20px;
-  margin-top: 24px;
-  font-size: 0.9rem;
+.piloto img,
+.equipo img {
+  margin-right: 8px;
+}
+
+.colapinto {
+  color: #60a5fa;
+  text-shadow: 0 0 10px #006eff;
+}
+
+/* Neumáticos y paradas */
+.estrategia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
 }
 
 .neumatico {
@@ -193,7 +168,6 @@ a {
   flex-shrink: 0;
   width: 28px;
   height: 28px;
-  box-sizing: border-box;
   border: 3px solid currentColor;
   border-radius: 50%;
   background-color: #111;
@@ -204,45 +178,37 @@ a {
 .blando {
   color: #ff5555;
 }
+
 .medio {
   color: #ffd43b;
 }
+
 .duro {
   color: #fff;
 }
+
 .intermedio {
   color: #4ade80;
 }
-.lluvia {
-  color: #60a5fa;
-}
 
-.dato-pendiente,
 .pit-stops {
   color: #b9c3d0;
   text-shadow: none;
 }
 
 .pit-stops summary {
+  padding: 6px;
   cursor: pointer;
   white-space: nowrap;
-  padding: 6px;
 }
 
-.pit-stops summary:focus-visible {
-  outline: 2px solid #6ce6c4;
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-.detalle-paradas,
 .pit-stops ul {
   max-width: 220px;
   text-align: left;
   line-height: 1.6;
 }
 
-/* Inicio: distribución y listas; los colores y fuentes vienen del estilo común. */
+/* Portada */
 .inicio-presentacion,
 .inicio-titulo-seccion,
 .inicio-proxima-resumen {
@@ -253,7 +219,7 @@ a {
   gap: 16px;
 }
 
-.card-container {
+.inicio-contenido {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
@@ -265,27 +231,16 @@ a {
 }
 
 .inicio-proxima {
-  margin-top: 24px;
+  grid-column: 1 / -1;
 }
+
 .inicio h2 {
   margin: 0 0 12px;
 }
+
 .inicio h3 {
   margin: 0;
   font-size: 1rem;
-}
-.inicio-etiqueta {
-  color: #ff6b65;
-}
-
-.inicio-subtitulo,
-.inicio-actualizacion,
-.inicio-insignia,
-.inicio-nota,
-.inicio-pie {
-  color: #b9c3d0;
-  font-size: 0.9rem;
-  line-height: 1.5;
 }
 
 .inicio-podio,
@@ -295,8 +250,8 @@ a {
   list-style: none;
 }
 
-.inicio-piloto-podio,
-.inicio-constructor {
+.inicio-podio > li,
+.inicio-constructores > li {
   display: grid;
   grid-template-columns: 20px 24px minmax(0, 1fr) auto;
   align-items: center;
@@ -305,23 +260,12 @@ a {
   border-bottom: 1px solid #aaa5;
 }
 
-.inicio-piloto-podio .inicio-posicion,
-.inicio-logo-podio {
+.inicio-podio .inicio-posicion,
+.inicio-podio img {
   grid-row: 1 / 3;
 }
 
-.inicio-logo-podio,
-.inicio-constructor img {
-  width: 24px;
-  height: 16px;
-  object-fit: contain;
-}
-
-.inicio-mercedes img {
-  filter: brightness(0) invert(1);
-}
-
-.inicio-piloto-podio p {
+.inicio-podio p {
   grid-column: 3;
   grid-row: 2;
   margin: 0;
@@ -329,29 +273,30 @@ a {
   font-size: 0.8rem;
 }
 
-.inicio-resultado {
-  grid-column: 4;
-  grid-row: 1;
-  font-size: 0.8rem;
-}
+.inicio-resultado,
 .inicio-puntos-gp {
   grid-column: 4;
-  grid-row: 2;
-  font-size: 0.8rem;
-}
-.inicio-constructor p {
-  margin: 0;
-}
-.inicio-constructor p span {
-  margin-left: 4px;
+  text-align: right;
   font-size: 0.8rem;
 }
 
-.inicio-resultado,
-.inicio-puntos-gp,
+.inicio-resultado {
+  grid-row: 1;
+}
+
+.inicio-puntos-gp {
+  grid-row: 2;
+}
+
+.inicio-constructores p {
+  margin: 0;
+}
+
 .inicio-fecha-carrera {
   text-align: right;
+  line-height: 1.5;
 }
+
 .inicio-fecha-carrera strong {
   font-size: 1.5rem;
 }
@@ -369,28 +314,27 @@ a {
   color: #b9c3d0;
   font-size: 0.8rem;
 }
+
 .inicio-datos-circuito dd {
   margin: 8px 0 0;
 }
+
 .inicio-agenda time {
   display: block;
   margin-top: 8px;
   font-size: 0.9rem;
 }
-.inicio-pie {
-  max-width: 1000px;
-  margin: 24px auto 0;
+
+.inicio-enlace {
+  color: #fff;
 }
 
 @media (max-width: 700px) {
-  .card-container {
+  .inicio-contenido {
     grid-template-columns: 1fr;
   }
+
   .inicio-fecha-carrera {
     text-align: left;
   }
-}
-
-.inicio-enlace {
-  color: #ffffff;
 }
