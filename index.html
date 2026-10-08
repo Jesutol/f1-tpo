@@ -1,615 +1,922 @@
 <!doctype html>
 <html lang="es">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>F1 Telemetry | Último GP</title>
     <link rel="stylesheet" href="./style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&amp;family=DM+Mono:wght@500&amp;display=swap"
       rel="stylesheet"
     />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
     <header class="encabezado">
-      <nav class="navegacion" aria-label="Navegación principal">
+      <nav class="navegacion">
         <a href="./principal.html">Inicio</a>
-        <a href="./index.html" aria-current="page">Último GP</a>
+        <a href="./index.html">Último GP</a>
         <a href="./campeonato.html">Pilotos y constructores</a>
       </nav>
       <p class="marca">F1 Telemetry · Temporada 2026</p>
       <h1>GP de Baréin en Malasia</h1>
-      <p>Sepang International Circuit · <time datetime="2026-10-04">4 de octubre de 2026</time></p>
-      <p>Resultados del último Gran Premio disputado y puntos obtenidos en la carrera.</p>
+      <p>Sepang International Circuit · 4 de octubre de 2026</p>
+      <p>
+        Resultados del último Gran Premio disputado, paradas en boxes y puntos
+        obtenidos.
+      </p>
     </header>
     <main>
-    <div class="tabla-contenedor">
-    <table aria-describedby="nota-puntos"><caption>Clasificación final de la carrera</caption>
-      <thead>
-        <tr>
-          <th scope="col" id="posicion">Posición</th>
-          <th scope="col">Piloto</th>
-          <th scope="col">Equipo</th>
-          <th scope="col">Puntos del GP</th>
-          <th scope="col">Neumáticos usados</th>
-          <th scope="col">Pit stops</th>
-        </tr>
-      </thead>
-      <tbody>
-<tr>
-          <td>1</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/nl.svg"
-                alt="Paises Bajos"
-                class="bandera"
-              />
-              <span class="nombre">Verstappen</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/redbull_racing.svg"
-                alt="Red Bull Racing"
-                class="logo-equipo"
-              />
-              <span>Red Bull Racing</span>
-            </div>
-          </td>
-          <td class="puntos">25</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Intermedios, Blandos, Blandos, Blandos"><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>3 paradas</summary><ul><li>Vuelta 9</li><li>Vuelta 33</li><li>Vuelta 43</li></ul></details></td>
-        </tr>
-<tr>
-          <td>2</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/it.svg"
-                alt="Italia"
-                class="bandera"
-              />
-              <span class="nombre">Antonelli</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/mercedes.svg"
-                alt="Mercedes"
-                class="logo-equipo"
-              />
-              <span>Mercedes</span>
-            </div>
-          </td>
-          <td class="puntos">18</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Intermedios, Medios, Blandos, Blandos"><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico medio" title="Medios">M</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>3 paradas</summary><ul><li>Vuelta 9</li><li>Vuelta 33</li><li>Vuelta 44</li></ul></details></td>
-        </tr>
-<tr>
-          <td>3</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/uk.svg"
-                alt="Reino Unido"
-                class="bandera"
-              />
-              <span class="nombre">Hamilton</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/ferrari.svg"
-                alt="Ferrari"
-                class="logo-equipo"
-              />
-              <span>Ferrari</span>
-            </div>
-          </td>
-          <td class="puntos">15</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Blandos, Medios, Blandos"><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico medio" title="Medios">M</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>2 paradas</summary><ul><li>Vuelta 31</li><li>Vuelta 43</li></ul></details></td>
-        </tr>
-<tr>
-          <td>4</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/mc.svg"
-                alt="Monaco"
-                class="bandera"
-              />
-              <span class="nombre">Leclerc</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/ferrari.svg"
-                alt="Ferrari"
-                class="logo-equipo"
-              />
-              <span>Ferrari</span>
-            </div>
-          </td>
-          <td class="puntos">12</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Blandos, Intermedios, Blandos, Blandos, Blandos"><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>4 paradas</summary><ul><li>Vuelta 3</li><li>Vuelta 9</li><li>Vuelta 28</li><li>Vuelta 43</li></ul></details></td>
-        </tr>
-<tr>
-          <td>5</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/fr.svg"
-                alt="Francia"
-                class="bandera"
-              />
-              <span class="nombre">Hadjar</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/redbull_racing.svg"
-                alt="Red Bull Racing"
-                class="logo-equipo"
-              />
-              <span>Red Bull Racing</span>
-            </div>
-          </td>
-          <td class="puntos">10</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Intermedios, Blandos, Blandos, Blandos"><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>3 paradas</summary><ul><li>Vuelta 9</li><li>Vuelta 31</li><li>Vuelta 44</li></ul></details></td>
-        </tr>
-<tr>
-          <td>6</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/au.svg"
-                alt="Australia"
-                class="bandera"
-              />
-              <span class="nombre">Piastri</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/mclaren.svg"
-                alt="McLaren"
-                class="logo-equipo"
-              />
-              <span>McLaren</span>
-            </div>
-          </td>
-          <td class="puntos">8</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Medios, Intermedios, Duros, Duros, Medios"><span class="neumatico medio" title="Medios">M</span><span aria-hidden="true">→</span><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico medio" title="Medios">M</span></div></td>
-          <td><details class="pit-stops"><summary>4 paradas</summary><ul><li>Vuelta 2</li><li>Vuelta 9</li><li>Vuelta 33</li><li>Vuelta 45</li></ul></details></td>
-        </tr>
-<tr>
-          <td>7</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/nz.svg"
-                alt="Nueva Zelanda"
-                class="bandera"
-              />
-              <span class="nombre">Lawson</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/racing_bulls.svg"
-                alt="Racing Bulls"
-                class="logo-equipo"
-              />
-              <span>Racing Bulls</span>
-            </div>
-          </td>
-          <td class="puntos">6</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Intermedios, Duros, Duros, Blandos"><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>3 paradas</summary><ul><li>Vuelta 9</li><li>Vuelta 30</li><li>Vuelta 45</li></ul></details></td>
-        </tr>
-<tr>
-          <td>8</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/es.svg"
-                alt="España"
-                class="bandera"
-              />
-              <span class="nombre">Alonso</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/aston_martin.svg"
-                alt="Aston Martin"
-                class="logo-equipo"
-              />
-              <span>Aston Martin</span>
-            </div>
-          </td>
-          <td class="puntos">4</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Medios, Duros, Duros, Blandos"><span class="neumatico medio" title="Medios">M</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>3 paradas</summary><ul><li>Vuelta 9</li><li>Vuelta 31</li><li>Vuelta 45</li></ul></details></td>
-        </tr>
-<tr>
-          <td>9</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/uk.svg"
-                alt="Reino Unido"
-                class="bandera"
-              />
-              <span class="nombre">Norris</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/mclaren.svg"
-                alt="McLaren"
-                class="logo-equipo"
-              />
-              <span>McLaren</span>
-            </div>
-          </td>
-          <td class="puntos">2</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Medios, Duros, Blandos, Blandos"><span class="neumatico medio" title="Medios">M</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>3 paradas</summary><ul><li>Vuelta 9</li><li>Vuelta 34</li><li>Vuelta 45</li></ul></details></td>
-        </tr>
-<tr>
-          <td>10</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/uk.svg"
-                alt="Reino Unido"
-                class="bandera"
-              />
-              <span class="nombre">Lindblad</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/racing_bulls.svg"
-                alt="Racing Bulls"
-                class="logo-equipo"
-              />
-              <span>Racing Bulls</span>
-            </div>
-          </td>
-          <td class="puntos">1</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Intermedios, Duros, Duros, Blandos"><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>3 paradas</summary><ul><li>Vuelta 9</li><li>Vuelta 28</li><li>Vuelta 43</li></ul></details></td>
-        </tr>
-<tr>
-          <td>11</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/de.svg"
-                alt="Alemania"
-                class="bandera"
-              />
-              <span class="nombre">Hulkenberg</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/audi.svg"
-                alt="Audi"
-                class="logo-equipo"
-              />
-              <span>Audi</span>
-            </div>
-          </td>
-          <td class="puntos">0</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Blandos, Intermedios, Blandos, Blandos, Blandos"><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>4 paradas</summary><ul><li>Vuelta 2</li><li>Vuelta 8</li><li>Vuelta 32</li><li>Vuelta 45</li></ul></details></td>
-        </tr>
-<tr>
-          <td>12</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/ca.svg"
-                alt="Canada"
-                class="bandera"
-              />
-              <span class="nombre">Stroll</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/aston_martin.svg"
-                alt="Aston Martin"
-                class="logo-equipo"
-              />
-              <span>Aston Martin</span>
-            </div>
-          </td>
-          <td class="puntos">0</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Medios, Intermedios, Duros, Duros, Blandos"><span class="neumatico medio" title="Medios">M</span><span aria-hidden="true">→</span><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>4 paradas</summary><ul><li>Vuelta 2</li><li>Vuelta 9</li><li>Vuelta 28</li><li>Vuelta 43</li></ul></details></td>
-        </tr>
-<tr class="Colapinto">
-          <td>13</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/ar.svg"
-                alt="Argentina"
-                class="bandera"
-              />
-              <span class="nombre">Colapinto</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/alpine.svg"
-                alt="Alpine"
-                class="logo-equipo"
-              />
-              <span>Alpine</span>
-            </div>
-          </td>
-          <td class="puntos">0</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Blandos, Medios, Duros, Medios"><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico medio" title="Medios">M</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico medio" title="Medios">M</span></div></td>
-          <td><details class="pit-stops"><summary>3 paradas</summary><ul><li>Vuelta 9</li><li>Vuelta 31</li><li>Vuelta 42</li></ul></details></td>
-        </tr>
-<tr>
-          <td>14</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/uk.svg"
-                alt="Reino Unido"
-                class="bandera"
-              />
-              <span class="nombre">Bearman</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/haas.svg"
-                alt="Haas"
-                class="logo-equipo"
-              />
-              <span>Haas</span>
-            </div>
-          </td>
-          <td class="puntos">0</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Blandos, Medios, Duros, Duros"><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico medio" title="Medios">M</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span></div></td>
-          <td><details class="pit-stops"><summary>3 paradas</summary><ul><li>Vuelta 10</li><li>Vuelta 24</li><li>Vuelta 38</li></ul></details></td>
-        </tr>
-<tr>
-          <td>15</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/fr.svg"
-                alt="Francia"
-                class="bandera"
-              />
-              <span class="nombre">Ocon</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/haas.svg"
-                alt="Haas"
-                class="logo-equipo"
-              />
-              <span>Haas</span>
-            </div>
-          </td>
-          <td class="puntos">0</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Intermedios, Blandos, Duros, Blandos"><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>3 paradas</summary><ul><li>Vuelta 9</li><li>Vuelta 29</li><li>Vuelta 41</li></ul></details></td>
-        </tr>
-<tr>
-          <td>16</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/fr.svg"
-                alt="Francia"
-                class="bandera"
-              />
-              <span class="nombre">Gasly</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/alpine.svg"
-                alt="Alpine"
-                class="logo-equipo"
-              />
-              <span>Alpine</span>
-            </div>
-          </td>
-          <td class="puntos">0</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Blandos, Medios, Duros, Blandos, Blandos"><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico medio" title="Medios">M</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>4 paradas</summary><ul><li>Vuelta 9</li><li>Vuelta 25</li><li>Vuelta 37</li><li>Vuelta 45</li></ul></details></td>
-        </tr>
-<tr>
-          <td>17</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/es.svg"
-                alt="España"
-                class="bandera"
-              />
-              <span class="nombre">Sainz</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/williams.svg"
-                alt="Williams"
-                class="logo-equipo"
-              />
-              <span>Williams</span>
-            </div>
-          </td>
-          <td class="puntos">0</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Intermedios, Blandos, Duros, Blandos"><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>3 paradas</summary><ul><li>Vuelta 9</li><li>Vuelta 26</li><li>Vuelta 42</li></ul></details></td>
-        </tr>
-<tr>
-          <td>18</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/br.svg"
-                alt="Brasil"
-                class="bandera"
-              />
-              <span class="nombre">Bortoleto</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/audi.svg"
-                alt="Audi"
-                class="logo-equipo"
-              />
-              <span>Audi</span>
-            </div>
-          </td>
-          <td class="puntos">0</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Blandos, Intermedios, Blandos, Duros, Blandos, Blandos"><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>5 paradas</summary><ul><li>Vuelta 2</li><li>Vuelta 9</li><li>Vuelta 15</li><li>Vuelta 34</li><li>Vuelta 44</li></ul></details></td>
-        </tr>
-<tr>
-          <td>19</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/mx.svg"
-                alt="México"
-                class="bandera"
-              />
-              <span class="nombre">Perez</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/cadillac.svg"
-                alt="Cadillac"
-                class="logo-equipo"
-              />
-              <span>Cadillac</span>
-            </div>
-          </td>
-          <td class="puntos">0</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Blandos, Intermedios, Medios, Duros, Duros, Medios, Blandos"><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico medio" title="Medios">M</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico medio" title="Medios">M</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>7 paradas</summary><ul><li>Vuelta 1</li><li>Vuelta 9</li><li>Vuelta 18</li><li>Vuelta 21</li><li>Vuelta 39</li><li>Vuelta 44</li></ul></details></td>
-        </tr>
-<tr>
-          <td>20</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/uk.svg"
-                alt="Reino Unido"
-                class="bandera"
-              />
-              <span class="nombre">Russell</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/mercedes.svg"
-                alt="Mercedes"
-                class="logo-equipo"
-              />
-              <span>Mercedes</span>
-            </div>
-          </td>
-          <td class="puntos">0</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Intermedios, Medios, Blandos, Blandos"><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico medio" title="Medios">M</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>3 paradas</summary><ul><li>Vuelta 9</li><li>Vuelta 32</li><li>Vuelta 44</li></ul></details></td>
-        </tr>
-<tr>
-          <td>NC</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/th.svg"
-                alt="Tailandia"
-                class="bandera"
-              />
-              <span class="nombre">Albon</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/williams.svg"
-                alt="Williams"
-                class="logo-equipo"
-              />
-              <span>Williams</span>
-            </div>
-          </td>
-          <td class="puntos">0</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Intermedios, Blandos, Duros, Blandos"><span class="neumatico intermedio" title="Intermedios">I</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span><span aria-hidden="true">→</span><span class="neumatico duro" title="Duros">H</span><span aria-hidden="true">→</span><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td><details class="pit-stops"><summary>3 paradas</summary><ul><li>Vuelta 9</li><li>Vuelta 16</li><li>Vuelta 29</li></ul></details></td>
-        </tr>
-<tr>
-          <td>NC</td>
-          <th scope="row">
-            <div class="piloto">
-              <img
-                src="recursos/iconos-banderas/fi.svg"
-                alt="Finlandia"
-                class="bandera"
-              />
-              <span class="nombre">Bottas</span>
-            </div>
-          </th>
-          <td>
-            <div class="equipo">
-              <img
-                src="recursos/logos-equipos/cadillac.svg"
-                alt="Cadillac"
-                class="logo-equipo"
-              />
-              <span>Cadillac</span>
-            </div>
-          </td>
-          <td class="puntos">0</td>
-          <td class="neumaticos"><div class="estrategia" aria-label="Blandos"><span class="neumatico blando" title="Blandos">S</span></div></td>
-          <td>0 paradas registradas</td>
-        </tr>
-</tbody>
-    
+      <div class="tabla-contenedor">
+        <table>
+          <caption id="titulo-tabla-1">
+            Clasificación final de la carrera
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Posición</th>
+              <th scope="col">Piloto</th>
+              <th scope="col">Equipo</th>
+              <th scope="col">Puntos</th>
+              <th scope="col">Neumáticos usados</th>
+              <th scope="col">Paradas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/nl.svg"
+                  alt="Países Bajos"
+                  class="bandera"
+                />
+                Verstappen
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/redbull_racing.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Red Bull Racing
+              </td>
+              <td class="puntos">25</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>3 paradas</summary>
+                  <ul>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 33</li>
+                    <li>Vuelta 43</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/it.svg"
+                  alt="Italia"
+                  class="bandera"
+                />
+                Antonelli
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/mercedes.svg"
+                  alt=""
+                  class="logo-equipo logo-mercedes"
+                />
+                Mercedes
+              </td>
+              <td class="puntos">18</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico medio" title="Medios">M</span> →
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>3 paradas</summary>
+                  <ul>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 33</li>
+                    <li>Vuelta 44</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/uk.svg"
+                  alt="Reino Unido"
+                  class="bandera"
+                />
+                Hamilton
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/ferrari.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Ferrari
+              </td>
+              <td class="puntos">15</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico medio" title="Medios">M</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>2 paradas</summary>
+                  <ul>
+                    <li>Vuelta 31</li>
+                    <li>Vuelta 43</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/mc.svg"
+                  alt="Mónaco"
+                  class="bandera"
+                />
+                Leclerc
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/ferrari.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Ferrari
+              </td>
+              <td class="puntos">12</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>4 paradas</summary>
+                  <ul>
+                    <li>Vuelta 3</li>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 28</li>
+                    <li>Vuelta 43</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/fr.svg"
+                  alt="Francia"
+                  class="bandera"
+                />
+                Hadjar
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/redbull_racing.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Red Bull Racing
+              </td>
+              <td class="puntos">10</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>3 paradas</summary>
+                  <ul>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 31</li>
+                    <li>Vuelta 44</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/au.svg"
+                  alt="Australia"
+                  class="bandera"
+                />
+                Piastri
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/mclaren.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                McLaren
+              </td>
+              <td class="puntos">8</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico medio" title="Medios">M</span> →
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico medio" title="Medios">M</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>4 paradas</summary>
+                  <ul>
+                    <li>Vuelta 2</li>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 33</li>
+                    <li>Vuelta 45</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/nz.svg"
+                  alt="Nueva Zelanda"
+                  class="bandera"
+                />
+                Lawson
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/racing_bulls.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Racing Bulls
+              </td>
+              <td class="puntos">6</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>3 paradas</summary>
+                  <ul>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 30</li>
+                    <li>Vuelta 45</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/es.svg"
+                  alt="España"
+                  class="bandera"
+                />
+                Alonso
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/aston_martin.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Aston Martin
+              </td>
+              <td class="puntos">4</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico medio" title="Medios">M</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>3 paradas</summary>
+                  <ul>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 31</li>
+                    <li>Vuelta 45</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/uk.svg"
+                  alt="Reino Unido"
+                  class="bandera"
+                />
+                Norris
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/mclaren.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                McLaren
+              </td>
+              <td class="puntos">2</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico medio" title="Medios">M</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>3 paradas</summary>
+                  <ul>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 34</li>
+                    <li>Vuelta 45</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/uk.svg"
+                  alt="Reino Unido"
+                  class="bandera"
+                />
+                Lindblad
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/racing_bulls.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Racing Bulls
+              </td>
+              <td class="puntos">1</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>3 paradas</summary>
+                  <ul>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 28</li>
+                    <li>Vuelta 43</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/de.svg"
+                  alt="Alemania"
+                  class="bandera"
+                />
+                Hulkenberg
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/audi.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Audi
+              </td>
+              <td class="puntos">0</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>4 paradas</summary>
+                  <ul>
+                    <li>Vuelta 2</li>
+                    <li>Vuelta 8</li>
+                    <li>Vuelta 32</li>
+                    <li>Vuelta 45</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/ca.svg"
+                  alt="Canadá"
+                  class="bandera"
+                />
+                Stroll
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/aston_martin.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Aston Martin
+              </td>
+              <td class="puntos">0</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico medio" title="Medios">M</span> →
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>4 paradas</summary>
+                  <ul>
+                    <li>Vuelta 2</li>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 28</li>
+                    <li>Vuelta 43</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr class="colapinto">
+              <td>13</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/ar.svg"
+                  alt="Argentina"
+                  class="bandera"
+                />
+                Colapinto
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/alpine.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Alpine
+              </td>
+              <td class="puntos">0</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico medio" title="Medios">M</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico medio" title="Medios">M</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>3 paradas</summary>
+                  <ul>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 31</li>
+                    <li>Vuelta 42</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/uk.svg"
+                  alt="Reino Unido"
+                  class="bandera"
+                />
+                Bearman
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/haas.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Haas
+              </td>
+              <td class="puntos">0</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico medio" title="Medios">M</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico duro" title="Duros">H</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>3 paradas</summary>
+                  <ul>
+                    <li>Vuelta 10</li>
+                    <li>Vuelta 24</li>
+                    <li>Vuelta 38</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/fr.svg"
+                  alt="Francia"
+                  class="bandera"
+                />
+                Ocon
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/haas.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Haas
+              </td>
+              <td class="puntos">0</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>3 paradas</summary>
+                  <ul>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 29</li>
+                    <li>Vuelta 41</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/fr.svg"
+                  alt="Francia"
+                  class="bandera"
+                />
+                Gasly
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/alpine.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Alpine
+              </td>
+              <td class="puntos">0</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico medio" title="Medios">M</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>4 paradas</summary>
+                  <ul>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 25</li>
+                    <li>Vuelta 37</li>
+                    <li>Vuelta 45</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/es.svg"
+                  alt="España"
+                  class="bandera"
+                />
+                Sainz
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/williams.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Williams
+              </td>
+              <td class="puntos">0</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>3 paradas</summary>
+                  <ul>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 26</li>
+                    <li>Vuelta 42</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/br.svg"
+                  alt="Brasil"
+                  class="bandera"
+                />
+                Bortoleto
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/audi.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Audi
+              </td>
+              <td class="puntos">0</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>5 paradas</summary>
+                  <ul>
+                    <li>Vuelta 2</li>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 15</li>
+                    <li>Vuelta 34</li>
+                    <li>Vuelta 44</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/mx.svg"
+                  alt="México"
+                  class="bandera"
+                />
+                Perez
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/cadillac.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Cadillac
+              </td>
+              <td class="puntos">0</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico medio" title="Medios">M</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico medio" title="Medios">M</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>7 paradas</summary>
+                  <ul>
+                    <li>Vuelta 1</li>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 18</li>
+                    <li>Vuelta 21</li>
+                    <li>Vuelta 39</li>
+                    <li>Vuelta 44</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/uk.svg"
+                  alt="Reino Unido"
+                  class="bandera"
+                />
+                Russell
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/mercedes.svg"
+                  alt=""
+                  class="logo-equipo logo-mercedes"
+                />
+                Mercedes
+              </td>
+              <td class="puntos">0</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico medio" title="Medios">M</span> →
+                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>3 paradas</summary>
+                  <ul>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 32</li>
+                    <li>Vuelta 44</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>NC</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/th.svg"
+                  alt="Tailandia"
+                  class="bandera"
+                />
+                Albon
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/williams.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Williams
+              </td>
+              <td class="puntos">0</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>
+                <details class="pit-stops">
+                  <summary>3 paradas</summary>
+                  <ul>
+                    <li>Vuelta 9</li>
+                    <li>Vuelta 16</li>
+                    <li>Vuelta 29</li>
+                  </ul>
+                </details>
+              </td>
+            </tr>
+            <tr>
+              <td>NC</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/fi.svg"
+                  alt="Finlandia"
+                  class="bandera"
+                />
+                Bottas
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/cadillac.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Cadillac
+              </td>
+              <td class="puntos">0</td>
+              <td>
+                <div class="estrategia">
+                  <span class="neumatico blando" title="Blandos">S</span>
+                </div>
+              </td>
+              <td>Sin paradas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </main>
   </body>
 </html>
