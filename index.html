@@ -1,48 +1,72 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>F1 Telemetry | Último GP</title>
-    <link rel="stylesheet" href="./style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&amp;family=DM+Mono:wght@500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&amp;family=DM+Mono:wght@500&amp;display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header class="encabezado">
-      <nav class="navegacion" aria-label="Navegación principal">
+      <nav class="navegacion">
         <a href="./principal.html">Inicio</a>
-        <a href="./index.html" aria-current="page">Último GP</a>
+        <a href="./index.html">Último GP</a>
         <a href="./campeonato.html">Pilotos y constructores</a>
       </nav>
       <p class="marca">F1 Telemetry · Temporada 2026</p>
       <h1>GP de Baréin en Malasia</h1>
-      <p>Sepang International Circuit · <time datetime="2026-10-04">4 de octubre de 2026</time></p>
-      <p>Resultados del último Gran Premio disputado y puntos obtenidos en la carrera.</p>
+      <p>Sepang International Circuit · 4 de octubre de 2026</p>
+      <p>
+        Resultados del último Gran Premio disputado, paradas en boxes y puntos
+        obtenidos.
+      </p>
     </header>
     <main>
-      <div class="tabla-contenedor" tabindex="0" role="region" aria-labelledby="titulo-tabla-1">
+      <div class="tabla-contenedor">
         <table>
-          <caption id="titulo-tabla-1">Clasificación final de la carrera</caption>
+          <caption id="titulo-tabla-1">
+            Clasificación final de la carrera
+          </caption>
           <thead>
             <tr>
               <th scope="col">Posición</th>
               <th scope="col">Piloto</th>
               <th scope="col">Equipo</th>
-              <th scope="col">Puntos del GP</th>
+              <th scope="col">Puntos</th>
               <th scope="col">Neumáticos usados</th>
-              <th scope="col">Pit stops</th>
+              <th scope="col">Paradas</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/nl.svg" alt="Países Bajos" class="bandera"> Verstappen</th>
-              <td class="equipo"><img src="recursos/logos-equipos/redbull_racing.svg" alt="" class="logo-equipo"> Red Bull Racing</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/nl.svg"
+                  alt="Países Bajos"
+                  class="bandera"
+                />
+                Verstappen
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/redbull_racing.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Red Bull Racing
+              </td>
               <td class="puntos">25</td>
               <td>
-                <div class="estrategia" aria-label="Intermedios, Blandos, Blandos, Blandos" role="img">
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico blando" title="Blandos">S</span> →
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico blando" title="Blandos">S</span>
                 </div>
@@ -60,13 +84,29 @@
             </tr>
             <tr>
               <td>2</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/it.svg" alt="Italia" class="bandera"> Antonelli</th>
-              <td class="equipo"><img src="recursos/logos-equipos/mercedes.svg" alt="" class="logo-equipo logo-mercedes"> Mercedes</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/it.svg"
+                  alt="Italia"
+                  class="bandera"
+                />
+                Antonelli
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/mercedes.svg"
+                  alt=""
+                  class="logo-equipo logo-mercedes"
+                />
+                Mercedes
+              </td>
               <td class="puntos">18</td>
               <td>
-                <div class="estrategia" aria-label="Intermedios, Medios, Blandos, Blandos" role="img">
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico medio" title="Medios">M</span> →
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico medio" title="Medios">M</span> →
                   <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico blando" title="Blandos">S</span>
                 </div>
@@ -84,11 +124,25 @@
             </tr>
             <tr>
               <td>3</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/uk.svg" alt="Reino Unido" class="bandera"> Hamilton</th>
-              <td class="equipo"><img src="recursos/logos-equipos/ferrari.svg" alt="" class="logo-equipo"> Ferrari</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/uk.svg"
+                  alt="Reino Unido"
+                  class="bandera"
+                />
+                Hamilton
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/ferrari.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Ferrari
+              </td>
               <td class="puntos">15</td>
               <td>
-                <div class="estrategia" aria-label="Blandos, Medios, Blandos" role="img">
+                <div class="estrategia">
                   <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico medio" title="Medios">M</span> →
                   <span class="neumatico blando" title="Blandos">S</span>
@@ -106,14 +160,30 @@
             </tr>
             <tr>
               <td>4</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/mc.svg" alt="Mónaco" class="bandera"> Leclerc</th>
-              <td class="equipo"><img src="recursos/logos-equipos/ferrari.svg" alt="" class="logo-equipo"> Ferrari</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/mc.svg"
+                  alt="Mónaco"
+                  class="bandera"
+                />
+                Leclerc
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/ferrari.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Ferrari
+              </td>
               <td class="puntos">12</td>
               <td>
-                <div class="estrategia" aria-label="Blandos, Intermedios, Blandos, Blandos, Blandos" role="img">
+                <div class="estrategia">
                   <span class="neumatico blando" title="Blandos">S</span> →
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico blando" title="Blandos">S</span>
                 </div>
@@ -132,13 +202,29 @@
             </tr>
             <tr>
               <td>5</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/fr.svg" alt="Francia" class="bandera"> Hadjar</th>
-              <td class="equipo"><img src="recursos/logos-equipos/redbull_racing.svg" alt="" class="logo-equipo"> Red Bull Racing</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/fr.svg"
+                  alt="Francia"
+                  class="bandera"
+                />
+                Hadjar
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/redbull_racing.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Red Bull Racing
+              </td>
               <td class="puntos">10</td>
               <td>
-                <div class="estrategia" aria-label="Intermedios, Blandos, Blandos, Blandos" role="img">
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico blando" title="Blandos">S</span> →
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico blando" title="Blandos">S</span>
                 </div>
@@ -156,14 +242,30 @@
             </tr>
             <tr>
               <td>6</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/au.svg" alt="Australia" class="bandera"> Piastri</th>
-              <td class="equipo"><img src="recursos/logos-equipos/mclaren.svg" alt="" class="logo-equipo"> McLaren</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/au.svg"
+                  alt="Australia"
+                  class="bandera"
+                />
+                Piastri
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/mclaren.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                McLaren
+              </td>
               <td class="puntos">8</td>
               <td>
-                <div class="estrategia" aria-label="Medios, Intermedios, Duros, Duros, Medios" role="img">
+                <div class="estrategia">
                   <span class="neumatico medio" title="Medios">M</span> →
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico medio" title="Medios">M</span>
                 </div>
@@ -182,13 +284,29 @@
             </tr>
             <tr>
               <td>7</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/nz.svg" alt="Nueva Zelanda" class="bandera"> Lawson</th>
-              <td class="equipo"><img src="recursos/logos-equipos/racing_bulls.svg" alt="" class="logo-equipo"> Racing Bulls</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/nz.svg"
+                  alt="Nueva Zelanda"
+                  class="bandera"
+                />
+                Lawson
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/racing_bulls.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Racing Bulls
+              </td>
               <td class="puntos">6</td>
               <td>
-                <div class="estrategia" aria-label="Intermedios, Duros, Duros, Blandos" role="img">
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico duro" title="Duros">H</span> →
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico blando" title="Blandos">S</span>
                 </div>
@@ -206,11 +324,25 @@
             </tr>
             <tr>
               <td>8</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/es.svg" alt="España" class="bandera"> Alonso</th>
-              <td class="equipo"><img src="recursos/logos-equipos/aston_martin.svg" alt="" class="logo-equipo"> Aston Martin</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/es.svg"
+                  alt="España"
+                  class="bandera"
+                />
+                Alonso
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/aston_martin.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Aston Martin
+              </td>
               <td class="puntos">4</td>
               <td>
-                <div class="estrategia" aria-label="Medios, Duros, Duros, Blandos" role="img">
+                <div class="estrategia">
                   <span class="neumatico medio" title="Medios">M</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
@@ -230,11 +362,25 @@
             </tr>
             <tr>
               <td>9</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/uk.svg" alt="Reino Unido" class="bandera"> Norris</th>
-              <td class="equipo"><img src="recursos/logos-equipos/mclaren.svg" alt="" class="logo-equipo"> McLaren</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/uk.svg"
+                  alt="Reino Unido"
+                  class="bandera"
+                />
+                Norris
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/mclaren.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                McLaren
+              </td>
               <td class="puntos">2</td>
               <td>
-                <div class="estrategia" aria-label="Medios, Duros, Blandos, Blandos" role="img">
+                <div class="estrategia">
                   <span class="neumatico medio" title="Medios">M</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico blando" title="Blandos">S</span> →
@@ -254,13 +400,29 @@
             </tr>
             <tr>
               <td>10</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/uk.svg" alt="Reino Unido" class="bandera"> Lindblad</th>
-              <td class="equipo"><img src="recursos/logos-equipos/racing_bulls.svg" alt="" class="logo-equipo"> Racing Bulls</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/uk.svg"
+                  alt="Reino Unido"
+                  class="bandera"
+                />
+                Lindblad
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/racing_bulls.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Racing Bulls
+              </td>
               <td class="puntos">1</td>
               <td>
-                <div class="estrategia" aria-label="Intermedios, Duros, Duros, Blandos" role="img">
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico duro" title="Duros">H</span> →
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico blando" title="Blandos">S</span>
                 </div>
@@ -278,14 +440,30 @@
             </tr>
             <tr>
               <td>11</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/de.svg" alt="Alemania" class="bandera"> Hulkenberg</th>
-              <td class="equipo"><img src="recursos/logos-equipos/audi.svg" alt="" class="logo-equipo"> Audi</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/de.svg"
+                  alt="Alemania"
+                  class="bandera"
+                />
+                Hulkenberg
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/audi.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Audi
+              </td>
               <td class="puntos">0</td>
               <td>
-                <div class="estrategia" aria-label="Blandos, Intermedios, Blandos, Blandos, Blandos" role="img">
+                <div class="estrategia">
                   <span class="neumatico blando" title="Blandos">S</span> →
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico blando" title="Blandos">S</span>
                 </div>
@@ -304,14 +482,30 @@
             </tr>
             <tr>
               <td>12</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/ca.svg" alt="Canadá" class="bandera"> Stroll</th>
-              <td class="equipo"><img src="recursos/logos-equipos/aston_martin.svg" alt="" class="logo-equipo"> Aston Martin</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/ca.svg"
+                  alt="Canadá"
+                  class="bandera"
+                />
+                Stroll
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/aston_martin.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Aston Martin
+              </td>
               <td class="puntos">0</td>
               <td>
-                <div class="estrategia" aria-label="Medios, Intermedios, Duros, Duros, Blandos" role="img">
+                <div class="estrategia">
                   <span class="neumatico medio" title="Medios">M</span> →
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico duro" title="Duros">H</span> →
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico blando" title="Blandos">S</span>
                 </div>
@@ -330,11 +524,25 @@
             </tr>
             <tr class="colapinto">
               <td>13</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/ar.svg" alt="Argentina" class="bandera"> Colapinto</th>
-              <td class="equipo"><img src="recursos/logos-equipos/alpine.svg" alt="" class="logo-equipo"> Alpine</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/ar.svg"
+                  alt="Argentina"
+                  class="bandera"
+                />
+                Colapinto
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/alpine.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Alpine
+              </td>
               <td class="puntos">0</td>
               <td>
-                <div class="estrategia" aria-label="Blandos, Medios, Duros, Medios" role="img">
+                <div class="estrategia">
                   <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico medio" title="Medios">M</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
@@ -354,11 +562,25 @@
             </tr>
             <tr>
               <td>14</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/uk.svg" alt="Reino Unido" class="bandera"> Bearman</th>
-              <td class="equipo"><img src="recursos/logos-equipos/haas.svg" alt="" class="logo-equipo"> Haas</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/uk.svg"
+                  alt="Reino Unido"
+                  class="bandera"
+                />
+                Bearman
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/haas.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Haas
+              </td>
               <td class="puntos">0</td>
               <td>
-                <div class="estrategia" aria-label="Blandos, Medios, Duros, Duros" role="img">
+                <div class="estrategia">
                   <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico medio" title="Medios">M</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
@@ -378,13 +600,29 @@
             </tr>
             <tr>
               <td>15</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/fr.svg" alt="Francia" class="bandera"> Ocon</th>
-              <td class="equipo"><img src="recursos/logos-equipos/haas.svg" alt="" class="logo-equipo"> Haas</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/fr.svg"
+                  alt="Francia"
+                  class="bandera"
+                />
+                Ocon
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/haas.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Haas
+              </td>
               <td class="puntos">0</td>
               <td>
-                <div class="estrategia" aria-label="Intermedios, Blandos, Duros, Blandos" role="img">
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico blando" title="Blandos">S</span> →
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico blando" title="Blandos">S</span>
                 </div>
@@ -402,11 +640,25 @@
             </tr>
             <tr>
               <td>16</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/fr.svg" alt="Francia" class="bandera"> Gasly</th>
-              <td class="equipo"><img src="recursos/logos-equipos/alpine.svg" alt="" class="logo-equipo"> Alpine</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/fr.svg"
+                  alt="Francia"
+                  class="bandera"
+                />
+                Gasly
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/alpine.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Alpine
+              </td>
               <td class="puntos">0</td>
               <td>
-                <div class="estrategia" aria-label="Blandos, Medios, Duros, Blandos, Blandos" role="img">
+                <div class="estrategia">
                   <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico medio" title="Medios">M</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
@@ -428,13 +680,29 @@
             </tr>
             <tr>
               <td>17</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/es.svg" alt="España" class="bandera"> Sainz</th>
-              <td class="equipo"><img src="recursos/logos-equipos/williams.svg" alt="" class="logo-equipo"> Williams</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/es.svg"
+                  alt="España"
+                  class="bandera"
+                />
+                Sainz
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/williams.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Williams
+              </td>
               <td class="puntos">0</td>
               <td>
-                <div class="estrategia" aria-label="Intermedios, Blandos, Duros, Blandos" role="img">
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico blando" title="Blandos">S</span> →
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico blando" title="Blandos">S</span>
                 </div>
@@ -452,14 +720,30 @@
             </tr>
             <tr>
               <td>18</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/br.svg" alt="Brasil" class="bandera"> Bortoleto</th>
-              <td class="equipo"><img src="recursos/logos-equipos/audi.svg" alt="" class="logo-equipo"> Audi</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/br.svg"
+                  alt="Brasil"
+                  class="bandera"
+                />
+                Bortoleto
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/audi.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Audi
+              </td>
               <td class="puntos">0</td>
               <td>
-                <div class="estrategia" aria-label="Blandos, Intermedios, Blandos, Duros, Blandos, Blandos" role="img">
+                <div class="estrategia">
                   <span class="neumatico blando" title="Blandos">S</span> →
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico blando" title="Blandos">S</span> →
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico blando" title="Blandos">S</span>
@@ -480,14 +764,30 @@
             </tr>
             <tr>
               <td>19</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/mx.svg" alt="México" class="bandera"> Perez</th>
-              <td class="equipo"><img src="recursos/logos-equipos/cadillac.svg" alt="" class="logo-equipo"> Cadillac</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/mx.svg"
+                  alt="México"
+                  class="bandera"
+                />
+                Perez
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/cadillac.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Cadillac
+              </td>
               <td class="puntos">0</td>
               <td>
-                <div class="estrategia" aria-label="Blandos, Intermedios, Medios, Duros, Duros, Medios, Blandos" role="img">
+                <div class="estrategia">
                   <span class="neumatico blando" title="Blandos">S</span> →
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico medio" title="Medios">M</span> →
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico medio" title="Medios">M</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico medio" title="Medios">M</span> →
@@ -496,7 +796,6 @@
               </td>
               <td>
                 <details class="pit-stops">
-                  <!-- Revisar el dato original: se anuncian 7 paradas, pero se detallan 6. -->
                   <summary>7 paradas</summary>
                   <ul>
                     <li>Vuelta 1</li>
@@ -511,13 +810,29 @@
             </tr>
             <tr>
               <td>20</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/uk.svg" alt="Reino Unido" class="bandera"> Russell</th>
-              <td class="equipo"><img src="recursos/logos-equipos/mercedes.svg" alt="" class="logo-equipo logo-mercedes"> Mercedes</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/uk.svg"
+                  alt="Reino Unido"
+                  class="bandera"
+                />
+                Russell
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/mercedes.svg"
+                  alt=""
+                  class="logo-equipo logo-mercedes"
+                />
+                Mercedes
+              </td>
               <td class="puntos">0</td>
               <td>
-                <div class="estrategia" aria-label="Intermedios, Medios, Blandos, Blandos" role="img">
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico medio" title="Medios">M</span> →
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico medio" title="Medios">M</span> →
                   <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico blando" title="Blandos">S</span>
                 </div>
@@ -535,13 +850,29 @@
             </tr>
             <tr>
               <td>NC</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/th.svg" alt="Tailandia" class="bandera"> Albon</th>
-              <td class="equipo"><img src="recursos/logos-equipos/williams.svg" alt="" class="logo-equipo"> Williams</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/th.svg"
+                  alt="Tailandia"
+                  class="bandera"
+                />
+                Albon
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/williams.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Williams
+              </td>
               <td class="puntos">0</td>
               <td>
-                <div class="estrategia" aria-label="Intermedios, Blandos, Duros, Blandos" role="img">
-                  <span class="neumatico intermedio" title="Intermedios">I</span> →
-                  <span class="neumatico blando" title="Blandos">S</span> →
+                <div class="estrategia">
+                  <span class="neumatico intermedio" title="Intermedios"
+                    >I</span
+                  >
+                  → <span class="neumatico blando" title="Blandos">S</span> →
                   <span class="neumatico duro" title="Duros">H</span> →
                   <span class="neumatico blando" title="Blandos">S</span>
                 </div>
@@ -559,15 +890,29 @@
             </tr>
             <tr>
               <td>NC</td>
-              <th scope="row" class="piloto"><img src="recursos/iconos-banderas/fi.svg" alt="Finlandia" class="bandera"> Bottas</th>
-              <td class="equipo"><img src="recursos/logos-equipos/cadillac.svg" alt="" class="logo-equipo"> Cadillac</td>
+              <th scope="row" class="piloto">
+                <img
+                  src="recursos/iconos-banderas/fi.svg"
+                  alt="Finlandia"
+                  class="bandera"
+                />
+                Bottas
+              </th>
+              <td class="equipo">
+                <img
+                  src="recursos/logos-equipos/cadillac.svg"
+                  alt=""
+                  class="logo-equipo"
+                />
+                Cadillac
+              </td>
               <td class="puntos">0</td>
               <td>
-                <div class="estrategia" aria-label="Blandos" role="img">
+                <div class="estrategia">
                   <span class="neumatico blando" title="Blandos">S</span>
                 </div>
               </td>
-              <td>0 paradas registradas</td>
+              <td>Sin paradas</td>
             </tr>
           </tbody>
         </table>

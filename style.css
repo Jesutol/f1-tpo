@@ -1,4 +1,3 @@
-/* Estilos generales */
 * {
   box-sizing: border-box;
 }
@@ -74,7 +73,7 @@ a {
   background-color: #b80500;
 }
 
-.navegacion a[aria-current="page"] {
+.inicio .navegacion a[href="./principal.html"] {
   box-shadow: inset 0 0 0 2px #fff;
 }
 
@@ -96,7 +95,6 @@ a {
   font-weight: 500;
 }
 
-/* Tablas: el desplazamiento queda dentro del contenedor. */
 .tabla-contenedor {
   overflow-x: auto;
 }
@@ -135,7 +133,6 @@ tbody tr:nth-child(even) {
   background-color: #202a36;
 }
 
-/* Las celdas conservan su comportamiento de tabla, sin display: flex. */
 .piloto,
 .equipo {
   text-align: left;
@@ -152,7 +149,6 @@ tbody tr:nth-child(even) {
   text-shadow: 0 0 10px #006eff;
 }
 
-/* Neumáticos y paradas */
 .estrategia {
   display: flex;
   justify-content: center;
@@ -208,7 +204,6 @@ tbody tr:nth-child(even) {
   line-height: 1.6;
 }
 
-/* Portada */
 .inicio-presentacion,
 .inicio-titulo-seccion,
 .inicio-proxima-resumen {
