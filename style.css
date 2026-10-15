@@ -12,12 +12,11 @@ body {
 
 .encabezado,
 main {
-  max-width: 1000px;
+  max-width: 1400px;
   margin: auto;
 }
 
 .encabezado {
-  border-top: 4px solid #e10600;
   padding: 24px 0;
 }
 
@@ -55,9 +54,14 @@ a {
 }
 
 .navegacion {
+  border-top: 4px solid #e10600;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  position: sticky;
+  top: 0;
+  background-color:  #0b0e12;
+  padding-top: 20px;
 }
 
 .navegacion a {
@@ -207,129 +211,61 @@ tbody tr:nth-child(even) {
 .inicio-presentacion,
 .inicio-titulo-seccion,
 .inicio-proxima-resumen {
-  display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
 }
 
-.inicio-contenido {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+/*esto es la inicio*/
+.principal{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-image: url(./recursos/formula_1_PNG39.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex-wrap: wrap;
 }
 
-.inicio-tarjeta {
-  padding: 16px;
-  background-color: #171e27;
+.podio{
+  background-color: #202a36;
+  padding:30px;
+  text-align: center;
+  border-radius: 5px;
+  min-width: 40%;
+  margin: 20px;            
 }
 
-.inicio-proxima {
-  grid-column: 1 / -1;
+
+.podio__titulo{
+  font-size:30px;
+  margin-bottom: 30px;
+  margin-top:0px;
+  text-align: center;
 }
 
-.inicio h2 {
-  margin: 0 0 12px;
+.podio__list{
+  text-align: left;
 }
 
-.inicio h3 {
-  margin: 0;
-  font-size: 1rem;
+.podio--item__titulo{
+  font-weight: normal;
+  margin-bottom: 0px;
 }
 
-.inicio-podio,
-.inicio-constructores,
-.inicio-agenda {
-  padding: 0;
-  list-style: none;
-}
-
-.inicio-podio > li,
-.inicio-constructores > li {
-  display: grid;
-  grid-template-columns: 20px 24px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 6px 8px;
-  padding: 12px 0;
-  border-bottom: 1px solid #aaa5;
-}
-
-.inicio-podio .inicio-posicion,
-.inicio-podio img {
-  grid-row: 1 / 3;
-}
-
-.inicio-podio p {
-  grid-column: 3;
-  grid-row: 2;
-  margin: 0;
-  color: #b9c3d0;
-  font-size: 0.8rem;
-}
-
-.inicio-resultado,
-.inicio-puntos-gp {
-  grid-column: 4;
+.podio--item__info{
   text-align: right;
-  font-size: 0.8rem;
+  margin-top:0.5px
 }
 
-.inicio-resultado {
-  grid-row: 1;
+.podio__Textfinal{
+  text-align: left;
+  margin:0.5px;
 }
 
-.inicio-puntos-gp {
-  grid-row: 2;
-}
-
-.inicio-constructores p {
-  margin: 0;
-}
-
-.inicio-fecha-carrera {
-  text-align: right;
-  line-height: 1.5;
-}
-
-.inicio-fecha-carrera strong {
-  font-size: 1.5rem;
-}
-
-.inicio-datos-circuito,
-.inicio-agenda {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 16px;
-  padding: 16px 0;
-  border-block: 1px solid #aaa5;
-}
-
-.inicio-datos-circuito dt {
-  color: #b9c3d0;
-  font-size: 0.8rem;
-}
-
-.inicio-datos-circuito dd {
-  margin: 8px 0 0;
-}
-
-.inicio-agenda time {
-  display: block;
-  margin-top: 8px;
-  font-size: 0.9rem;
-}
-
-.inicio-enlace {
-  color: #fff;
-}
-
-@media (max-width: 700px) {
-  .inicio-contenido {
-    grid-template-columns: 1fr;
-  }
-
-  .inicio-fecha-carrera {
-    text-align: left;
-  }
+.podio--item{
+  margin-bottom: 50px;
+  padding-left: 0;
 }
