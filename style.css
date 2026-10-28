@@ -249,6 +249,7 @@ tbody tr:nth-child(even) {
 
 .podio__list{
   text-align: left;
+  margin-bottom: 20px;
 }
 
 .podio--item__titulo{
@@ -263,10 +264,14 @@ tbody tr:nth-child(even) {
 
 .podio__Textfinal{
   text-align: left;
-  margin:0.5px;
+  margin:20px 0px;
 }
 
 .podio--item{
   margin-bottom: 50px;
   padding-left: 0;
+}
+
+.podio__list .podio--item:last-child {
+  margin-bottom: 0px;
 }
