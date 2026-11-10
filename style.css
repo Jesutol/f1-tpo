@@ -50,8 +50,7 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid #6ce6c4;
-  outline-offset: 4px;
+  box-shadow: 0 0 8px #6ce6c4;
 }
 
 .navegacion {
@@ -332,4 +331,18 @@ tbody tr:nth-child(even) {
   .inicio-fecha-carrera {
     text-align: left;
   }
+}
+
+.encabezado-tabla{
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0px;
+}
+
+.buscador{
+  max-width: 400px;
+  min-width: 200px;
+  border: none;
+  background-color: #202a36;
+  color:#fff;
 }
