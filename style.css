@@ -17,8 +17,7 @@ main {
 }
 
 .encabezado {
-  border-top: 4px solid #e10600;
-  padding: 24px 0;
+
 }
 
 h1 {
@@ -50,13 +49,18 @@ a {
 }
 
 :focus-visible {
-  box-shadow: 0 0 8px #6ce6c4;
+  box-shadow: 0 0 5px #ddddddff;
 }
 
 .navegacion {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  position: sticky;
+  top: 0;
+  background-color:#0b0e12;
+  border-top: 4px solid #e10600;
+  padding: 24px 0;
 }
 
 .navegacion a {
@@ -336,13 +340,45 @@ tbody tr:nth-child(even) {
 .encabezado-tabla{
   display: flex;
   justify-content: space-between;
-  margin: 5px 0px;
+  margin-bottom: 5px;
+  margin-top: 15px;
 }
 
 .buscador{
-  max-width: 400px;
-  min-width: 200px;
+  width:250px;
   border: none;
   background-color: #202a36;
   color:#fff;
+  border-radius: 2px;
+  display:none;
+}
+
+.buscador:focus{
+  outline:none;
+  box-shadow:none;
+}
+
+.lupa{
+  width:15px;
+  height:15px;
+}
+
+.buscador-boton{
+  margin-right:10px;
+  padding-left:50px;
+  background: none;
+  border: none;
+}
+
+.buscador-contenedor:hover .lupa{
+  filter: opacity(50%);
+}
+
+.buscador-contenedor:focus-within .buscador-boton{
+  opacity: 0;
+  pointer-events: none;
+  position:absolute;
+}
+.buscador-contenedor:focus-within .buscador{
+  display:inline-block;
 }

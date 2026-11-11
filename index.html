@@ -26,11 +26,17 @@
       </p>
     </header>
     <main>
+      <header class="encabezado-tabla">      
+        <caption id="titulo-tabla-1">
+          Campeonato de pilotos 2026
+        </caption>
+        <div class="buscador-contenedor">
+          <button class="buscador-boton"> <img class="lupa" src="./recursos/misc/Magnifying_glass_icon.png"> </button>
+          <input type="text" class="buscador" id="buscador3" placeholder="buscar piloto..." />
+        </div>
+      </header> 
       <div class="tabla-contenedor">
         <table>
-          <caption id="titulo-tabla-1">
-            Clasificación final de la carrera
-          </caption>
           <thead>
             <tr>
               <th scope="col">Posición</th>
@@ -41,7 +47,7 @@
               <th scope="col">Paradas</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="tabla3">
             <tr>
               <td>1</td>
               <th scope="row" class="piloto">
@@ -918,5 +924,6 @@
         </table>
       </div>
     </main>
+    <script src="script-index.js"></script>
   </body>
 </html>

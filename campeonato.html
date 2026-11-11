@@ -21,13 +21,16 @@
       <h1>Tabla de posiciones</h1>
     </header>
     <main>   
-      <header class="encabezado-tabla">      
+      <header class="encabezado-tabla">
       <caption id="titulo-tabla-1">
-      Campeonato de pilotos 2026
+        Campeonato de pilotos 2026
       </caption>
-      <input type="text" class="buscador" id="buscador1" placeholder="buscar piloto..." />
+      <div class="buscador-contenedor">
+          <button class="buscador-boton"> <img class="lupa" src="./recursos/misc/Magnifying_glass_icon.png"> </button>
+          <input type="text" class="buscador" id="buscador1" placeholder="buscar piloto..." />
+      </div>
       </header> 
-      <div class="tabla-contenedor">        
+      <div class="tabla-contenedor">
         <table>
           <thead>
             <tr>
@@ -505,7 +508,10 @@
         <caption id="titulo-tabla-1">
           Campeonato de pilotos 2026
         </caption>
-        <input type="text" class="buscador" id="buscador2" placeholder="buscar constructor..." />
+        <div class="buscador-contenedor">
+          <button class="buscador-boton"> <img class="lupa" src="./recursos/misc/Magnifying_glass_icon.png"> </button>
+          <input type="text" class="buscador" id="buscador2" placeholder="buscar constructor..." />
+        </div>
       </header> 
       <div class="tabla-contenedor">
         <table>
@@ -653,6 +659,6 @@
         </table>
       </div>
     </main>
-    <script src="script.js"></script>
+    <script src="script-campeonato.js"></script>
   </body>
 </html>
