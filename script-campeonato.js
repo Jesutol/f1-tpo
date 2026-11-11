@@ -6,11 +6,13 @@ let resultado="";
 input1.addEventListener("input", () => {
     let hijo;
     let nombre;
+    let nombreMarca;
     resultado = input1.value.toLowerCase();
     hijo=tabla1.firstElementChild;
     while(hijo!=null){
         nombre=hijo.firstElementChild.nextElementSibling.textContent.toLowerCase();
-        hijo.hidden=!nombre.includes(resultado);
+        nombreMarca=hijo.firstElementChild.nextElementSibling.nextElementSibling.textContent.toLowerCase();
+        hijo.hidden=!nombre.includes(resultado) && !nombreMarca.includes(resultado);
         hijo=hijo.nextElementSibling;
     }
 });
