@@ -7,7 +7,7 @@ app.use(express.json());
 
 // En Vercel usamos Atlas. En la computadora también podemos usar MongoDB local.
 const direccionMongo =
-  process.env.CONEXION_MONGO || "mongodb://127.0.0.1:27017";
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017";
 const cliente = new MongoClient(direccionMongo, { maxPoolSize: 5 });
 
 // Para abrir el frontend al ejecutar el proyecto en la computadora.
