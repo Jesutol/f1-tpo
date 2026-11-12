@@ -3,11 +3,9 @@
 }
 
 body {
-  margin: 0;
   padding: 32px 16px;
   font-family: "Barlow", sans-serif;
-  color: #fff;
-  background-color: #0b0e12;
+  background: #0b0e12;
 }
 
 .encabezado,
@@ -31,10 +29,6 @@ h1 {
   color: #ff6b65;
 }
 
-.marca {
-  font-weight: 700;
-}
-
 .encabezado p,
 .nota {
   line-height: 1.5;
@@ -46,7 +40,7 @@ h1 {
 }
 
 a {
-  color: #6ce6c4;
+  color: inherit;
 }
 
 :focus-visible {
@@ -55,26 +49,52 @@ a {
 }
 
 .navegacion {
-  display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
 
-.navegacion a {
+.navegacion a,
+.navegacion summary {
   padding: 10px 18px;
   border-radius: 6px;
-  color: #fff;
-  background-color: #e10600;
-  font-weight: 700;
   text-decoration: none;
+  background: #e10600;
 }
 
-.navegacion a:hover {
-  background-color: #b80500;
+.navegacion a:hover,
+.navegacion summary:hover {
+  background: #b80500;
 }
 
-.inicio .navegacion a[href="./principal.html"] {
-  box-shadow: inset 0 0 0 2px #fff;
+.menu-ultimo-gp,
+.menu-campeonato {
+  position: relative;
+}
+
+.menu-ultimo-gp summary,
+.menu-campeonato summary {
+  cursor: pointer;
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  margin-top: 6px;
+  padding: 6px;
+  border: 1px solid #aaa5;
+  border-radius: 6px;
+  background: #171e27;
+  box-shadow: 0 4px 12px #0008;
+}
+
+.submenu a {
+  display: block;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  background: transparent;
 }
 
 .bandera,
@@ -85,7 +105,7 @@ a {
   vertical-align: middle;
 }
 
-.logo-mercedes {
+.logo-oscuro {
   filter: brightness(0) invert(1);
 }
 
@@ -97,40 +117,87 @@ a {
 
 .tabla-contenedor {
   overflow-x: auto;
+  border: 1px solid #ffffff12;
+  background:
+    repeating-linear-gradient(135deg, #ffffff03 0 32px, transparent 32px 80px),
+    #17171f;
 }
 
 table {
   width: 100%;
   min-width: 720px;
   border-collapse: collapse;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
+  font-size: 0.9rem;
   text-align: center;
-  box-shadow: 0 0 10px #888;
+  font-variant-numeric: tabular-nums;
 }
 
 caption {
-  padding: 16px 0;
+  padding: 24px 20px;
+  border-bottom: 3px solid #e10600;
   text-align: left;
-  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
 }
 
 thead {
-  background-color: #192731;
-}
-
-tbody {
-  background-color: #171e27;
+  color: #17171f;
+  background: #d5d5d8;
 }
 
 th,
 td {
-  padding: 8px 10px;
-  border-bottom: 1px solid #aaa5;
+  padding: 15px 10px;
+  border-bottom: 1px solid #ffffff0d;
 }
 
-tbody tr:nth-child(even) {
-  background-color: #202a36;
+thead th {
+  padding-block: 10px;
+  font-size: 0.7rem;
+  font-weight: 400;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+tbody tr:hover {
+  background: #ffffff08;
+}
+
+tbody tr:first-child {
+  color: #17171f;
+  background: #e3e3e6;
+}
+
+tbody td:first-child {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+tbody tr:first-child td:first-child {
+  border-left: 3px solid #e10600;
+}
+
+table .piloto,
+table .equipo {
+  text-transform: uppercase;
+}
+
+table .puntos {
+  color: inherit;
+  font-weight: 700;
+}
+
+table .logo-equipo {
+  width: 28px;
+  height: 20px;
+}
+
+tbody tr:first-child .logo-mercedes,
+tbody tr:first-child .logo-oscuro {
+  filter: brightness(0);
 }
 
 .piloto,
@@ -146,41 +213,28 @@ tbody tr:nth-child(even) {
 
 .colapinto {
   color: #60a5fa;
-  text-shadow: 0 0 10px #006eff;
 }
 
 .estrategia {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  white-space: nowrap;
+  gap: 6px;
 }
 
 .neumatico {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
   flex-shrink: 0;
   width: 28px;
   height: 28px;
   border: 3px solid currentColor;
   border-radius: 50%;
-  background-color: #111;
-  font-weight: 700;
   text-shadow: none;
+  background: #111;
 }
 
 .blando {
-  color: #ff5555;
+  color: #f55;
 }
 
 .medio {
   color: #ffd43b;
-}
-
-.duro {
-  color: #fff;
 }
 
 .intermedio {
@@ -188,7 +242,7 @@ tbody tr:nth-child(even) {
 }
 
 .pit-stops {
-  color: #b9c3d0;
+  color: inherit;
   text-shadow: none;
 }
 
@@ -200,12 +254,12 @@ tbody tr:nth-child(even) {
 
 .pit-stops ul {
   max-width: 220px;
+  margin: 8px 0 0;
+  padding-left: 16px;
   text-align: left;
   line-height: 1.6;
 }
 
-.inicio-presentacion,
-.inicio-titulo-seccion,
 .inicio-proxima-resumen {
   display: flex;
   justify-content: space-between;
@@ -222,7 +276,6 @@ tbody tr:nth-child(even) {
 
 .inicio-tarjeta {
   padding: 16px;
-  background-color: #171e27;
 }
 
 .inicio-proxima {
@@ -234,7 +287,6 @@ tbody tr:nth-child(even) {
 }
 
 .inicio h3 {
-  margin: 0;
   font-size: 1rem;
 }
 
@@ -255,7 +307,7 @@ tbody tr:nth-child(even) {
   border-bottom: 1px solid #aaa5;
 }
 
-.inicio-podio .inicio-posicion,
+.inicio-posicion,
 .inicio-podio img {
   grid-row: 1 / 3;
 }
@@ -263,9 +315,6 @@ tbody tr:nth-child(even) {
 .inicio-podio p {
   grid-column: 3;
   grid-row: 2;
-  margin: 0;
-  color: #b9c3d0;
-  font-size: 0.8rem;
 }
 
 .inicio-resultado,
@@ -281,10 +330,6 @@ tbody tr:nth-child(even) {
 
 .inicio-puntos-gp {
   grid-row: 2;
-}
-
-.inicio-constructores p {
-  margin: 0;
 }
 
 .inicio-fecha-carrera {
@@ -305,23 +350,54 @@ tbody tr:nth-child(even) {
   border-block: 1px solid #aaa5;
 }
 
+.inicio-datos-circuito dd {
+  margin: 8px 0 0;
+}
+
+.estrategia,
+.neumatico {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inicio-podio p,
 .inicio-datos-circuito dt {
   color: #b9c3d0;
   font-size: 0.8rem;
 }
 
-.inicio-datos-circuito dd {
-  margin: 8px 0 0;
+.marca,
+.navegacion a,
+.navegacion summary,
+caption,
+.neumatico {
+  font-weight: 700;
 }
 
-.inicio-agenda time {
-  display: block;
-  margin-top: 8px;
-  font-size: 0.9rem;
+body,
+.inicio h3,
+.inicio li p {
+  margin: 0;
 }
 
-.inicio-enlace {
+body,
+.duro {
   color: #fff;
+}
+
+.inicio-tarjeta {
+  background: #171e27;
+}
+
+.navegacion,
+.inicio-presentacion,
+.inicio-titulo-seccion {
+  display: flex;
+}
+
+.tiempo-pole {
+  color: #d66ce6;
 }
 
 @media (max-width: 700px) {
