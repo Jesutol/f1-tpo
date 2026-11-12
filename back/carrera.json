@@ -1,0 +1,387 @@
+[
+  {
+    "posicion": 1,
+    "apellido": "Verstappen",
+    "equipo": "Red Bull Racing",
+    "puntos": 25,
+    "neumaticos": [
+      "intermedio",
+      "blando",
+      "blando",
+      "blando"
+    ],
+    "paradas": [
+      9,
+      33,
+      43
+    ]
+  },
+  {
+    "posicion": 2,
+    "apellido": "Antonelli",
+    "equipo": "Mercedes",
+    "puntos": 18,
+    "neumaticos": [
+      "intermedio",
+      "medio",
+      "blando",
+      "blando"
+    ],
+    "paradas": [
+      9,
+      33,
+      44
+    ]
+  },
+  {
+    "posicion": 3,
+    "apellido": "Hamilton",
+    "equipo": "Ferrari",
+    "puntos": 15,
+    "neumaticos": [
+      "blando",
+      "medio",
+      "blando"
+    ],
+    "paradas": [
+      31,
+      43
+    ]
+  },
+  {
+    "posicion": 4,
+    "apellido": "Leclerc",
+    "equipo": "Ferrari",
+    "puntos": 12,
+    "neumaticos": [
+      "blando",
+      "intermedio",
+      "blando",
+      "blando",
+      "blando"
+    ],
+    "paradas": [
+      3,
+      9,
+      28,
+      43
+    ]
+  },
+  {
+    "posicion": 5,
+    "apellido": "Hadjar",
+    "equipo": "Red Bull Racing",
+    "puntos": 10,
+    "neumaticos": [
+      "intermedio",
+      "blando",
+      "blando",
+      "blando"
+    ],
+    "paradas": [
+      9,
+      31,
+      44
+    ]
+  },
+  {
+    "posicion": 6,
+    "apellido": "Piastri",
+    "equipo": "McLaren",
+    "puntos": 8,
+    "neumaticos": [
+      "medio",
+      "intermedio",
+      "duro",
+      "duro",
+      "medio"
+    ],
+    "paradas": [
+      2,
+      9,
+      33,
+      45
+    ]
+  },
+  {
+    "posicion": 7,
+    "apellido": "Lawson",
+    "equipo": "Racing Bulls",
+    "puntos": 6,
+    "neumaticos": [
+      "intermedio",
+      "duro",
+      "duro",
+      "blando"
+    ],
+    "paradas": [
+      9,
+      30,
+      45
+    ]
+  },
+  {
+    "posicion": 8,
+    "apellido": "Alonso",
+    "equipo": "Aston Martin",
+    "puntos": 4,
+    "neumaticos": [
+      "medio",
+      "duro",
+      "duro",
+      "blando"
+    ],
+    "paradas": [
+      9,
+      31,
+      45
+    ]
+  },
+  {
+    "posicion": 9,
+    "apellido": "Norris",
+    "equipo": "McLaren",
+    "puntos": 2,
+    "neumaticos": [
+      "medio",
+      "duro",
+      "blando",
+      "blando"
+    ],
+    "paradas": [
+      9,
+      34,
+      45
+    ]
+  },
+  {
+    "posicion": 10,
+    "apellido": "Lindblad",
+    "equipo": "Racing Bulls",
+    "puntos": 1,
+    "neumaticos": [
+      "intermedio",
+      "duro",
+      "duro",
+      "blando"
+    ],
+    "paradas": [
+      9,
+      28,
+      43
+    ]
+  },
+  {
+    "posicion": 11,
+    "apellido": "Hulkenberg",
+    "equipo": "Audi",
+    "puntos": 0,
+    "neumaticos": [
+      "blando",
+      "intermedio",
+      "blando",
+      "blando",
+      "blando"
+    ],
+    "paradas": [
+      2,
+      8,
+      32,
+      45
+    ]
+  },
+  {
+    "posicion": 12,
+    "apellido": "Stroll",
+    "equipo": "Aston Martin",
+    "puntos": 0,
+    "neumaticos": [
+      "medio",
+      "intermedio",
+      "duro",
+      "duro",
+      "blando"
+    ],
+    "paradas": [
+      2,
+      9,
+      28,
+      43
+    ]
+  },
+  {
+    "posicion": 13,
+    "apellido": "Colapinto",
+    "equipo": "Alpine",
+    "puntos": 0,
+    "neumaticos": [
+      "blando",
+      "medio",
+      "duro",
+      "medio"
+    ],
+    "paradas": [
+      9,
+      31,
+      42
+    ]
+  },
+  {
+    "posicion": 14,
+    "apellido": "Bearman",
+    "equipo": "Haas",
+    "puntos": 0,
+    "neumaticos": [
+      "blando",
+      "medio",
+      "duro",
+      "duro"
+    ],
+    "paradas": [
+      10,
+      24,
+      38
+    ]
+  },
+  {
+    "posicion": 15,
+    "apellido": "Ocon",
+    "equipo": "Haas",
+    "puntos": 0,
+    "neumaticos": [
+      "intermedio",
+      "blando",
+      "duro",
+      "blando"
+    ],
+    "paradas": [
+      9,
+      29,
+      41
+    ]
+  },
+  {
+    "posicion": 16,
+    "apellido": "Gasly",
+    "equipo": "Alpine",
+    "puntos": 0,
+    "neumaticos": [
+      "blando",
+      "medio",
+      "duro",
+      "blando",
+      "blando"
+    ],
+    "paradas": [
+      9,
+      25,
+      37,
+      45
+    ]
+  },
+  {
+    "posicion": 17,
+    "apellido": "Sainz",
+    "equipo": "Williams",
+    "puntos": 0,
+    "neumaticos": [
+      "intermedio",
+      "blando",
+      "duro",
+      "blando"
+    ],
+    "paradas": [
+      9,
+      26,
+      42
+    ]
+  },
+  {
+    "posicion": 18,
+    "apellido": "Bortoleto",
+    "equipo": "Audi",
+    "puntos": 0,
+    "neumaticos": [
+      "blando",
+      "intermedio",
+      "blando",
+      "duro",
+      "blando",
+      "blando"
+    ],
+    "paradas": [
+      2,
+      9,
+      15,
+      34,
+      44
+    ]
+  },
+  {
+    "posicion": 19,
+    "apellido": "Perez",
+    "equipo": "Cadillac",
+    "puntos": 0,
+    "neumaticos": [
+      "blando",
+      "intermedio",
+      "medio",
+      "duro",
+      "duro",
+      "medio",
+      "blando"
+    ],
+    "paradas": [
+      1,
+      9,
+      18,
+      21,
+      39,
+      44
+    ]
+  },
+  {
+    "posicion": 20,
+    "apellido": "Russell",
+    "equipo": "Mercedes",
+    "puntos": 0,
+    "neumaticos": [
+      "intermedio",
+      "medio",
+      "blando",
+      "blando"
+    ],
+    "paradas": [
+      9,
+      32,
+      44
+    ]
+  },
+  {
+    "posicion": "NC",
+    "apellido": "Albon",
+    "equipo": "Williams",
+    "puntos": 0,
+    "neumaticos": [
+      "intermedio",
+      "blando",
+      "duro",
+      "blando"
+    ],
+    "paradas": [
+      9,
+      16,
+      29
+    ]
+  },
+  {
+    "posicion": "NC",
+    "apellido": "Bottas",
+    "equipo": "Cadillac",
+    "puntos": 0,
+    "neumaticos": [
+      "blando"
+    ],
+    "paradas": []
+  }
+]
