@@ -46,7 +46,9 @@ para cargar el GP de ejemplo.
 
 El archivo `server.js` de la raíz conecta Vercel con `back/server.js`.
 El comando `npm run build` copia `front` a `public`, la carpeta que Vercel
-publica. Editar siempre `front`; no hace falta editar la copia en `public`.
+publica. Editar siempre `front`. `public` es una copia generada que se puede
+borrar en la computadora; Vercel la vuelve a crear al publicar. Las dependencias
+se administran únicamente desde el `package.json` de la raíz.
 
 En Vercel, importar el repositorio con estos valores:
 
@@ -79,8 +81,8 @@ Crear un Web Service en Render conectado al repositorio con estos valores:
 | --- | --- |
 | Runtime | Node |
 | Root Directory | Vacío |
-| Build Command | `npm ci --prefix back` |
-| Start Command | `node back/server.js` |
+| Build Command | `npm ci` |
+| Start Command | `npm start` |
 | Instance Type | Free |
 | Variable `MONGODB_URI` | Dirección de conexión de Atlas |
 
