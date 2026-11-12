@@ -15,8 +15,17 @@
       "vueltas": 71,
       "tiempo": "1:35:23.504",
       "puntos": 25,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        16,
+        49,
+        62
+      ]
     },
     {
       "orden": 2,
@@ -28,8 +37,17 @@
       "vueltas": 71,
       "tiempo": "+14.602s",
       "puntos": 18,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        17,
+        45,
+        62
+      ]
     },
     {
       "orden": 3,
@@ -41,8 +59,17 @@
       "vueltas": 71,
       "tiempo": "+24.485s",
       "puntos": 15,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        16,
+        50,
+        62
+      ]
     },
     {
       "orden": 4,
@@ -54,8 +81,15 @@
       "vueltas": 71,
       "tiempo": "+33.991s",
       "puntos": 12,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        16,
+        61
+      ]
     },
     {
       "orden": 5,
@@ -67,8 +101,17 @@
       "vueltas": 71,
       "tiempo": "+41.017s",
       "puntos": 10,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        17,
+        53,
+        62
+      ]
     },
     {
       "orden": 6,
@@ -80,8 +123,17 @@
       "vueltas": 71,
       "tiempo": "+56.475s",
       "puntos": 8,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        16,
+        51,
+        62
+      ]
     },
     {
       "orden": 7,
@@ -93,8 +145,17 @@
       "vueltas": 71,
       "tiempo": "+75.402s",
       "puntos": 6,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        16,
+        48,
+        61
+      ]
     },
     {
       "orden": 8,
@@ -106,8 +167,15 @@
       "vueltas": 71,
       "tiempo": "+78.586s",
       "puntos": 4,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        16,
+        61
+      ]
     },
     {
       "orden": 9,
@@ -119,8 +187,17 @@
       "vueltas": 70,
       "tiempo": "+1 lap",
       "puntos": 2,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        14,
+        38,
+        62
+      ]
     },
     {
       "orden": 10,
@@ -132,8 +209,17 @@
       "vueltas": 70,
       "tiempo": "+1 lap",
       "puntos": 1,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        16,
+        44,
+        61
+      ]
     },
     {
       "orden": 11,
@@ -145,8 +231,17 @@
       "vueltas": 70,
       "tiempo": "+1 lap",
       "puntos": 0,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        16,
+        45,
+        61
+      ]
     },
     {
       "orden": 12,
@@ -158,8 +253,17 @@
       "vueltas": 70,
       "tiempo": "+1 lap",
       "puntos": 0,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        17,
+        46,
+        60
+      ]
     },
     {
       "orden": 13,
@@ -171,8 +275,17 @@
       "vueltas": 70,
       "tiempo": "+1 lap",
       "puntos": 0,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        17,
+        53,
+        61
+      ]
     },
     {
       "orden": 14,
@@ -184,8 +297,17 @@
       "vueltas": 70,
       "tiempo": "+1 lap",
       "puntos": 0,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        17,
+        37,
+        61
+      ]
     },
     {
       "orden": 15,
@@ -197,8 +319,17 @@
       "vueltas": 70,
       "tiempo": "+1 lap",
       "puntos": 0,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        15,
+        42,
+        60
+      ]
     },
     {
       "orden": 16,
@@ -210,8 +341,17 @@
       "vueltas": 70,
       "tiempo": "+1 lap",
       "puntos": 0,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        16,
+        32,
+        60
+      ]
     },
     {
       "orden": 17,
@@ -223,8 +363,17 @@
       "vueltas": 70,
       "tiempo": "+1 lap",
       "puntos": 0,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        16,
+        48,
+        60
+      ]
     },
     {
       "orden": 18,
@@ -236,8 +385,15 @@
       "vueltas": 69,
       "tiempo": "+2 laps",
       "puntos": 0,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        15,
+        59
+      ]
     },
     {
       "orden": 19,
@@ -249,8 +405,17 @@
       "vueltas": 69,
       "tiempo": "+2 laps",
       "puntos": 0,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        14,
+        45,
+        61
+      ]
     },
     {
       "orden": 20,
@@ -262,8 +427,17 @@
       "vueltas": 69,
       "tiempo": "+2 laps",
       "puntos": 0,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando",
+        "blando",
+        "intermedio"
+      ],
+      "paradas": [
+        15,
+        49,
+        59
+      ]
     },
     {
       "orden": 21,
@@ -275,8 +449,13 @@
       "vueltas": 30,
       "tiempo": "DNF",
       "puntos": 0,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [
+        "intermedio",
+        "blando"
+      ],
+      "paradas": [
+        16
+      ]
     },
     {
       "orden": 22,
@@ -288,8 +467,8 @@
       "vueltas": 0,
       "tiempo": "DNS",
       "puntos": 0,
-      "neumaticos": null,
-      "paradas": null
+      "neumaticos": [],
+      "paradas": []
     }
   ]
 }
