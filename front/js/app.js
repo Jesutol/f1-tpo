@@ -1,4 +1,9 @@
+// Los parámetros de la URL eligen la temporada, el GP y el tipo de vista.
 const parametros = new URLSearchParams(location.search);
+const temporadaElegida = parametros.get("temporada");
+const consultaTemporada = new URLSearchParams();
+if (temporadaElegida !== null) consultaTemporada.set("temporada", temporadaElegida);
+const sufijoTemporada = consultaTemporada.size ? "?" + consultaTemporada : "";
 const etiquetas = {
   carrera: "Carrera",
   clasificacion: "Clasificación",
@@ -68,7 +73,6 @@ const texto = (valor) =>
         letra
       ],
   );
-const celda = (valor) => "<td>" + texto(valor) + "</td>";
 const fecha = (valor) =>
   new Date(valor).toLocaleDateString("es-AR", {
     timeZone: "America/Argentina/Salta",
@@ -81,33 +85,31 @@ async function pedir(ruta) {
   if (!respuesta.ok) throw new Error(datos.mensaje);
   return datos;
 }
-function mensaje(textoMensaje) {
+// Una sola función escribe las tablas. Cada fila recibe contenido HTML ya escapado.
+function mensaje(valor) {
   buscar("tbody").innerHTML =
-    '<tr><td colspan="8">' + texto(textoMensaje) + "</td></tr>";
+    '<tr class="mensaje-tabla" role="row"><td role="cell" colspan="8">' + texto(valor) + "</td></tr>";
 }
 function tabla(titulo, columnas, filas) {
   buscar("caption").textContent = titulo;
-  buscar("thead").innerHTML =
-    "<tr>" +
-    columnas.map((c) => '<th scope="col">' + texto(c) + "</th>").join("") +
-    "</tr>";
-  buscar("tbody").innerHTML = filas.length
-    ? filas.map((f) => "<tr>" + f + "</tr>").join("")
-    : '<tr><td colspan="8">No hay resultados cargados para esta sesión.</td></tr>';
+  buscar("thead").innerHTML = '<tr role="row">' + columnas.map(columna =>
+    '<th role="columnheader" scope="col">' + texto(columna) + "</th>"
+  ).join("") + "</tr>";
+  if (!filas.length) return mensaje("No hay resultados cargados.");
+
+  // data-columna le permite a CSS mostrar la etiqueta junto al valor en pantallas angostas.
+  buscar("tbody").innerHTML = filas.map(fila =>
+    '<tr role="row">' + fila.map((valor, i) =>
+      `<td role="cell" data-columna="${texto(columnas[i])}"><div>${valor}</div></td>`
+    ).join("") + "</tr>"
+  ).join("");
 }
 function piloto(r) {
   const bandera = banderas[r.nacionalidad];
   const imagen = bandera
     ? `<img class="bandera" src="/recursos/iconos-banderas/${bandera}.svg" alt=""> `
     : "";
-  return (
-    '<th scope="row" class="piloto">' +
-    imagen +
-    texto(r.nombre) +
-    " " +
-    texto(r.apellido) +
-    "</th>"
-  );
+  return `<strong class="piloto">${imagen}${texto(r.nombre)} ${texto(r.apellido)}</strong>`;
 }
 function logo(r) {
   const id = r.equipo_id || r.id;
@@ -118,43 +120,36 @@ function logo(r) {
   return imagen;
 }
 function equipo(r) {
-  return '<td class="equipo">' + logo(r) + texto(r.equipo) + "</td>";
+  return `<span class="equipo">${logo(r)}${texto(r.equipo)}</span>`;
 }
 function neumaticos(r) {
-  if (!Array.isArray(r.neumaticos)) return celda("Sin datos");
-  const letras = {
-    blando: "S",
-    medio: "M",
-    duro: "H",
-    intermedio: "I",
-    lluvia: "W",
-  };
-  return (
-    '<td><div class="estrategia">' +
-    r.neumaticos
-      .map(
-        (tipo) =>
-          `<span class="neumatico ${letras[tipo] ? tipo : ""}">${letras[tipo] || "?"}</span>`,
-      )
-      .join(" → ") +
-    "</div></td>"
-  );
+  if (!Array.isArray(r.neumaticos) || !r.neumaticos.length) return "Sin datos";
+  const letras = { blando: "S", medio: "M", duro: "H", intermedio: "I", lluvia: "W" };
+  const tandas = r.neumaticos.map((tipo, i) => {
+    const compuesto = Object.hasOwn(letras, tipo) ? tipo : "";
+    const flecha = i === 0 ? "" : '<span aria-hidden="true">→</span>';
+    return `<span class="tanda">${flecha}<span class="neumatico ${compuesto}">${letras[compuesto] || "?"}</span></span>`;
+  });
+  return '<span class="estrategia">' + tandas.join("") + "</span>";
 }
 function paradas(r) {
-  if (!Array.isArray(r.paradas)) return celda("Sin datos");
-  if (!r.paradas.length) return celda("Sin paradas");
-  return (
-    `<td><details class="pit-stops"><summary>${r.paradas.length} paradas</summary><ul>` +
-    r.paradas
-      .map((vuelta) => "<li>Vuelta " + texto(vuelta) + "</li>")
-      .join("") +
-    "</ul></details></td>"
-  );
+  if (!Array.isArray(r.paradas)) return "Sin datos";
+  if (!r.paradas.length) return "Sin paradas";
+  const vueltas = r.paradas.map(vuelta => "<li>Vuelta " + texto(vuelta) + "</li>");
+  return `<details class="pit-stops"><summary>${r.paradas.length} paradas</summary><ul>${vueltas.join("")}</ul></details>`;
+}
+
+function encabezado(titulo, temporada, detalle) {
+  document.title = "F1 Telemetry | " + titulo;
+  buscar("h1").textContent = titulo;
+  buscar(".marca").textContent = "F1 Telemetry · Temporada " + temporada;
+  buscar("#detalle-vista").textContent = detalle;
 }
 
 // 2. Mostrar una sesión. La misma función sirve para Último GP y Resultados.
 let solicitud = 0;
 async function cargarSesion(tipo, ronda, temporada) {
+  // Un cambio de selector invalida la respuesta anterior si todavía está en viaje.
   const actual = ++solicitud;
   mensaje("Cargando resultados…");
   const consulta = new URLSearchParams();
@@ -164,33 +159,20 @@ async function cargarSesion(tipo, ronda, temporada) {
     const datos = await pedir("/api/resultados/" + tipo + "?" + consulta);
     if (actual !== solicitud) return;
     const gp = datos.granPremio;
-    buscar("#temporada-carrera").textContent =
-      "F1 Telemetry · Temporada " + gp.temporada;
-    buscar("#nombre-carrera").textContent = gp.nombre;
-    buscar("#detalle-carrera").textContent =
-      gp.circuito + " · " + fecha(datos.sesion?.fecha || gp.fecha_carrera);
+    encabezado(gp.nombre, gp.temporada,
+      gp.circuito + " · " + fecha(datos.sesion?.fecha || gp.fecha_carrera));
     const carrera = ["carrera", "sprint"].includes(tipo);
-    const columnas = ["Posición", "Piloto", "Equipo"].concat(
-      carrera
-        ? ["Puntos", "Tiempo", "Vueltas", "Neumáticos usados", "Paradas"]
-        : tipo === "clasificacion"
-          ? ["Q1", "Q2", "Q3"]
-          : ["Mejor vuelta", "Gap", "Vueltas"],
-    );
-    const filas = datos.resultados.map((r) => {
-      let fila = celda(r.posicion ?? r.estado) + piloto(r) + equipo(r);
-      if (carrera)
-        fila +=
-          celda(r.puntos) +
-          celda(r.tiempo || r.estado) +
-          celda(r.vueltas) +
-          neumaticos(r) +
-          paradas(r);
-      else if (tipo === "clasificacion")
-        fila += celda(r.q1) + celda(r.q2) + celda(r.q3);
-      else
-        fila += celda(r.tiempo || r.estado) + celda(r.gap) + celda(r.vueltas);
-      return fila;
+    const columnas = ["Posición", "Piloto", "Equipo"];
+    if (carrera) columnas.push("Puntos", "Tiempo", "Vueltas", "Neumáticos", "Paradas");
+    else if (tipo === "clasificacion") columnas.push("Q1", "Q2", "Q3");
+    else columnas.push("Mejor vuelta", "Gap", "Vueltas");
+
+    const filas = datos.resultados.map(r => {
+      const fila = [texto(r.posicion ?? r.estado), piloto(r), equipo(r)];
+      const tiempo = texto(r.tiempo || r.estado);
+      if (carrera) return fila.concat(texto(r.puntos), tiempo, texto(r.vueltas), neumaticos(r), paradas(r));
+      if (tipo === "clasificacion") return fila.concat([r.q1, r.q2, r.q3].map(texto));
+      return fila.concat(tiempo, texto(r.gap), texto(r.vueltas));
     });
     tabla(etiquetas[tipo] + " · " + gp.nombre, columnas, filas);
   } catch (error) {
@@ -200,11 +182,8 @@ async function cargarSesion(tipo, ronda, temporada) {
 
 // Inicio reutiliza las tres consultas existentes: carrera, constructores y calendario.
 async function cargarInicio() {
-  const consulta = parametros.has("temporada")
-    ? "?temporada=" + encodeURIComponent(parametros.get("temporada"))
-    : "";
   try {
-    const datos = await pedir("/api/resultados/carrera" + consulta);
+    const datos = await pedir("/api/resultados/carrera" + sufijoTemporada);
     const gp = datos.granPremio;
     buscar("#podio-gp").textContent = gp.nombre;
     buscar("#podio-fecha").textContent =
@@ -227,7 +206,7 @@ async function cargarInicio() {
     buscar("#podio-gp").textContent = error.message;
   }
   try {
-    const datos = await pedir("/api/campeonato/constructores" + consulta);
+    const datos = await pedir("/api/campeonato/constructores" + sufijoTemporada);
     buscar("#constructores-nota").textContent = datos.posiciones.length
       ? "Puntos de las carreras y sprints guardados."
       : "Todavía no hay puntajes cargados.";
@@ -243,7 +222,7 @@ async function cargarInicio() {
     buscar("#constructores-nota").textContent = error.message;
   }
   try {
-    const datos = await pedir("/api/temporada" + consulta);
+    const datos = await pedir("/api/temporada" + sufijoTemporada);
     buscar(".marca").textContent =
       "F1 Telemetry · Temporada " + datos.temporada;
     buscar("h1").textContent =
@@ -309,11 +288,8 @@ function prepararBusqueda() {
   formulario.onsubmit = async (evento) => {
     evento.preventDefault();
     const actual = ++solicitudBusqueda;
-    const consulta = new URLSearchParams({
-      q: buscar("#buscar-nombre").value.trim(),
-    });
-    if (parametros.has("temporada"))
-      consulta.set("temporada", parametros.get("temporada"));
+    const consulta = new URLSearchParams(consultaTemporada);
+    consulta.set("q", buscar("#buscar-nombre").value.trim());
     buscar("#coincidencias").innerHTML = "";
     buscar("#estado-busqueda").textContent = "Buscando…";
     try {
@@ -347,106 +323,45 @@ function prepararBusqueda() {
 }
 async function cargarHistorial() {
   const tipo = parametros.has("piloto") ? "piloto" : "equipo";
-  const consulta = parametros.has("temporada")
-    ? "?temporada=" + encodeURIComponent(parametros.get("temporada"))
-    : "";
-  const datos = await pedir(
-    "/api/historial/" +
-      tipo +
-      "/" +
-      encodeURIComponent(parametros.get(tipo)) +
-      consulta,
-  );
-  buscar("h1").textContent = datos.nombre;
-  document.title = "F1 Telemetry | " + datos.nombre;
-  buscar(".marca").textContent = "F1 Telemetry · Temporada " + datos.temporada;
-  const puntos = datos.resultados.reduce(
-    (suma, r) => suma + Number(r.puntos),
-    0,
-  );
-  buscar("#nota-campeonato").textContent =
-    datos.resultados.length +
-    " resultados de carreras y sprints guardados · " +
-    puntos +
-    " puntos.";
-  tabla(
-    "Resultados de " + datos.nombre,
-    [
-      "Gran Premio",
-      "Sesión",
-      "Posición",
-      "Piloto",
-      "Equipo",
-      "Puntos",
-      "Tiempo / Estado",
-      "Vueltas",
-    ],
-    datos.resultados.map(
-      (r) =>
-        celda(r.ronda + ". " + r.gran_premio) +
-        celda(etiquetas[r.tipo]) +
-        celda(r.posicion ?? r.estado) +
-        piloto(r) +
-        equipo(r) +
-        celda(r.puntos) +
-        celda(r.tiempo || r.estado) +
-        celda(r.vueltas),
-    ),
-  );
-  if (!datos.resultados.length)
-    mensaje("Todavía no hay carreras o sprints cargados para esta búsqueda.");
+  const id = encodeURIComponent(parametros.get(tipo));
+  const datos = await pedir(`/api/historial/${tipo}/${id}${sufijoTemporada}`);
+  const puntos = datos.resultados.reduce((suma, r) => suma + Number(r.puntos), 0);
+  encabezado(datos.nombre, datos.temporada,
+    `${datos.resultados.length} resultados de carreras y sprints · ${puntos} puntos.`);
+
+  tabla("Resultados de " + datos.nombre,
+    ["Gran Premio", "Sesión", "Posición", "Piloto", "Equipo", "Puntos", "Tiempo / Estado", "Vueltas"],
+    datos.resultados.map(r => [
+      texto(r.ronda + ". " + r.gran_premio), texto(etiquetas[r.tipo]),
+      texto(r.posicion ?? r.estado), piloto(r), equipo(r),
+      texto(r.puntos), texto(r.tiempo || r.estado), texto(r.vueltas),
+    ]));
 }
 
-// 3. Elegir qué vista cargar según la página abierta.
-async function iniciar() {
-  if (document.body.dataset.vista === "inicio") return cargarInicio();
-  if (document.body.dataset.vista === "sesion") {
-    const tipo = parametros.get("sesion") || "carrera";
-    if (!Object.hasOwn(etiquetas, tipo)) throw new Error("Sesión desconocida.");
-    return cargarSesion(tipo, null, parametros.get("temporada"));
-  }
-  if (document.body.dataset.vista === "campeonato") {
-    if (parametros.has("piloto") || parametros.has("equipo"))
-      return cargarHistorial();
-    const tipo = parametros.get("tipo") || "pilotos";
-    if (!["pilotos", "constructores"].includes(tipo))
-      throw new Error("Campeonato desconocido.");
-    const consulta = parametros.has("temporada")
-      ? "?temporada=" + encodeURIComponent(parametros.get("temporada"))
-      : "";
-    const datos = await pedir("/api/campeonato/" + tipo + consulta);
-    buscar("h1").textContent = "Campeonato de " + tipo;
-    buscar(".marca").textContent =
-      "F1 Telemetry · Temporada " + datos.temporada;
-    buscar("#nota-campeonato").textContent =
-      "Puntos sumados de las carreras y sprints guardados en la base.";
-    const columnas =
-      tipo === "pilotos"
-        ? ["Posición", "Piloto", "Equipo", "Puntos"]
-        : ["Posición", "Equipo", "Puntos"];
-    tabla(
-      "Campeonato de " + tipo,
-      columnas,
-      datos.posiciones.map(
-        (r) =>
-          celda(r.posicion) +
-          (tipo === "pilotos" ? piloto(r) : "") +
-          equipo(r) +
-          celda(r.puntos),
-      ),
-    );
-    return;
-  }
-  const consulta = parametros.has("temporada")
-    ? "?temporada=" + encodeURIComponent(parametros.get("temporada"))
-    : "";
-  const datos = await pedir("/api/temporada" + consulta);
+async function cargarCampeonato() {
+  const tipo = parametros.get("tipo") || "pilotos";
+  if (!["pilotos", "constructores"].includes(tipo))
+    throw new Error("Campeonato desconocido.");
+  const datos = await pedir("/api/campeonato/" + tipo + sufijoTemporada);
+  const titulo = "Campeonato de " + tipo;
+  encabezado(titulo, datos.temporada, "Puntos sumados de las carreras y sprints guardados.");
+  const columnas = ["Posición", "Equipo", "Puntos"];
+  if (tipo === "pilotos") columnas.splice(1, 0, "Piloto");
+  const filas = datos.posiciones.map(r => {
+    const fila = [texto(r.posicion), equipo(r), texto(r.puntos)];
+    if (tipo === "pilotos") fila.splice(1, 0, piloto(r));
+    return fila;
+  });
+  tabla(titulo, columnas, filas);
+}
+
+// Los selectores ofrecen los GP y las sesiones que figuran en la base.
+async function cargarResultados() {
+  buscar("#filtros-resultados").hidden = false;
+  const datos = await pedir("/api/temporada" + sufijoTemporada);
   const gps = buscar("#seleccionar-gp"),
     sesiones = buscar("#seleccionar-sesion");
-  buscar("#temporada-carrera").textContent =
-    "F1 Telemetry · Temporada " + datos.temporada;
-  buscar("#estado-resultados").textContent =
-    "Se muestran las sesiones que ya están guardadas en PostgreSQL.";
+  encabezado("Resultados", datos.temporada, "Elegí un Gran Premio y una sesión.");
   datos.grandesPremios.forEach((gp) =>
     gps.add(new Option(gp.ronda + ". " + gp.nombre, gp.ronda)),
   );
@@ -455,16 +370,15 @@ async function iniciar() {
   const ultimo = [...datos.grandesPremios]
     .reverse()
     .find((gp) => gp.sesiones.includes("carrera"));
-  gps.value =
-    parametros.get("ronda") || ultimo?.ronda || datos.grandesPremios[0].ronda;
+  const ronda = parametros.get("ronda");
+  if (datos.grandesPremios.some(gp => String(gp.ronda) === ronda)) gps.value = ronda;
+  else gps.value = ultimo?.ronda || datos.grandesPremios[0].ronda;
   gps.disabled = false;
   function elegirGP() {
     ++solicitud;
     const gp = datos.grandesPremios.find((g) => String(g.ronda) === gps.value);
     if (!gp) return mensaje("Gran Premio desconocido. Elegí uno de la lista.");
-    buscar("#nombre-carrera").textContent = gp.nombre;
-    buscar("#detalle-carrera").textContent =
-      gp.circuito + " · " + fecha(gp.fecha_carrera);
+    encabezado(gp.nombre, datos.temporada, gp.circuito + " · " + fecha(gp.fecha_carrera));
     sesiones.replaceChildren();
     for (const [tipo, nombre] of Object.entries(etiquetas)) {
       const opcion = new Option(nombre, tipo);
@@ -486,6 +400,21 @@ async function iniciar() {
   sesiones.onchange = () =>
     cargarSesion(sesiones.value, gps.value, datos.temporada);
   elegirGP();
+}
+// Express sirve el mismo HTML para las tres vistas con tabla.
+async function iniciar() {
+  if (document.body.dataset.vista === "inicio") return cargarInicio();
+  const pagina = location.pathname.split("/").pop();
+  if (pagina === "sesion.html") {
+    const tipo = parametros.get("sesion") || "carrera";
+    if (!Object.hasOwn(etiquetas, tipo)) throw new Error("Sesión desconocida.");
+    return cargarSesion(tipo, null, temporadaElegida);
+  }
+  if (pagina === "campeonato.html") {
+    if (parametros.has("piloto") || parametros.has("equipo")) return cargarHistorial();
+    return cargarCampeonato();
+  }
+  return cargarResultados();
 }
 prepararBusqueda();
 iniciar().catch((error) => mensaje(error.message));

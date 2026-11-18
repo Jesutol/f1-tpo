@@ -9,10 +9,15 @@ El codigo JavaScript esta en solamente tres archivos:
 | `importar.js` | Descarga resultados de Jolpica y OpenF1 y los guarda en PostgreSQL. |
 | `front/js/app.js` | Pide los datos al servidor y muestra las tablas. |
 
-`base.sql` define las siete tablas existentes. `front/paginas` tiene tres HTML:
-Ultimo GP, Resultados y Campeonato (pilotos o constructores). El inicio muestra
-el podio, los tres primeros constructores y la proxima fecha desde la misma base.
-La agenda se muestra en hora de Argentina. Los menus estan escritos en HTML.
+`base.sql` define las siete tablas de PostgreSQL. El inicio usa `front/index.html`
+y muestra el podio, los tres primeros constructores y la próxima fecha en horario
+de Argentina. Resultados, Último GP, Campeonatos e historiales comparten
+`front/paginas/resultados.html`. Express entrega ese HTML en las rutas existentes
+y `app.js` elige la vista a partir de la URL.
+
+`front/css/style.css` tiene los estilos de todo el sitio. Las columnas y las tandas
+de neumáticos pueden ocupar más de una línea. En pantallas de hasta 760 px,
+cada fila se lee como una ficha con etiquetas, sin desplazarse a los costados.
 
 ## Buscar pilotos y equipos
 
@@ -96,7 +101,7 @@ No incluye ajustes exclusivos al campeonato que no aparezcan en puntos por sesio
 
 ## Archivos de ayuda
 
-- `documentacion/Guia_F1_Telemetry.pdf`: guia breve para estudiar y presentar.
+- `documentacion/Guia_F1_Telemetry.pdf`: documentación completa y recorrido para la presentación.
 - `documentacion/consultas.sql`: consultas de lectura para pegar en pgAdmin.
 
 Las unicas dependencias son `express` y `pg`. `node_modules` se genera con npm;

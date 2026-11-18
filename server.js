@@ -17,6 +17,7 @@ const db = new Pool({
   connectionTimeoutMillis: 5000,
 });
 const app = express();
+// Se comparte este pool con el importador. Las rutas web solo leen la base.
 const tipos = [
   "carrera",
   "clasificacion",
@@ -138,7 +139,7 @@ app.get("/api/campeonato/:tipo", async (req, res) => {
   res.json({ temporada: anio, posiciones: rows });
 });
 
-// Buscar nombres del año y consultar sus carreras y sprints.
+// 5. Búsqueda por nombre e historial de un piloto o equipo.
 app.get("/api/buscar", async (req, res) => {
   const anio = numero(req.query.temporada, temporada);
   const q = String(req.query.q || "").trim().replace(/\s+/g, " ").slice(0, 80);
@@ -166,6 +167,7 @@ app.get("/api/historial/:tipo/:id", async (req, res) => {
     "SELECT nombre || ' ' || apellido AS nombre FROM f1.pilotos WHERE id=$1 AND temporada=$2" :
     "SELECT nombre FROM f1.equipos WHERE id=$1", piloto ? [clave, anio] : [clave]);
   if (!entidad) return res.status(404).json({ mensaje: "No se encontró el piloto o equipo." });
+  // El equipo se toma del resultado en esa sesión, incluso si el piloto cambió de equipo.
   const { rows } = await db.query(`
     SELECT g.ronda, g.nombre AS gran_premio, s.tipo, s.fecha,
       r.posicion, r.estado, r.puntos, r.tiempo, r.vueltas, r.equipo_id,
@@ -179,7 +181,10 @@ app.get("/api/historial/:tipo/:id", async (req, res) => {
   res.json({ temporada: anio, nombre: entidad.nombre, resultados: rows });
 });
 
-// 5. Archivos de la página y compatibilidad con enlaces anteriores.
+// 6. Una plantilla HTML para todas las tablas y enlaces antiguos compatibles.
+app.get(["/paginas/sesion.html", "/paginas/campeonato.html"], (_req, res) =>
+  res.sendFile(path.join(__dirname, "front/paginas/resultados.html")),
+);
 app.get("/paginas/resultado-:sesion.html", (req, res) =>
   res.redirect(
     "/paginas/sesion.html?sesion=" + encodeURIComponent(req.params.sesion),

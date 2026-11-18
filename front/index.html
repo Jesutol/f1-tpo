@@ -13,7 +13,7 @@
   </head>
   <body class="inicio" data-vista="inicio">
     <header class="encabezado">
-      <nav class="navegacion">
+      <nav class="navegacion" aria-label="Navegación principal">
         <a href="./index.html">Inicio</a>
         <a href="./paginas/resultados.html">Resultados</a>
         <details class="menu-ultimo-gp">
@@ -56,35 +56,32 @@
         </details>
       </nav>
       <p class="marca">F1 Telemetry</p>
-      <div class="inicio-presentacion">
-        <div>
-          <h1>Resumen de la temporada de F1</h1>
-          <p>El último podio, top 3 de constructores y próxima carrera.</p>
-        </div>
-      </div>
+      <h1>Resumen de la temporada de F1</h1>
+      <p>El último podio, top 3 de constructores y próxima carrera.</p>
     </header>
 
+    <!-- app.js completa las tarjetas con datos de la API local. -->
     <main class="inicio-contenido">
       <section class="inicio-tarjeta">
         <p class="inicio-etiqueta">Último Gran Premio</p>
-        <h2 id="titulo-podio">Podio de la carrera</h2>
+        <h2>Podio de la carrera</h2>
         <p id="podio-gp" role="status">Cargando última carrera…</p>
         <p id="podio-fecha" class="nota"></p>
         <ol class="inicio-podio"></ol>
-        <a class="inicio-enlace" href="./paginas/sesion.html?sesion=carrera"
+        <a href="./paginas/sesion.html?sesion=carrera"
           >Ver resultados completos <span>→</span></a
         >
       </section>
 
       <section class="inicio-tarjeta">
         <p class="inicio-etiqueta">Campeonato</p>
-        <h2 id="titulo-constructores">Top 3 de constructores</h2>
+        <h2>Top 3 de constructores</h2>
         <p id="constructores-nota" class="nota" role="status">
           Cargando campeonato…
         </p>
         <ol class="inicio-constructores"></ol>
         <a
-          class="inicio-enlace"
+
           href="./paginas/campeonato.html?tipo=constructores"
           >Ver campeonato de constructores <span>→</span></a
         >

@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>F1 Telemetry | Resultados</title>
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/resultados.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&amp;family=DM+Mono:wght@500&amp;display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&amp;family=DM+Mono:wght@500&amp;display=swap"
+      rel="stylesheet"
+    />
     <script src="../js/app.js" defer></script>
   </head>
   <body>
@@ -35,7 +37,14 @@
           <summary aria-label="Buscar pilotos y equipos">🔍 Buscar</summary>
           <div class="panel-busqueda">
             <form id="form-busqueda" role="search">
-              <input id="buscar-nombre" type="search" aria-label="Nombre del piloto o equipo" placeholder="Piloto o equipo…" maxlength="80" required />
+              <input
+                id="buscar-nombre"
+                type="search"
+                aria-label="Nombre del piloto o equipo"
+                placeholder="Piloto o equipo…"
+                maxlength="80"
+                required
+              />
               <button type="submit">Buscar</button>
             </form>
             <p id="estado-busqueda" class="nota" role="status"></p>
@@ -43,27 +52,34 @@
           </div>
         </details>
       </nav>
-      <p class="marca" id="temporada-carrera">F1 Telemetry</p>
-      <h1 id="nombre-carrera">Resultados</h1>
-      <p id="detalle-carrera">Consultando los datos del GP…</p>
-      <p>Consultá los resultados de cada Gran Premio de la temporada.</p>
-      <div class="filtros-resultados">
-        <label for="seleccionar-gp">Gran Premio
+      <p class="marca">F1 Telemetry</p>
+      <h1>Resultados</h1>
+      <p id="detalle-vista" class="nota" role="status"></p>
+      <!-- Los selectores aparecen solo en la vista Resultados. -->
+      <div id="filtros-resultados" hidden>
+        <label
+          >Gran Premio
           <select id="seleccionar-gp" disabled></select>
         </label>
-        <label for="seleccionar-sesion">Sesión
+        <label
+          >Sesión
           <select id="seleccionar-sesion" disabled></select>
         </label>
       </div>
-      <p id="estado-resultados" class="nota" role="status"></p>
     </header>
     <main>
       <noscript>Activá JavaScript para consultar los resultados.</noscript>
       <div class="tabla-contenedor">
-        <table>
-          <caption>Resultados</caption>
-          <thead></thead>
-          <tbody aria-live="polite"><tr><td>Cargando datos…</td></tr></tbody>
+        <table role="table">
+          <caption>
+            Resultados
+          </caption>
+          <thead role="rowgroup"></thead>
+          <tbody role="rowgroup" aria-live="polite">
+            <tr class="mensaje-tabla" role="row">
+              <td role="cell">Cargando datos…</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </main>

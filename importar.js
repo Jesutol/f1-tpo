@@ -2,7 +2,7 @@ const { db, temporada } = require('./server');
 const { setTimeout: esperar } = require('node:timers/promises');
 const argumento = process.argv.slice(2).find(a => !a.startsWith('--'));
 const anio = argumento === undefined ? temporada : Number(argumento);
-let errores = [];
+const errores = [];
 
 // 1. Pedir JSON, dejando una pausa entre consultas a las APIs.
 async function pedir(url) {
@@ -12,6 +12,7 @@ async function pedir(url) {
   return respuesta.json();
 }
 async function jolpica(recurso, campo) {
+  // Una página de respuesta puede cortar un GP a la mitad. Unimos sus filas por ronda.
   const carreras = new Map();
   let offset = 0, total = 1;
   while (offset < total) {
@@ -60,9 +61,11 @@ async function guardarSesion(gp, tipo, momento, fuente, resultados) {
     const { rows: [sesion] } = await c.query(`INSERT INTO f1.sesiones (gran_premio_id,tipo,fecha,fuente)
       VALUES ($1,$2,$3,$4) ON CONFLICT (gran_premio_id,tipo) DO UPDATE SET
       fecha=EXCLUDED.fecha,fuente=EXCLUDED.fuente,actualizada_en=NOW() RETURNING id`, [gp.id,tipo,momento,fuente]);
+    // Si solo se vuelven a importar los resultados, conservamos las tandas y paradas.
     const { rows: anteriores } = await c.query('SELECT numero,neumaticos,paradas FROM f1.resultados WHERE sesion_id=$1', [sesion.id]);
     await c.query('DELETE FROM f1.resultados WHERE sesion_id=$1', [sesion.id]);
     for (const r of resultados) {
+      // El identificador de la API permite reconocer al piloto en distintas sesiones.
       let { rows: [piloto] } = await c.query(`SELECT p.id FROM f1.pilotos p
         LEFT JOIN f1.inscripciones i ON i.piloto_id=p.id
         WHERE p.temporada=$1 AND (p.referencia=$2 OR (p.referencia IS NULL AND i.numero=$3)) LIMIT 1`,
@@ -132,55 +135,58 @@ async function importar() {
     }
   }
 
-  // 5. Prácticas, neumáticos y paradas de las sesiones históricas de OpenF1.
-  if (!process.argv.includes('--solo-puntos')) {
-    const sesiones = await openf1('sessions', { year:anio });
-    for (const gp of gps) {
-      const carrera = sesiones.find(s => s.session_name === 'Race' && !s.is_cancelled &&
-        Math.abs(Date.parse(s.date_start) - Date.parse(fecha(gp))) < 36 * 3600000);
-      if (!carrera) continue;
-      const terminadas = sesiones.filter(s => s.meeting_key === carrera.meeting_key &&
-        !s.is_cancelled && Date.parse(s.date_end) + 30 * 60000 < Date.now());
-      for (const s of terminadas) {
-        const tipo = { 'Practice 1':'libres-1','Practice 2':'libres-2','Practice 3':'libres-3' }[s.session_name];
-        if (!tipo) continue;
-        try {
-          console.log('Descargando: ' + gp.raceName + ' - ' + tipo);
-          const participantes = await openf1('drivers', { session_key:s.session_key });
-          const datos = await openf1('session_result', { session_key:s.session_key });
-          const resultados = datos.map((r,i) => {
-            const p = participantes.find(p => p.driver_number === r.driver_number);
-            if (!p) throw new Error('Falta información de un participante.');
-            const conocido = identidades.get(r.driver_number);
-            return { numero:r.driver_number,referencia:conocido?.referencia || 'openf1-' + r.driver_number,
-              nombre:conocido?.nombre || p.first_name || p.full_name,apellido:conocido?.apellido || p.last_name || '',
-              nacionalidad:conocido?.nacionalidad || p.country_code,equipoId:equipos[p.team_name] || conocido?.equipoId,
-              equipo:p.team_name,orden:i+1,posicion:r.dsq ? null : r.position,puntos:0,tiempo:tiempo(r.duration),
-              gap:typeof r.gap_to_leader === 'number' ? (r.gap_to_leader ? '+' + r.gap_to_leader : null) : r.gap_to_leader,vueltas:r.number_of_laps,estado:r.dsq ? 'DSQ' : null };
-          });
-          await guardarSesion(gp,tipo,s.date_start,'openf1',resultados);
-        } catch (error) { avisar(gp.raceName + ' ' + tipo + ': ' + error.message); }
-      }
-      if (!terminadas.some(s => s.session_key === carrera.session_key)) continue;
-      try {
-        const tandas = await openf1('stints', { session_key:carrera.session_key });
-        const paradas = await openf1('pit', { session_key:carrera.session_key });
-        const compuestos = { SOFT:'blando',MEDIUM:'medio',HARD:'duro',INTERMEDIATE:'intermedio',WET:'lluvia' };
-        const numeros = [...new Set(tandas.map(t => t.driver_number))];
-        for (const numero of numeros) {
-          const ruedas = tandas.filter(t => t.driver_number === numero).sort((a,b) => a.stint_number - b.stint_number);
-          const boxes = paradas.filter(p => p.driver_number === numero).sort((a,b) => Date.parse(a.date) - Date.parse(b.date));
-          await db.query(`UPDATE f1.resultados r SET neumaticos=$3,paradas=$4 FROM f1.sesiones s
-            WHERE r.sesion_id=s.id AND s.gran_premio_id=$1 AND s.tipo='carrera' AND r.numero=$2`,
-          [gp.id,numero,JSON.stringify(ruedas.map(t => compuestos[t.compound] || 'desconocido')),
-            JSON.stringify(boxes.map(p => p.lap_number))]);
-        }
-      } catch (error) { avisar(gp.raceName + ' detalles: ' + error.message); }
-    }
-  }
+  if (!process.argv.includes('--solo-puntos')) await importarOpenF1(gps, identidades);
   await db.query(`UPDATE f1.temporadas SET sincronizada_en=NOW(),calendario_completo=true,
     incidencias=$2 WHERE anio=$1`, [anio,JSON.stringify(errores)]);
   console.log('Importación terminada. Incidencias: ' + errores.length);
   if (errores.length) process.exitCode = 1;
+}
+
+// 5. OpenF1 complementa lo guardado con prácticas y datos de estrategia.
+async function importarOpenF1(gps, identidades) {
+  const sesiones = await openf1('sessions', { year:anio });
+  for (const gp of gps) {
+    // Las APIs usan identificadores distintos. Vinculamos los GP por fecha.
+    const carrera = sesiones.find(s => s.session_name === 'Race' && !s.is_cancelled &&
+      Math.abs(Date.parse(s.date_start) - Date.parse(fecha(gp))) < 36 * 3600000);
+    if (!carrera) continue;
+    const terminadas = sesiones.filter(s => s.meeting_key === carrera.meeting_key &&
+      !s.is_cancelled && Date.parse(s.date_end) + 30 * 60000 < Date.now());
+    for (const s of terminadas) {
+      const tipo = { 'Practice 1':'libres-1','Practice 2':'libres-2','Practice 3':'libres-3' }[s.session_name];
+      if (!tipo) continue;
+      try {
+        console.log('Descargando: ' + gp.raceName + ' - ' + tipo);
+        const participantes = await openf1('drivers', { session_key:s.session_key });
+        const datos = await openf1('session_result', { session_key:s.session_key });
+        const resultados = datos.map((r,i) => {
+          const p = participantes.find(p => p.driver_number === r.driver_number);
+          if (!p) throw new Error('Falta información de un participante.');
+          const conocido = identidades.get(r.driver_number);
+          return { numero:r.driver_number,referencia:conocido?.referencia || 'openf1-' + r.driver_number,
+            nombre:conocido?.nombre || p.first_name || p.full_name,apellido:conocido?.apellido || p.last_name || '',
+            nacionalidad:conocido?.nacionalidad || p.country_code,equipoId:equipos[p.team_name] || conocido?.equipoId,
+            equipo:p.team_name,orden:i+1,posicion:r.dsq ? null : r.position,puntos:0,tiempo:tiempo(r.duration),
+            gap:typeof r.gap_to_leader === 'number' ? (r.gap_to_leader ? '+' + r.gap_to_leader : null) : r.gap_to_leader,vueltas:r.number_of_laps,estado:r.dsq ? 'DSQ' : null };
+        });
+        await guardarSesion(gp,tipo,s.date_start,'openf1',resultados);
+      } catch (error) { avisar(gp.raceName + ' ' + tipo + ': ' + error.message); }
+    }
+    if (!terminadas.some(s => s.session_key === carrera.session_key)) continue;
+    try {
+      const tandas = await openf1('stints', { session_key:carrera.session_key });
+      const paradas = await openf1('pit', { session_key:carrera.session_key });
+      const compuestos = { SOFT:'blando',MEDIUM:'medio',HARD:'duro',INTERMEDIATE:'intermedio',WET:'lluvia' };
+      const numeros = [...new Set(tandas.map(t => t.driver_number))];
+      for (const numero of numeros) {
+        const ruedas = tandas.filter(t => t.driver_number === numero).sort((a,b) => a.stint_number - b.stint_number);
+        const boxes = paradas.filter(p => p.driver_number === numero).sort((a,b) => Date.parse(a.date) - Date.parse(b.date));
+        await db.query(`UPDATE f1.resultados r SET neumaticos=$3,paradas=$4 FROM f1.sesiones s
+          WHERE r.sesion_id=s.id AND s.gran_premio_id=$1 AND s.tipo='carrera' AND r.numero=$2`,
+        [gp.id,numero,JSON.stringify(ruedas.map(t => compuestos[t.compound] || 'desconocido')),
+          JSON.stringify(boxes.map(p => p.lap_number))]);
+      }
+    } catch (error) { avisar(gp.raceName + ' detalles: ' + error.message); }
+  }
 }
 importar().catch(error => { console.error(error.message); process.exitCode = 1; }).finally(() => db.end());

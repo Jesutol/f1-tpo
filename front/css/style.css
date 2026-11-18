@@ -49,6 +49,7 @@ a {
 }
 
 .navegacion {
+  display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
@@ -144,16 +145,15 @@ a {
 }
 
 .tabla-contenedor {
-  overflow-x: auto;
   border: 1px solid #ffffff12;
   background:
     repeating-linear-gradient(135deg, #ffffff03 0 32px, transparent 32px 80px),
     #17171f;
 }
 
+/* El contenido puede partirse y las columnas se ajustan al ancho disponible. */
 table {
   width: 100%;
-  min-width: 720px;
   border-collapse: collapse;
   font-size: 0.9rem;
   text-align: center;
@@ -176,7 +176,8 @@ thead {
 
 th,
 td {
-  padding: 15px 10px;
+  padding: 12px 8px;
+  overflow-wrap: anywhere;
   border-bottom: 1px solid #ffffff0d;
 }
 
@@ -187,7 +188,6 @@ thead th {
   font-style: italic;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  white-space: nowrap;
 }
 
 tbody tr:hover {
@@ -199,23 +199,19 @@ tbody tr:first-child {
   background: #e3e3e6;
 }
 
-tbody td:first-child {
+tbody tr:not(.mensaje-tabla) td:first-child {
   font-size: 1rem;
   font-weight: 700;
 }
 
-tbody tr:first-child td:first-child {
+tbody tr:first-child:not(.mensaje-tabla) td:first-child {
   border-left: 3px solid #e10600;
 }
 
-table .piloto,
-table .equipo {
+td:has(.piloto),
+td:has(.equipo) {
+  text-align: left;
   text-transform: uppercase;
-}
-
-table .puntos {
-  color: inherit;
-  font-weight: 700;
 }
 
 table .logo-equipo {
@@ -223,15 +219,8 @@ table .logo-equipo {
   height: 20px;
 }
 
-tbody tr:first-child .logo-mercedes,
 tbody tr:first-child .logo-oscuro {
   filter: brightness(0);
-}
-
-.piloto,
-.equipo {
-  text-align: left;
-  white-space: nowrap;
 }
 
 .piloto img,
@@ -239,18 +228,21 @@ tbody tr:first-child .logo-oscuro {
   margin-right: 8px;
 }
 
-.colapinto {
-  color: #60a5fa;
+.estrategia {
+  flex-wrap: wrap;
+  gap: 4px;
 }
 
-.estrategia {
-  gap: 6px;
+.tanda {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .neumatico {
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   border: 3px solid currentColor;
   border-radius: 50%;
   text-shadow: none;
@@ -277,7 +269,6 @@ tbody tr:first-child .logo-oscuro {
 .pit-stops summary {
   padding: 6px;
   cursor: pointer;
-  white-space: nowrap;
 }
 
 .pit-stops ul {
@@ -418,14 +409,52 @@ body,
   background: #171e27;
 }
 
-.navegacion,
-.inicio-presentacion,
-.inicio-titulo-seccion {
+/* Los filtros pertenecen a la vista del calendario de resultados. */
+#filtros-resultados:not([hidden]) {
   display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 24px 0;
 }
+#filtros-resultados label {
+  display: grid;
+  gap: 8px;
+  max-width: 100%;
+}
+#filtros-resultados select {
+  max-width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #aaa5;
+  border-radius: 6px;
+  background: #171e27;
+  color: #fff;
+  font: inherit;
+}
+.lluvia { color: #60a5fa; }
 
-.tiempo-pole {
-  color: #d66ce6;
+/* En pantallas angostas cada fila muestra sus campos con etiqueta y valor. */
+@media (max-width: 760px) {
+  table, caption, tbody, tbody tr { display: block; }
+  thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  tbody tr { padding: 8px 12px; border-bottom: 1px solid #aaa5; }
+  tbody td {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 12px;
+    padding: 5px 0;
+    border: 0;
+    text-align: left;
+  }
+  tbody tr:first-child:not(.mensaje-tabla) td:first-child { border: 0; }
+  td[data-columna]::before { content: attr(data-columna); font-weight: 700; }
+  .mensaje-tabla td { display: block; }
+  .estrategia { justify-content: flex-start; }
 }
 
 @media (max-width: 700px) {
