@@ -1,0 +1,57 @@
+[
+  {
+    "_id": "mercedes",
+    "nombre": "Mercedes",
+    "logo": "/recursos/logos-equipos/mercedes.svg"
+  },
+  {
+    "_id": "ferrari",
+    "nombre": "Ferrari",
+    "logo": "/recursos/logos-equipos/ferrari.svg"
+  },
+  {
+    "_id": "mclaren",
+    "nombre": "McLaren",
+    "logo": "/recursos/logos-equipos/mclaren.svg"
+  },
+  {
+    "_id": "red-bull-racing",
+    "nombre": "Red Bull Racing",
+    "logo": "/recursos/logos-equipos/redbull_racing.svg"
+  },
+  {
+    "_id": "racing-bulls",
+    "nombre": "Racing Bulls",
+    "logo": "/recursos/logos-equipos/racing_bulls.svg"
+  },
+  {
+    "_id": "alpine",
+    "nombre": "Alpine",
+    "logo": "/recursos/logos-equipos/alpine.svg"
+  },
+  {
+    "_id": "haas",
+    "nombre": "Haas",
+    "logo": "/recursos/logos-equipos/haas.svg"
+  },
+  {
+    "_id": "audi",
+    "nombre": "Audi",
+    "logo": "/recursos/logos-equipos/audi.svg"
+  },
+  {
+    "_id": "williams",
+    "nombre": "Williams",
+    "logo": "/recursos/logos-equipos/williams.svg"
+  },
+  {
+    "_id": "aston-martin",
+    "nombre": "Aston Martin",
+    "logo": "/recursos/logos-equipos/aston_martin.svg"
+  },
+  {
+    "_id": "cadillac",
+    "nombre": "Cadillac",
+    "logo": "/recursos/logos-equipos/cadillac.svg"
+  }
+]

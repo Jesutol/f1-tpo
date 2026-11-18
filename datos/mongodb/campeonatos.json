@@ -1,0 +1,315 @@
+[
+  {
+    "_id": "2026-pilotos-html",
+    "temporada": 2026,
+    "tipo": "pilotos",
+    "carreraHasta": 20,
+    "eventoId": "2026-sao-paulo",
+    "fechaCorte": "2026-11-08",
+    "estado": "actualizado",
+    "resultados": [
+      {
+        "posicion": 1,
+        "pilotoId": "antonelli",
+        "nombre": "Kimi",
+        "apellido": "Antonelli",
+        "equipoId": "mercedes",
+        "equipo": "Mercedes",
+        "puntos": 390
+      },
+      {
+        "posicion": 2,
+        "pilotoId": "verstappen",
+        "nombre": "Max",
+        "apellido": "Verstappen",
+        "equipoId": "red-bull-racing",
+        "equipo": "Red Bull Racing",
+        "puntos": 279
+      },
+      {
+        "posicion": 3,
+        "pilotoId": "russell",
+        "nombre": "George",
+        "apellido": "Russell",
+        "equipoId": "mercedes",
+        "equipo": "Mercedes",
+        "puntos": 262
+      },
+      {
+        "posicion": 4,
+        "pilotoId": "hamilton",
+        "nombre": "Lewis",
+        "apellido": "Hamilton",
+        "equipoId": "ferrari",
+        "equipo": "Ferrari",
+        "puntos": 261
+      },
+      {
+        "posicion": 5,
+        "pilotoId": "leclerc",
+        "nombre": "Charles",
+        "apellido": "Leclerc",
+        "equipoId": "ferrari",
+        "equipo": "Ferrari",
+        "puntos": 249
+      },
+      {
+        "posicion": 6,
+        "pilotoId": "norris",
+        "nombre": "Lando",
+        "apellido": "Norris",
+        "equipoId": "mclaren",
+        "equipo": "McLaren",
+        "puntos": 246
+      },
+      {
+        "posicion": 7,
+        "pilotoId": "piastri",
+        "nombre": "Oscar",
+        "apellido": "Piastri",
+        "equipoId": "mclaren",
+        "equipo": "McLaren",
+        "puntos": 152
+      },
+      {
+        "posicion": 8,
+        "pilotoId": "hadjar",
+        "nombre": "Isack",
+        "apellido": "Hadjar",
+        "equipoId": "red-bull-racing",
+        "equipo": "Red Bull Racing",
+        "puntos": 122
+      },
+      {
+        "posicion": 9,
+        "pilotoId": "lawson",
+        "nombre": "Liam",
+        "apellido": "Lawson",
+        "equipoId": "racing-bulls",
+        "equipo": "Racing Bulls",
+        "puntos": 89
+      },
+      {
+        "posicion": 10,
+        "pilotoId": "gasly",
+        "nombre": "Pierre",
+        "apellido": "Gasly",
+        "equipoId": "alpine",
+        "equipo": "Alpine",
+        "puntos": 42
+      },
+      {
+        "posicion": 11,
+        "pilotoId": "lindblad",
+        "nombre": "Arvid",
+        "apellido": "Lindblad",
+        "equipoId": "racing-bulls",
+        "equipo": "Racing Bulls",
+        "puntos": 38
+      },
+      {
+        "posicion": 12,
+        "pilotoId": "colapinto",
+        "nombre": "Franco",
+        "apellido": "Colapinto",
+        "equipoId": "alpine",
+        "equipo": "Alpine",
+        "puntos": 27
+      },
+      {
+        "posicion": 13,
+        "pilotoId": "bearman",
+        "nombre": "Oliver",
+        "apellido": "Bearman",
+        "equipoId": "haas",
+        "equipo": "Haas",
+        "puntos": 23
+      },
+      {
+        "posicion": 14,
+        "pilotoId": "bortoleto",
+        "nombre": "Gabriel",
+        "apellido": "Bortoleto",
+        "equipoId": "audi",
+        "equipo": "Audi",
+        "puntos": 14
+      },
+      {
+        "posicion": 15,
+        "pilotoId": "hulkenberg",
+        "nombre": "Nico",
+        "apellido": "Hulkenberg",
+        "equipoId": "audi",
+        "equipo": "Audi",
+        "puntos": 14
+      },
+      {
+        "posicion": 16,
+        "pilotoId": "ocon",
+        "nombre": "Esteban",
+        "apellido": "Ocon",
+        "equipoId": "haas",
+        "equipo": "Haas",
+        "puntos": 7
+      },
+      {
+        "posicion": 17,
+        "pilotoId": "alonso",
+        "nombre": "Fernando",
+        "apellido": "Alonso",
+        "equipoId": "aston-martin",
+        "equipo": "Aston Martin",
+        "puntos": 7
+      },
+      {
+        "posicion": 18,
+        "pilotoId": "sainz",
+        "nombre": "Carlos",
+        "apellido": "Sainz",
+        "equipoId": "williams",
+        "equipo": "Williams",
+        "puntos": 7
+      },
+      {
+        "posicion": 19,
+        "pilotoId": "albon",
+        "nombre": "Alexander",
+        "apellido": "Albon",
+        "equipoId": "williams",
+        "equipo": "Williams",
+        "puntos": 5
+      },
+      {
+        "posicion": 20,
+        "pilotoId": "tsunoda",
+        "nombre": "Yuki",
+        "apellido": "Tsunoda",
+        "equipoId": "racing-bulls",
+        "equipo": "Racing Bulls",
+        "puntos": 1
+      },
+      {
+        "posicion": 21,
+        "pilotoId": "hirakawa",
+        "nombre": "Ryo",
+        "apellido": "Hirakawa",
+        "equipoId": "haas",
+        "equipo": "Haas",
+        "puntos": 1
+      },
+      {
+        "posicion": 22,
+        "pilotoId": "stroll",
+        "nombre": "Lance",
+        "apellido": "Stroll",
+        "equipoId": "aston-martin",
+        "equipo": "Aston Martin",
+        "puntos": 0
+      },
+      {
+        "posicion": 23,
+        "pilotoId": "bottas",
+        "nombre": "Valtteri",
+        "apellido": "Bottas",
+        "equipoId": "cadillac",
+        "equipo": "Cadillac",
+        "puntos": 0
+      },
+      {
+        "posicion": 24,
+        "pilotoId": "perez",
+        "nombre": "Sergio",
+        "apellido": "Perez",
+        "equipoId": "cadillac",
+        "equipo": "Cadillac",
+        "puntos": 0
+      },
+      {
+        "posicion": 25,
+        "pilotoId": "camara",
+        "nombre": "Rafael",
+        "apellido": "Câmara",
+        "equipoId": "haas",
+        "equipo": "Haas",
+        "puntos": 0
+      }
+    ]
+  },
+  {
+    "_id": "2026-constructores-html",
+    "temporada": 2026,
+    "tipo": "constructores",
+    "carreraHasta": 20,
+    "eventoId": "2026-sao-paulo",
+    "fechaCorte": "2026-11-08",
+    "estado": "actualizado",
+    "resultados": [
+      {
+        "posicion": 1,
+        "equipoId": "mercedes",
+        "equipo": "Mercedes",
+        "puntos": 652
+      },
+      {
+        "posicion": 2,
+        "equipoId": "ferrari",
+        "equipo": "Ferrari",
+        "puntos": 510
+      },
+      {
+        "posicion": 3,
+        "equipoId": "red-bull-racing",
+        "equipo": "Red Bull Racing",
+        "puntos": 415
+      },
+      {
+        "posicion": 4,
+        "equipoId": "mclaren",
+        "equipo": "McLaren",
+        "puntos": 398
+      },
+      {
+        "posicion": 5,
+        "equipoId": "racing-bulls",
+        "equipo": "Racing Bulls",
+        "puntos": 114
+      },
+      {
+        "posicion": 6,
+        "equipoId": "alpine",
+        "equipo": "Alpine",
+        "puntos": 69
+      },
+      {
+        "posicion": 7,
+        "equipoId": "haas",
+        "equipo": "Haas",
+        "puntos": 31
+      },
+      {
+        "posicion": 8,
+        "equipoId": "audi",
+        "equipo": "Audi",
+        "puntos": 28
+      },
+      {
+        "posicion": 9,
+        "equipoId": "williams",
+        "equipo": "Williams",
+        "puntos": 12
+      },
+      {
+        "posicion": 10,
+        "equipoId": "aston-martin",
+        "equipo": "Aston Martin",
+        "puntos": 7
+      },
+      {
+        "posicion": 11,
+        "equipoId": "cadillac",
+        "equipo": "Cadillac",
+        "puntos": 0
+      }
+    ]
+  }
+]

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F1 Telemetry | Prácticas Libres 1</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&amp;family=DM+Mono:wght@500&amp;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body data-sesion="practica1" data-titulo="Prácticas Libres 1">
+    <header class="encabezado">
+      <nav class="navegacion">
+        <a href="../index.html">Inicio</a>
+        <details class="menu-ultimo-gp">
+          <summary>Último GP</summary>
+          <div class="submenu">
+            <a href="./resultado-carrera.html">Carrera</a>
+            <a href="./resultado-clasificacion.html">Clasificación</a>
+            <a href="./resultado-libres-3.html">Prácticas Libres 3</a>
+            <a href="./resultado-libres-2.html">Prácticas Libres 2</a>
+            <a href="./resultado-libres-1.html">Prácticas Libres 1</a>
+          </div>
+        </details>
+        <details class="menu-campeonato">
+          <summary>Campeonato</summary>
+          <div class="submenu">
+            <a href="./campeonato.html">Pilotos</a>
+            <a href="./constructores.html">Constructores</a>
+          </div>
+        </details>
+      </nav>
+      <p class="marca" id="temporada-sesion">F1 Telemetry</p>
+      <h1 id="nombre-sesion">Último Gran Premio</h1>
+      <p id="detalle-sesion">Consultando la sesión...</p>
+      <p>Prácticas Libres 1</p>
+    </header>
+    <main><div class="tabla-contenedor"><table><caption id="titulo-tabla">Prácticas Libres 1</caption><thead><tr><th scope="col">Posición</th><th scope="col">Piloto</th><th scope="col">Equipo</th><th scope="col">Tiempo / diferencia</th><th scope="col">Vueltas</th></tr></thead><tbody id="resultados-sesion" aria-live="polite"><tr><td colspan="5">Cargando resultados...</td></tr></tbody></table></div><div id="notas-sesion"></div></main>
+    <script src="../js/datos.js"></script>
+    <script src="../js/sesiones.js"></script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+[
+  {
+    "_id": "inicio-2026-html",
+    "temporada": 2026,
+    "fechaCorte": "2026-11-17",
+    "eventoPodioId": "2026-sao-paulo",
+    "podio": [
+      {
+        "posicion": 1,
+        "pilotoId": "norris",
+        "nombre": "Lando",
+        "apellido": "Norris",
+        "equipoId": "mclaren",
+        "equipo": "McLaren",
+        "tiempo": "1:35:23.504",
+        "puntos": 25
+      },
+      {
+        "posicion": 2,
+        "pilotoId": "verstappen",
+        "nombre": "Max",
+        "apellido": "Verstappen",
+        "equipoId": "red-bull-racing",
+        "equipo": "Red Bull Racing",
+        "tiempo": "+14.602s",
+        "puntos": 18
+      },
+      {
+        "posicion": 3,
+        "pilotoId": "hadjar",
+        "nombre": "Isack",
+        "apellido": "Hadjar",
+        "equipoId": "red-bull-racing",
+        "equipo": "Red Bull Racing",
+        "tiempo": "+24.485s",
+        "puntos": 15
+      }
+    ],
+    "topConstructores": [
+      {
+        "posicion": 1,
+        "equipoId": "mercedes",
+        "equipo": "Mercedes",
+        "puntos": 652
+      },
+      {
+        "posicion": 2,
+        "equipoId": "ferrari",
+        "equipo": "Ferrari",
+        "puntos": 510
+      },
+      {
+        "posicion": 3,
+        "equipoId": "red-bull-racing",
+        "equipo": "Red Bull Racing",
+        "puntos": 415
+      }
+    ],
+    "notaConstructores": "Ranking después del GP de São Paulo.",
+    "eventoProximoId": "2026-las-vegas"
+  }
+]

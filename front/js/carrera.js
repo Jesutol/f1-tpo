@@ -1,47 +1,6 @@
-// Cada equipo tiene un archivo de imagen en recursos/logos-equipos.
-const logos = {
-  'McLaren': 'mclaren',
-  'Red Bull Racing': 'redbull_racing',
-  'Mercedes': 'mercedes',
-  'Ferrari': 'ferrari',
-  'Racing Bulls': 'racing_bulls',
-  'Aston Martin': 'aston_martin',
-  'Alpine': 'alpine',
-  'Audi': 'audi',
-  'Haas F1 Team': 'haas',
-  'Haas': 'haas',
-  'Cadillac': 'cadillac',
-  'Williams': 'williams'
-};
-
-// Número del piloto: archivo de su bandera y nombre del país.
-const banderas = {
-  1: ['uk', 'Reino Unido'], 3: ['nl', 'Países Bajos'],
-  6: ['fr', 'Francia'], 63: ['uk', 'Reino Unido'],
-  12: ['it', 'Italia'], 81: ['au', 'Australia'],
-  30: ['nz', 'Nueva Zelanda'], 16: ['mc', 'Mónaco'],
-  44: ['uk', 'Reino Unido'], 27: ['de', 'Alemania'],
-  41: ['uk', 'Reino Unido'], 14: ['es', 'España'],
-  43: ['ar', 'Argentina'], 10: ['fr', 'Francia'],
-  23: ['th', 'Tailandia'], 5: ['br', 'Brasil'],
-  87: ['uk', 'Reino Unido'], 11: ['mx', 'México'],
-  55: ['es', 'España'], 51: ['br', 'Brasil'],
-  18: ['ca', 'Canadá'], 77: ['fi', 'Finlandia'],
-  31: ['fr', 'Francia']
-};
-
 const letras = {
   blando: 'S', medio: 'M', duro: 'H', intermedio: 'I', lluvia: 'W'
 };
-
-// Coloca una imagen antes del nombre del piloto o equipo.
-function agregarImagen(celda, ruta, clase, descripcion) {
-  const imagen = document.createElement('img');
-  imagen.src = ruta;
-  imagen.className = clase;
-  imagen.alt = descripcion;
-  celda.prepend(imagen);
-}
 
 // Muestra un mensaje que ocupa las seis columnas de la tabla.
 function mostrarMensaje(texto) {
@@ -101,21 +60,13 @@ async function cargarCarrera() {
         fila.className = 'colapinto';
       }
 
-      // 5. Agregamos la bandera y el logo usando las listas de arriba.
-      const bandera = banderas[piloto.numero];
-      if (bandera) {
-        agregarImagen(fila.querySelector('.piloto'),
-          '../recursos/iconos-banderas/' + bandera[0] + '.svg', 'bandera', bandera[1]);
+      // 5. Las imágenes vienen de los catálogos guardados en MongoDB.
+      ponerImagen(fila.querySelector('.piloto'), piloto.bandera, 'bandera', piloto.nacionalidad);
+      let claseLogo = 'logo-equipo';
+      if (piloto.equipoId === 'mercedes' || piloto.equipo === 'Mercedes') {
+        claseLogo += ' logo-oscuro';
       }
-      const logo = logos[piloto.equipo];
-      if (logo) {
-        let clase = 'logo-equipo';
-        if (piloto.equipo === 'Mercedes') {
-          clase = 'logo-equipo logo-oscuro';
-        }
-        agregarImagen(fila.querySelector('.equipo'),
-          '../recursos/logos-equipos/' + logo + '.svg', clase, '');
-      }
+      ponerImagen(fila.querySelector('.equipo'), piloto.logo, claseLogo);
 
       // 6. Dibujamos los neumáticos. null significa que faltan los datos.
       const neumaticos = fila.querySelector('.neumaticos');

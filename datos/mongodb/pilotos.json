@@ -1,0 +1,281 @@
+[
+  {
+    "_id": "antonelli",
+    "nombre": "Kimi",
+    "apellido": "Antonelli",
+    "numero": 12,
+    "pais": "it",
+    "nacionalidad": "Italia",
+    "bandera": "/recursos/iconos-banderas/it.svg"
+  },
+  {
+    "_id": "russell",
+    "nombre": "George",
+    "apellido": "Russell",
+    "numero": 63,
+    "pais": "uk",
+    "nacionalidad": "Reino Unido",
+    "bandera": "/recursos/iconos-banderas/uk.svg"
+  },
+  {
+    "_id": "hamilton",
+    "nombre": "Lewis",
+    "apellido": "Hamilton",
+    "numero": 44,
+    "pais": "uk",
+    "nacionalidad": "Reino Unido",
+    "bandera": "/recursos/iconos-banderas/uk.svg"
+  },
+  {
+    "_id": "leclerc",
+    "nombre": "Charles",
+    "apellido": "Leclerc",
+    "numero": 16,
+    "pais": "mc",
+    "nacionalidad": "Mónaco",
+    "bandera": "/recursos/iconos-banderas/mc.svg"
+  },
+  {
+    "_id": "norris",
+    "nombre": "Lando",
+    "apellido": "Norris",
+    "numero": 1,
+    "pais": "uk",
+    "nacionalidad": "Reino Unido",
+    "bandera": "/recursos/iconos-banderas/uk.svg"
+  },
+  {
+    "_id": "verstappen",
+    "nombre": "Max",
+    "apellido": "Verstappen",
+    "numero": 3,
+    "pais": "nl",
+    "nacionalidad": "Países Bajos",
+    "bandera": "/recursos/iconos-banderas/nl.svg"
+  },
+  {
+    "_id": "piastri",
+    "nombre": "Oscar",
+    "apellido": "Piastri",
+    "numero": 81,
+    "pais": "au",
+    "nacionalidad": "Australia",
+    "bandera": "/recursos/iconos-banderas/au.svg"
+  },
+  {
+    "_id": "hadjar",
+    "nombre": "Isack",
+    "apellido": "Hadjar",
+    "numero": 6,
+    "pais": "fr",
+    "nacionalidad": "Francia",
+    "bandera": "/recursos/iconos-banderas/fr.svg"
+  },
+  {
+    "_id": "lawson",
+    "nombre": "Liam",
+    "apellido": "Lawson",
+    "numero": 30,
+    "pais": "nz",
+    "nacionalidad": "Nueva Zelanda",
+    "bandera": "/recursos/iconos-banderas/nz.svg"
+  },
+  {
+    "_id": "gasly",
+    "nombre": "Pierre",
+    "apellido": "Gasly",
+    "numero": 10,
+    "pais": "fr",
+    "nacionalidad": "Francia",
+    "bandera": "/recursos/iconos-banderas/fr.svg"
+  },
+  {
+    "_id": "lindblad",
+    "nombre": "Arvid",
+    "apellido": "Lindblad",
+    "numero": 41,
+    "pais": "uk",
+    "nacionalidad": "Reino Unido",
+    "bandera": "/recursos/iconos-banderas/uk.svg"
+  },
+  {
+    "_id": "colapinto",
+    "nombre": "Franco",
+    "apellido": "Colapinto",
+    "numero": 43,
+    "pais": "ar",
+    "nacionalidad": "Argentina",
+    "bandera": "/recursos/iconos-banderas/ar.svg"
+  },
+  {
+    "_id": "bearman",
+    "nombre": "Oliver",
+    "apellido": "Bearman",
+    "numero": 87,
+    "pais": "uk",
+    "nacionalidad": "Reino Unido",
+    "bandera": "/recursos/iconos-banderas/uk.svg"
+  },
+  {
+    "_id": "bortoleto",
+    "nombre": "Gabriel",
+    "apellido": "Bortoleto",
+    "numero": 5,
+    "pais": "br",
+    "nacionalidad": "Brasil",
+    "bandera": "/recursos/iconos-banderas/br.svg"
+  },
+  {
+    "_id": "hulkenberg",
+    "nombre": "Nico",
+    "apellido": "Hulkenberg",
+    "numero": 27,
+    "pais": "de",
+    "nacionalidad": "Alemania",
+    "bandera": "/recursos/iconos-banderas/de.svg"
+  },
+  {
+    "_id": "ocon",
+    "nombre": "Esteban",
+    "apellido": "Ocon",
+    "numero": 31,
+    "pais": "fr",
+    "nacionalidad": "Francia",
+    "bandera": "/recursos/iconos-banderas/fr.svg"
+  },
+  {
+    "_id": "alonso",
+    "nombre": "Fernando",
+    "apellido": "Alonso",
+    "numero": 14,
+    "pais": "es",
+    "nacionalidad": "España",
+    "bandera": "/recursos/iconos-banderas/es.svg"
+  },
+  {
+    "_id": "sainz",
+    "nombre": "Carlos",
+    "apellido": "Sainz",
+    "numero": 55,
+    "pais": "es",
+    "nacionalidad": "España",
+    "bandera": "/recursos/iconos-banderas/es.svg"
+  },
+  {
+    "_id": "albon",
+    "nombre": "Alexander",
+    "apellido": "Albon",
+    "numero": 23,
+    "pais": "th",
+    "nacionalidad": "Tailandia",
+    "bandera": "/recursos/iconos-banderas/th.svg"
+  },
+  {
+    "_id": "tsunoda",
+    "nombre": "Yuki",
+    "apellido": "Tsunoda",
+    "numero": null,
+    "pais": "jp",
+    "nacionalidad": "Japón",
+    "bandera": "/recursos/iconos-banderas/jp.svg"
+  },
+  {
+    "_id": "stroll",
+    "nombre": "Lance",
+    "apellido": "Stroll",
+    "numero": 18,
+    "pais": "ca",
+    "nacionalidad": "Canadá",
+    "bandera": "/recursos/iconos-banderas/ca.svg"
+  },
+  {
+    "_id": "bottas",
+    "nombre": "Valtteri",
+    "apellido": "Bottas",
+    "numero": 77,
+    "pais": "fi",
+    "nacionalidad": "Finlandia",
+    "bandera": "/recursos/iconos-banderas/fi.svg"
+  },
+  {
+    "_id": "perez",
+    "nombre": "Sergio",
+    "apellido": "Perez",
+    "numero": 11,
+    "pais": "mx",
+    "nacionalidad": "México",
+    "bandera": "/recursos/iconos-banderas/mx.svg"
+  },
+  {
+    "_id": "camara",
+    "nombre": "Rafael",
+    "apellido": "Câmara",
+    "numero": 51,
+    "pais": "br",
+    "nacionalidad": "Brasil",
+    "bandera": "/recursos/iconos-banderas/br.svg"
+  },
+  {
+    "_id": "hirakawa",
+    "numero": null,
+    "nombre": "Ryo",
+    "apellido": "Hirakawa",
+    "pais": "jp",
+    "nacionalidad": "Japón",
+    "bandera": "/recursos/iconos-banderas/jp.svg"
+  },
+  {
+    "_id": "mini",
+    "nombre": "Gabriele",
+    "apellido": "Mini",
+    "numero": 62,
+    "pais": null,
+    "nacionalidad": null,
+    "bandera": null
+  },
+  {
+    "_id": "fornaroli",
+    "nombre": "Leonardo",
+    "apellido": "Fornaroli",
+    "numero": 67,
+    "pais": null,
+    "nacionalidad": null,
+    "bandera": null
+  },
+  {
+    "_id": "browning",
+    "nombre": "Luke",
+    "apellido": "Browning",
+    "numero": 46,
+    "pais": null,
+    "nacionalidad": null,
+    "bandera": null
+  },
+  {
+    "_id": "herta",
+    "nombre": "Colton",
+    "apellido": "Herta",
+    "numero": 25,
+    "pais": null,
+    "nacionalidad": null,
+    "bandera": null
+  },
+  {
+    "_id": "beganovic",
+    "nombre": "Dino",
+    "apellido": "Beganovic",
+    "numero": 38,
+    "pais": null,
+    "nacionalidad": null,
+    "bandera": null
+  },
+  {
+    "_id": "slater",
+    "nombre": "Freddie",
+    "apellido": "Slater",
+    "numero": 98,
+    "pais": null,
+    "nacionalidad": null,
+    "bandera": null
+  }
+]

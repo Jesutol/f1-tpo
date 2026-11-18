@@ -19,7 +19,7 @@ En desarrollo.
 
 ## Organización de archivos
 
-- `front/index.html`: página de inicio. Abrir este archivo para recorrer el sitio.
+- `front/index.html`: página de inicio, disponible al ejecutar el servidor.
 - `front/paginas/`: campeonatos de pilotos y constructores, resultados de carrera y clasificación.
 - `front/css/style.css`: estilos compartidos por todas las páginas.
 - `front/recursos/`: banderas y logos de equipos.
@@ -31,7 +31,7 @@ Desde las páginas interiores, `../` permite acceder al inicio, los estilos y lo
 
 ## Ejecutar el proyecto
 
-Con MongoDB local iniciado, ejecutar desde la raíz del proyecto:
+Con `MONGODB_URI` configurada en la terminal (o en Vercel), ejecutar desde la raíz del proyecto:
 
 ```powershell
 npm ci
@@ -39,8 +39,38 @@ npm start
 ```
 
 Abrir `http://localhost:3000`. La página de carrera consulta la colección
-`f1_tpo.carreras`. Importar `back/carrera-sao-paulo-2026.json` en esa colección
-para cargar el GP de ejemplo.
+`f1_tpo.carreras`. Los JSON de importación están en `datos/mongodb`.
+Importar cada archivo en la colección del mismo nombre sin duplicar los documentos
+existentes. Las páginas consultan MongoDB; no contienen resultados fijos.
+
+## Consultas y scripts
+
+| Ruta | Datos |
+| --- | --- |
+| `/carrera` | Última carrera disputada, con imágenes de los catálogos |
+| `/pilotos` y `/equipos` | Catálogos de pilotos y equipos |
+| `/campeonato/pilotos` | Última tabla de pilotos guardada |
+| `/campeonato/constructores` | Última tabla de constructores guardada |
+| `/sesiones/clasificacion` | Clasificación del último GP |
+| `/sesiones/practica1`, `/sesiones/practica2`, `/sesiones/practica3` | Prácticas del último GP |
+| `/api/inicio` | Podio, ambos campeonatos y próximo evento del calendario |
+
+Las consultas admiten `?temporada=2026`. Para una sesión histórica se puede
+agregar `&carreraId=20`. Sin parámetros se elige la última carrera disputada;
+si falta una sesión, no se muestra una de otro GP por error.
+
+`datos.js` contiene funciones comunes. `carrera.js`, `inicio.js`,
+`campeonato.js` y `sesiones.js` completan sus respectivas páginas. Las imágenes
+se obtienen de `pilotos` y `equipos`; los horarios, de `calendario`.
+El inicio deriva el podio desde `carreras` y los rankings desde `campeonatos`;
+no usa las copias antiguas de esos valores guardadas en `inicio`.
+
+Si no hay una próxima carrera programada o faltan documentos, la página muestra
+un mensaje. No se incluyen datos de ejemplo como reemplazo silencioso de MongoDB.
+Sin `MONGODB_URI`, el servidor entrega el HTML pero las consultas muestran error.
+No escribir credenciales en los archivos del proyecto.
+
+Ejecutar `npm test` para comprobar las consultas con MongoDB simulado, sin tocar Atlas.
 
 ## Publicar en Vercel y MongoDB Atlas
 
@@ -90,8 +120,8 @@ Guardar la dirección y contraseña de Atlas únicamente en las variables de
 entorno de Render. No publicarlas en el repositorio. Render proporciona `PORT`;
 si no está definido, el servidor usa el puerto 3000.
 
-El servicio publica el frontend y las rutas de lectura `GET /carrera` y
-`GET /pilotos`. La inserción pública de pilotos está deshabilitada.
+El servicio publica el frontend y todas las rutas de lectura de la tabla
+«Consultas y scripts». La inserción pública de pilotos está deshabilitada.
 
 Para desplegar estos cambios, primero deben estar subidos a la rama del
 repositorio que Render utiliza.

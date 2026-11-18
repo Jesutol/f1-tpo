@@ -1,0 +1,60 @@
+[
+  {
+    "_id": "2026-sao-paulo",
+    "temporada": 2026,
+    "carreraId": 20,
+    "granPremio": "São Paulo",
+    "circuito": "Autódromo José Carlos Pace",
+    "fecha": "2026-11-08",
+    "estado": "finalizada",
+    "sprint": false,
+    "longitudKm": 4.309,
+    "vueltas": 71,
+    "distanciaKm": 305.879
+  },
+  {
+    "_id": "2026-las-vegas",
+    "temporada": 2026,
+    "carreraId": 21,
+    "granPremio": "Las Vegas",
+    "circuito": "Las Vegas Strip Circuit",
+    "fecha": "2026-11-22",
+    "fechaLocalCircuito": "2026-11-21",
+    "hora": "01:00",
+    "zonaHoraria": "America/Argentina/Buenos_Aires",
+    "fechaHora": "2026-11-22T01:00:00-03:00",
+    "finDeSemanaTexto": "19–21 nov. 2026 (hora de Las Vegas)",
+    "estado": "programada",
+    "sprint": false,
+    "longitudKm": 6.201,
+    "vueltas": 50,
+    "distanciaKm": 309.958,
+    "agenda": [
+      {
+        "actividad": "Práctica libre 1",
+        "fechaHora": "2026-11-19T21:30:00-03:00",
+        "horarioTexto": "Jue. 19 · 21:30"
+      },
+      {
+        "actividad": "Práctica libre 2",
+        "fechaHora": "2026-11-20T01:00:00-03:00",
+        "horarioTexto": "Vie. 20 · 01:00"
+      },
+      {
+        "actividad": "Práctica libre 3",
+        "fechaHora": "2026-11-20T21:30:00-03:00",
+        "horarioTexto": "Vie. 20 · 21:30"
+      },
+      {
+        "actividad": "Clasificación",
+        "fechaHora": "2026-11-21T01:00:00-03:00",
+        "horarioTexto": "Sáb. 21 · 01:00"
+      },
+      {
+        "actividad": "Carrera",
+        "fechaHora": "2026-11-22T01:00:00-03:00",
+        "horarioTexto": "Dom. 22 · 01:00"
+      }
+    ]
+  }
+]

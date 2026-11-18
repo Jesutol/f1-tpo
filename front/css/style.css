@@ -409,3 +409,230 @@ body,
     text-align: left;
   }
 }
+
+/* Inicio: conserva la paleta y no modifica la navegación compartida. */
+.inicio .marca {
+  margin-top: 28px;
+}
+
+.inicio .inicio-presentacion h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -0.04em;
+}
+
+.inicio .inicio-presentacion p {
+  color: #b9c3d0;
+  margin: 0;
+}
+
+.inicio .inicio-contenido {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 20px;
+}
+
+.inicio .inicio-tarjeta {
+  min-width: 0;
+  padding: clamp(18px, 3vw, 28px);
+  border: 1px solid #ffffff12;
+}
+
+.inicio .inicio-etiqueta {
+  margin: 0 0 12px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.inicio .inicio-proxima {
+  border-left: 4px solid #e10600;
+}
+
+.inicio #titulo-proxima {
+  margin-bottom: 8px;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: -0.045em;
+}
+
+.inicio .inicio-proxima-resumen > div {
+  flex: 1 1 260px;
+}
+
+.inicio .inicio-fecha-carrera {
+  padding-left: 28px;
+  border-left: 1px solid #aaa5;
+  font-size: 0.9rem;
+}
+
+.inicio .inicio-fecha-carrera strong {
+  display: inline-block;
+  padding-block: 5px;
+  color: #6ce6c4;
+  font-family: "DM Mono", monospace;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+.inicio .inicio-datos-circuito {
+  margin: 24px 0 0;
+  border-bottom: 0;
+}
+
+.inicio .inicio-datos-circuito dd {
+  font-size: 0.9rem;
+}
+
+.inicio .inicio-horarios {
+  margin-top: 8px;
+  padding-top: 18px;
+  border-top: 1px solid #aaa5;
+}
+
+.inicio .inicio-horarios summary {
+  width: fit-content;
+  padding: 6px 0;
+  cursor: pointer;
+}
+
+.inicio .inicio-agenda {
+  margin-bottom: 0;
+  border: 0;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.inicio .inicio-podio {
+  margin: 20px 0 0;
+}
+
+.inicio .inicio-podio > li {
+  grid-template-columns: 24px 28px minmax(0, 1fr) auto;
+  gap: 6px 12px;
+  padding: 18px 0;
+  border-color: #ffffff12;
+}
+
+.inicio .inicio-podio > li:first-child {
+  margin-bottom: 4px;
+  padding-left: 12px;
+  border-left: 3px solid #e10600;
+}
+
+.inicio .inicio-podio > li:first-child h3 {
+  font-size: 1.25rem;
+}
+
+.inicio .inicio-posicion {
+  color: #b9c3d0;
+  font-family: "DM Mono", monospace;
+}
+
+.inicio .inicio-podio h3,
+.inicio .inicio-ranking h3 {
+  overflow-wrap: anywhere;
+}
+
+.inicio .inicio-pestanas {
+  display: flex;
+  gap: 22px;
+  margin-top: 22px;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.inicio .inicio-pestanas button {
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: #b9c3d0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.inicio .inicio-pestanas button[aria-selected="true"] {
+  border-bottom-color: #e10600;
+  color: #fff;
+}
+
+.inicio .inicio-ranking {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.inicio .inicio-ranking > li {
+  display: grid;
+  grid-template-columns: 18px 24px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 0;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.inicio .inicio-ranking > li > span {
+  color: #b9c3d0;
+  font-family: "DM Mono", monospace;
+}
+
+.inicio .inicio-ranking > li > p {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.inicio .inicio-ranking small {
+  color: #b9c3d0;
+}
+
+.inicio .inicio-enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding-block: 6px;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.inicio .inicio-enlace:hover {
+  color: #6ce6c4;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 700px) {
+  .inicio .inicio-contenido {
+    grid-template-columns: 1fr;
+  }
+
+  .inicio .inicio-fecha-carrera {
+    padding-left: 0;
+    border-left: 0;
+    text-align: left;
+  }
+}
+
+@media (max-width: 380px) {
+  .inicio .inicio-podio > li {
+    grid-template-columns: 18px 24px minmax(0, 1fr);
+    gap: 6px 8px;
+  }
+
+  .inicio .inicio-resultado,
+  .inicio .inicio-puntos-gp {
+    grid-column: 3;
+    grid-row: auto;
+    text-align: left;
+  }
+
+  .inicio .inicio-ranking > li {
+    grid-template-columns: 18px 20px minmax(0, 1fr) auto;
+    gap: 6px;
+  }
+
+  .inicio .inicio-ranking small {
+    display: none;
+  }
+}
