@@ -55,24 +55,46 @@ function servidorPrueba() {
   class FechaPrueba extends Date {
     constructor(...argumentos) { super(...(argumentos.length ? argumentos : ['2026-11-17T12:00:00Z'])); }
   }
-  const modulo = { exports: {} };
-  const contexto = vm.createContext({
-    module: modulo,
-    require: nombre => nombre === 'mongodb' ? { MongoClient } : require(nombre),
-    __dirname: path.join(__dirname, '../back'),
-    process: { env: { MONGODB_URI: 'mongodb://simulado' } },
-    Date: FechaPrueba,
-    console: { error() {} }
-  });
-  vm.runInContext(fs.readFileSync(path.join(__dirname, '../back/server.js'), 'utf8'), contexto);
-  const rutas = modulo.exports.router.stack.filter(capa => capa.route).map(capa => capa.route);
+  // Cargamos los módulos reales del backend con el mismo MongoDB simulado.
+  const modulos = new Map();
+  function cargarModulo(archivo) {
+    if (modulos.has(archivo)) return modulos.get(archivo).exports;
+    const modulo = { exports: {} };
+    modulos.set(archivo, modulo);
+    const contexto = vm.createContext({
+      module: modulo,
+      exports: modulo.exports,
+      require(nombre) {
+        if (nombre === 'mongodb') return { MongoClient };
+        if (nombre.startsWith('.')) {
+          return cargarModulo(require.resolve(path.resolve(path.dirname(archivo), nombre)));
+        }
+        return require(nombre);
+      },
+      __dirname: path.dirname(archivo),
+      process: { env: { MONGODB_URI: 'mongodb://simulado' } },
+      Date: FechaPrueba,
+      console: { error() {} }
+    });
+    vm.runInContext(fs.readFileSync(archivo, 'utf8'), contexto, { filename: archivo });
+    return modulo.exports;
+  }
+  const app = cargarModulo(path.join(__dirname, '../back/server.js'));
+  const rutas = [];
+  function buscarRutas(capas) {
+    for (const capa of capas) {
+      if (capa.route) rutas.push(capa.route);
+      else if (capa.handle.stack) buscarRutas(capa.handle.stack);
+    }
+  }
+  buscarRutas(app.router.stack);
   async function consultar(ruta, params = {}, query = {}) {
     const manejador = rutas.find(r => r.path === ruta).stack[0].handle;
     const respuesta = { codigo: 200, status(codigo) { this.codigo = codigo; return this; }, json(datos) { this.datos = datos; return this; } };
     await manejador({ params, query }, respuesta);
     return respuesta;
   }
-  return { app: modulo.exports, documentos, consultar, fallar() { fallaConexion = true; } };
+  return { app, documentos, consultar, fallar() { fallaConexion = true; } };
 }
 
 test('Carrera conserva resultados, neumáticos y paradas y agrega imágenes desde catálogos', async () => {

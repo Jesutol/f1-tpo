@@ -29,6 +29,24 @@ En desarrollo.
 Desde `front/index.html`, las rutas a las páginas empiezan con `./paginas/`.
 Desde las páginas interiores, `../` permite acceder al inicio, los estilos y los recursos.
 
+### Organización del backend
+
+`back/server.js` prepara Express, publica el frontend y conecta los archivos de
+rutas. `back/conexion.js` contiene `conectarBase()` y reutiliza el cliente de
+MongoDB. `back/ayudas.js` reúne las imágenes, validaciones, mensajes de error y
+búsquedas compartidas. Los GET se mantienen escritos paso a paso en:
+
+| Archivo en `back/rutas/` | Consultas |
+| --- | --- |
+| `carreras.js` | `/carrera` y `/carreras` |
+| `sesiones.js` | `/sesiones/:tipo` |
+| `campeonatos.js` | `/campeonato/:tipo` |
+| `inicio.js` | `/api/inicio` |
+| `catalogos.js` | `/pilotos` y `/equipos` |
+
+Cada archivo usa `express.Router()` para agrupar sus GET y los entrega a
+`server.js` con `module.exports`. Las direcciones del frontend siguen iguales.
+
 ## Ejecutar el proyecto
 
 Con `MONGODB_URI` configurada en la terminal (o en Vercel), ejecutar desde la raíz del proyecto:
