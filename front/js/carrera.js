@@ -9,14 +9,18 @@ function mostrarMensaje(texto) {
   tabla.querySelector('td').textContent = texto;
 }
 
-async function cargarCarrera() {
+async function cargarCarrera(ruta = '/carrera') {
+  const selector = document.getElementById('elegir-carrera');
+  selector.disabled = true;
+  mostrarMensaje('Cargando resultados...');
   try {
-    // 1. Pedimos la última carrera al backend.
-    const respuesta = await fetch('/carrera');
+    // 1. Pedimos la carrera elegida. Sin una dirección, pedimos la última.
+    const respuesta = await fetch(ruta);
     if (!respuesta.ok) {
       throw new Error('No se pudo consultar la carrera');
     }
     const carrera = await respuesta.json();
+    conservarCarrera(carrera.temporada, carrera.carreraId);
 
     // 2. Cambiamos los textos del encabezado.
     document.getElementById('nombre-carrera').textContent = 'GP de ' + carrera.granPremio;
@@ -118,8 +122,72 @@ async function cargarCarrera() {
     console.error(error);
     mostrarMensaje('No se pudieron cargar los resultados. Revisá el servidor y la base de datos.');
     document.getElementById('detalle-carrera').textContent = 'Datos del GP no disponibles';
+  } finally {
+    selector.disabled = selector.options.length < 2;
   }
 }
 
+// Primero cargamos los nombres de las carreras disponibles en MongoDB.
+async function cargarListaCarreras() {
+  const selector = document.getElementById('elegir-carrera');
+  try {
+    // Si volvemos desde una sesión, buscamos las carreras de ese mismo año.
+    const direccion = new URLSearchParams(window.location.search);
+    let rutaLista = '/carreras';
+    if (direccion.has('temporada')) {
+      rutaLista += '?temporada=' + encodeURIComponent(direccion.get('temporada'));
+    }
+    const respuesta = await fetch(rutaLista);
+    if (!respuesta.ok) {
+      throw new Error('No se pudo cargar la lista de carreras');
+    }
+    const carreras = await respuesta.json();
+    selector.innerHTML = '';
+    for (const carrera of carreras) {
+      const opcion = document.createElement('option');
+      opcion.value = '/carrera?temporada=' + carrera.temporada + '&carreraId=' + carrera.carreraId;
+      opcion.textContent = 'Fecha ' + carrera.carreraId + ' · ' + carrera.granPremio + ' ' + carrera.temporada;
+      selector.append(opcion);
+    }
+    if (carreras.length === 0) {
+      const opcion = document.createElement('option');
+      opcion.textContent = 'No hay carreras guardadas';
+      selector.append(opcion);
+      mostrarMensaje('No hay carreras guardadas en MongoDB');
+      return;
+    }
+    // Al volver desde una sesión, seleccionamos el GP que está en la dirección.
+    // Sin una elección previa, abrimos la última carrera de la lista.
+    const parametros = parametrosCarrera();
+    if (parametros !== '') {
+      const rutaElegida = '/carrera' + parametros;
+      const existe = carreras.some(function (carrera) {
+        return String(carrera.temporada) === direccion.get('temporada') &&
+          String(carrera.carreraId) === direccion.get('carreraId');
+      });
+      if (existe) {
+        selector.value = rutaElegida;
+      } else {
+        // No mostramos otra carrera como si fuera la que se pidió.
+        const opcion = document.createElement('option');
+        opcion.value = rutaElegida;
+        opcion.textContent = 'Carrera solicitada';
+        selector.append(opcion);
+        selector.value = rutaElegida;
+      }
+      await cargarCarrera(rutaElegida);
+    } else {
+      await cargarCarrera(selector.value);
+    }
+  } catch (error) {
+    selector.innerHTML = '<option>Lista no disponible</option>';
+    await cargarCarrera('/carrera' + parametrosCarrera());
+  }
+}
+
+document.getElementById('elegir-carrera').addEventListener('change', function () {
+  cargarCarrera(this.value);
+});
+
 // Ejecutamos la función al abrir la página.
-cargarCarrera();
+cargarListaCarreras();

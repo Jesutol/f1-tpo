@@ -5,6 +5,7 @@
   "type": "commonjs",
   "scripts": {
     "start": "node server.js",
+    "cargar:carreras": "node back/importar-carreras.js",
     "test": "node --test tests/*.test.js",
     "build": "node preparar-front.js"
   },

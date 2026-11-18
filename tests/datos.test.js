@@ -4,10 +4,17 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 
+function leerCarreras() {
+  const carpeta = path.join(__dirname, '../datos/mongodb/carreras');
+  const archivos = fs.readdirSync(carpeta).filter(archivo => archivo.endsWith('.json')).sort();
+  return archivos.map(archivo => JSON.parse(fs.readFileSync(path.join(carpeta, archivo), 'utf8')));
+}
+
 // MongoDB simulado: las pruebas no leen credenciales ni modifican Atlas.
 function servidorPrueba() {
   const documentos = {};
-  for (const nombre of ['carreras', 'pilotos', 'equipos', 'sesiones', 'campeonatos', 'calendario', 'inicio']) {
+  documentos.carreras = leerCarreras();
+  for (const nombre of ['pilotos', 'equipos', 'sesiones', 'campeonatos', 'calendario', 'inicio']) {
     documentos[nombre] = JSON.parse(fs.readFileSync(path.join(__dirname, '../datos/mongodb', nombre + '.json'), 'utf8'));
   }
   let fallaConexion = false;
@@ -86,6 +93,43 @@ test('Una carrera programada no reemplaza la última finalizada', async () => {
   assert.equal((await prueba.consultar('/carrera')).datos.carreraId, 20);
 });
 
+test('El selector lista las 20 carreras y permite consultar cada fecha', async () => {
+  const { consultar } = servidorPrueba();
+  const lista = await consultar('/carreras');
+  assert.equal(lista.codigo, 200);
+  assert.equal(lista.datos.length, 20);
+  assert.equal(lista.datos[0].carreraId, 20);
+  assert.equal(lista.datos[19].carreraId, 1);
+  assert.equal(lista.datos[0].resultados, undefined);
+  for (let carreraId = 1; carreraId <= 20; carreraId++) {
+    const respuesta = await consultar('/carrera', {}, { temporada: '2026', carreraId: String(carreraId) });
+    assert.equal(respuesta.codigo, 200);
+    assert.equal(respuesta.datos.carreraId, carreraId);
+    assert.equal(respuesta.datos.resultados.length, 22);
+  }
+  assert.equal((await consultar('/carrera', {}, { temporada: '2026', carreraId: '99' })).codigo, 404);
+  assert.equal((await consultar('/carrera', {}, { carreraId: '1' })).codigo, 400);
+});
+
+test('El paquete de carreras tiene identificadores, referencias y valores válidos', () => {
+  const carreras = leerCarreras();
+  const pilotos = JSON.parse(fs.readFileSync(path.join(__dirname, '../datos/mongodb/pilotos.json'), 'utf8'));
+  const equipos = JSON.parse(fs.readFileSync(path.join(__dirname, '../datos/mongodb/equipos.json'), 'utf8'));
+  assert.equal(new Set(carreras.map(c => c._id)).size, 20);
+  for (const carrera of carreras) {
+    assert.ok(carrera.fecha <= '2026-11-18');
+    assert.equal(new Set(carrera.resultados.map(p => p.numero)).size, 22);
+    for (const piloto of carrera.resultados) {
+      assert.ok(pilotos.some(p => p._id === piloto.pilotoId));
+      assert.ok(equipos.some(e => e._id === piloto.equipoId));
+      assert.ok(Number.isFinite(piloto.puntos));
+      assert.ok(Number.isFinite(piloto.vueltas));
+      assert.ok(piloto.paradas.every(vuelta => Number.isInteger(vuelta) && vuelta > 0));
+      assert.ok(piloto.neumaticos.every(tipo => ['blando', 'medio', 'duro', 'intermedio', 'lluvia'].includes(tipo)));
+    }
+  }
+});
+
 test('Campeonatos devuelven los documentos correctos y reflejan cambios en los datos', async () => {
   const prueba = servidorPrueba();
   prueba.documentos.campeonatos.find(c => c.tipo === 'pilotos').resultados[0].puntos = 999;
@@ -103,6 +147,7 @@ test('Sesiones corresponden al último GP y admiten temporada y carrera explíci
     assert.equal(respuesta.datos.resultados.length, tipo === 'practica2' ? 21 : 22);
   }
   assert.equal((await consultar('/sesiones/:tipo', { tipo: 'clasificacion' }, { temporada: '2026', carreraId: '20' })).codigo, 200);
+  assert.equal((await consultar('/sesiones/:tipo', { tipo: 'clasificacion' }, { temporada: '2026', carreraId: '1' })).codigo, 404);
   assert.equal((await consultar('/sesiones/:tipo', { tipo: 'otra' })).codigo, 400);
   assert.equal((await consultar('/sesiones/:tipo', { tipo: 'clasificacion' }, { carreraId: '20' })).codigo, 400);
 });

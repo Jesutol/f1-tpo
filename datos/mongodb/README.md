@@ -6,14 +6,16 @@ fecha 21. No hay resultados futuros inventados.
 
 ## Archivos e importación
 
-Cada JSON es un arreglo de documentos. Importar en la base `f1_tpo`, usando
-una colección con el mismo nombre del archivo, sin `.json`.
+Los JSON de esta carpeta son arreglos de documentos, excepto los de `carreras/`,
+que contienen un documento por archivo. Importar en la base `f1_tpo`, usando
+una colección con el mismo nombre del archivo, sin `.json`. Todos los archivos
+de `carreras/` pertenecen a una sola colección: `carreras`.
 
 | Archivo / colección | Contenido |
 | --- | --- |
 | `pilotos.json` | 31 pilotos: participantes del campeonato y de las prácticas de São Paulo. |
 | `equipos.json` | 11 equipos y sus logos existentes. |
-| `carreras.json` | São Paulo con 22 resultados, neumáticos y paradas. |
+| `carreras/` | Un JSON por carrera: 20 archivos con 440 resultados, neumáticos y paradas. |
 | `sesiones.json` | Clasificación y prácticas 1, 2 y 3 de São Paulo. |
 | `campeonatos.json` | Campeonato de pilotos (25) y constructores (11), después de São Paulo. |
 | `calendario.json` | São Paulo finalizada y Las Vegas programada, con su agenda. |
@@ -93,3 +95,73 @@ Se mantienen aquí, sin agregar un campo `fuente` a los JSON:
 - Pilotos: https://www.formula1.com/en/results/2026/drivers
 - Constructores: https://www.formula1.com/en/results/2026/team
 - Las Vegas: https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22
+
+## Carreras de 2026 hasta el 18 de noviembre
+
+La carpeta `carreras/` contiene las 20 carreras disputadas, con 22 participantes por
+carrera (440 resultados). Conserva los campos usados por `carrera.js` y los
+identificadores del catálogo. No incluye resultados de Las Vegas, Qatar o Abu Dhabi.
+
+Para cargarlas en Atlas, con `MONGODB_URI` configurada en la terminal, ejecutar
+**desde la raíz del proyecto**:
+
+```powershell
+npm run cargar:carreras
+```
+
+El comando actualiza por `temporada` y `carreraId`, conserva el `_id` existente
+y crea los documentos que faltan. Se puede repetir para actualizar los datos.
+No elimina documentos. Si ya había duplicados, no los borra automáticamente.
+No volver a importar con Compass los archivos de carreras que ya existen;
+usar el comando anterior para evitar agregar copias.
+
+Los archivos se nombran por temporada, fecha y GP, por ejemplo:
+
+```text
+carreras/
+  2026-01-australia.json
+  2026-02-china.json
+  ...
+  2026-20-sao-paulo.json
+```
+
+Cada archivo contiene un objeto `{ ... }` con los datos y resultados de ese GP.
+Para actualizar una carrera, editar solamente su archivo. Para agregar otra,
+crear su JSON en esta carpeta y ejecutar `npm run cargar:carreras`.
+No se crea una colección por GP: todos se guardan en `f1_tpo.carreras`.
+
+La página de resultados incluye un selector con las carreras que realmente
+están guardadas en MongoDB. Se abre en la última fecha disponible. La colección
+`sesiones` sigue conteniendo las sesiones de São Paulo; este paquete amplía las
+carreras, no agrega clasificaciones ni prácticas históricas.
+
+Las paradas son las vueltas de entrada a boxes publicadas por F1. Los neumáticos
+son los compuestos de cada tanda, no una deducción a partir de las paradas:
+una bandera roja también puede permitir cambiar neumáticos sin parar en boxes.
+Si un piloto no tomó la salida, se conserva un arreglo vacío de neumáticos.
+
+### Referencias del histórico
+
+Resultados y paradas: tablas oficiales de Formula 1. Compuestos: The Field;
+Miami: [tabla de estrategias de Pitpass](https://www.pitpass.com/82567/Miami-Grand-Prix-Driver-Tyre-Strategies).
+Se registran aquí para mantener los JSON sin un campo `fuente`.
+
+- Australia: [resultados](https://www.formula1.com/en/results/2026/races/1279/australia/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1279/australia/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-australian-grand-prix/race).
+- China: [resultados](https://www.formula1.com/en/results/2026/races/1280/china/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1280/china/pit-stop-summary), [neumáticos](https://fah-hoststate-check.thefieldf1.com/race/2026-chinese-grand-prix/race).
+- Japón: [resultados](https://www.formula1.com/en/results/2026/races/1281/japan/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1281/japan/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-japanese-grand-prix/race).
+- Miami: [resultados](https://www.formula1.com/en/results/2026/races/1284/miami/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1284/miami/pit-stop-summary).
+- Canadá: [resultados](https://www.formula1.com/en/results/2026/races/1285/canada/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1285/canada/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-canadian-grand-prix/race).
+- Mónaco: [resultados](https://www.formula1.com/en/results/2026/races/1286/monaco/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1286/monaco/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-monaco-grand-prix/race).
+- Barcelona-Catalunya: [resultados](https://www.formula1.com/en/results/2026/races/1287/barcelona-catalunya/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1287/barcelona-catalunya/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-barcelona-grand-prix/race).
+- Austria: [resultados](https://www.formula1.com/en/results/2026/races/1288/austria/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1288/aa/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-austrian-grand-prix/race).
+- Gran Bretaña: [resultados](https://www.formula1.com/en/results/2026/races/1289/great-britain/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1289/great-britain/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-british-grand-prix/race).
+- Bélgica: [resultados](https://www.formula1.com/en/results/2026/races/1290/belgium/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1290/belgium/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-belgian-grand-prix/race).
+- Hungría: [resultados](https://www.formula1.com/en/results/2026/races/1291/hungary/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1291/aa/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-hungarian-grand-prix/race).
+- Países Bajos: [resultados](https://www.formula1.com/en/results/2026/races/1292/netherlands/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1292/netherlands/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-dutch-grand-prix/race).
+- Italia: [resultados](https://www.formula1.com/en/results/2026/races/1293/italy/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1293/italy/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-italian-grand-prix/race).
+- España: [resultados](https://www.formula1.com/en/results/2026/races/1294/spain/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1294/spain/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-spanish-grand-prix/race).
+- Azerbaiyán: [resultados](https://www.formula1.com/en/results/2026/races/1295/azerbaijan/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1295/azerbaijan/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-azerbaijan-grand-prix/race).
+- Baréin: [resultados](https://www.formula1.com/en/results/2026/races/1308/bahrain/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1308/bahrain/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-bahrain-grand-prix/race).
+- Singapur: [resultados](https://www.formula1.com/en/results/2026/races/1296/singapore/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1296/singapore/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-singapore-grand-prix/race).
+- Estados Unidos: [resultados](https://www.formula1.com/en/results/2026/races/1297/united-states/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1297/united-states/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-united-states-grand-prix/race).
+- México: [resultados](https://www.formula1.com/en/results/2026/races/1298/mexico/race-result), [paradas](https://www.formula1.com/en/results/2026/races/1298/mexico/pit-stop-summary), [neumáticos](https://www.thefieldf1.com/race/2026-mexico-city-grand-prix/race).

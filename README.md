@@ -48,6 +48,8 @@ existentes. Las páginas consultan MongoDB; no contienen resultados fijos.
 | Ruta | Datos |
 | --- | --- |
 | `/carrera` | Última carrera disputada, con imágenes de los catálogos |
+| `/carrera?temporada=2026&carreraId=1` | Resultados de una carrera concreta |
+| `/carreras` | Lista de carreras disputadas para el selector |
 | `/pilotos` y `/equipos` | Catálogos de pilotos y equipos |
 | `/campeonato/pilotos` | Última tabla de pilotos guardada |
 | `/campeonato/constructores` | Última tabla de constructores guardada |
@@ -71,6 +73,16 @@ Sin `MONGODB_URI`, el servidor entrega el HTML pero las consultas muestran error
 No escribir credenciales en los archivos del proyecto.
 
 Ejecutar `npm test` para comprobar las consultas con MongoDB simulado, sin tocar Atlas.
+
+La carpeta `datos/mongodb/carreras/` incluye un JSON por cada una de las 20 carreras de 2026
+disputadas hasta São Paulo. Con `MONGODB_URI` configurada, ejecutar
+`npm run cargar:carreras` para guardarlas en `f1_tpo.carreras`. Actualiza por
+temporada y número de carrera, conservando los identificadores existentes.
+El selector de la página de carrera muestra las fechas guardadas en MongoDB.
+La elección se conserva en la dirección (`?temporada=2026&carreraId=20`) y
+en los enlaces de Carrera, Clasificación y Prácticas del menú del GP.
+Al abrir una sesión se consulta ese mismo año y número de carrera. Si falta,
+se muestra un mensaje, sin sustituirla por la sesión de otro GP.
 
 ## Publicar en Vercel y MongoDB Atlas
 

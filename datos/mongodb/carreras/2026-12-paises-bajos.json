@@ -1,0 +1,512 @@
+{
+  "_id": "2026-paises-bajos",
+  "temporada": 2026,
+  "carreraId": 12,
+  "granPremio": "Países Bajos",
+  "fecha": "2026-08-23",
+  "circuito": "Circuit Zandvoort, Zandvoort",
+  "estado": "finalizada",
+  "resultados": [
+    {
+      "orden": 1,
+      "posicion": 1,
+      "numero": 1,
+      "nombre": "Lando",
+      "apellido": "Norris",
+      "equipo": "McLaren",
+      "vueltas": 72,
+      "tiempo": "2:04:44.859",
+      "puntos": 25,
+      "neumaticos": [
+        "medio",
+        "blando",
+        "duro",
+        "duro"
+      ],
+      "paradas": [
+        21,
+        47
+      ],
+      "pilotoId": "norris",
+      "equipoId": "mclaren"
+    },
+    {
+      "orden": 2,
+      "posicion": 2,
+      "numero": 12,
+      "nombre": "Kimi",
+      "apellido": "Antonelli",
+      "equipo": "Mercedes",
+      "vueltas": 72,
+      "tiempo": "+11.536s",
+      "puntos": 18,
+      "neumaticos": [
+        "medio",
+        "medio",
+        "duro",
+        "duro",
+        "blando"
+      ],
+      "paradas": [
+        21,
+        40,
+        56
+      ],
+      "pilotoId": "antonelli",
+      "equipoId": "mercedes"
+    },
+    {
+      "orden": 3,
+      "posicion": 3,
+      "numero": 63,
+      "nombre": "George",
+      "apellido": "Russell",
+      "equipo": "Mercedes",
+      "vueltas": 72,
+      "tiempo": "+15.906s",
+      "puntos": 15,
+      "neumaticos": [
+        "medio",
+        "medio",
+        "duro",
+        "duro"
+      ],
+      "paradas": [
+        17,
+        40
+      ],
+      "pilotoId": "russell",
+      "equipoId": "mercedes"
+    },
+    {
+      "orden": 4,
+      "posicion": 4,
+      "numero": 44,
+      "nombre": "Lewis",
+      "apellido": "Hamilton",
+      "equipo": "Ferrari",
+      "vueltas": 72,
+      "tiempo": "+16.755s",
+      "puntos": 12,
+      "neumaticos": [
+        "blando",
+        "blando",
+        "duro",
+        "blando"
+      ],
+      "paradas": [
+        25,
+        55
+      ],
+      "pilotoId": "hamilton",
+      "equipoId": "ferrari"
+    },
+    {
+      "orden": 5,
+      "posicion": 5,
+      "numero": 16,
+      "nombre": "Charles",
+      "apellido": "Leclerc",
+      "equipo": "Ferrari",
+      "vueltas": 72,
+      "tiempo": "+17.258s",
+      "puntos": 10,
+      "neumaticos": [
+        "blando",
+        "blando",
+        "medio",
+        "duro",
+        "blando"
+      ],
+      "paradas": [
+        21,
+        43,
+        55
+      ],
+      "pilotoId": "leclerc",
+      "equipoId": "ferrari"
+    },
+    {
+      "orden": 6,
+      "posicion": 6,
+      "numero": 81,
+      "nombre": "Oscar",
+      "apellido": "Piastri",
+      "equipo": "McLaren",
+      "vueltas": 72,
+      "tiempo": "+32.332s",
+      "puntos": 8,
+      "neumaticos": [
+        "medio",
+        "duro",
+        "duro",
+        "blando",
+        "blando"
+      ],
+      "paradas": [
+        18,
+        44,
+        55
+      ],
+      "pilotoId": "piastri",
+      "equipoId": "mclaren"
+    },
+    {
+      "orden": 7,
+      "posicion": 7,
+      "numero": 30,
+      "nombre": "Liam",
+      "apellido": "Lawson",
+      "equipo": "Red Bull Racing",
+      "vueltas": 72,
+      "tiempo": "+79.915s",
+      "puntos": 6,
+      "neumaticos": [
+        "blando",
+        "blando",
+        "medio",
+        "medio"
+      ],
+      "paradas": [
+        21,
+        47
+      ],
+      "pilotoId": "lawson",
+      "equipoId": "red-bull-racing"
+    },
+    {
+      "orden": 8,
+      "posicion": 8,
+      "numero": 27,
+      "nombre": "Nico",
+      "apellido": "Hulkenberg",
+      "equipo": "Audi",
+      "vueltas": 71,
+      "tiempo": "+1 lap",
+      "puntos": 4,
+      "neumaticos": [
+        "blando",
+        "blando",
+        "blando",
+        "duro"
+      ],
+      "paradas": [
+        19,
+        48
+      ],
+      "pilotoId": "hulkenberg",
+      "equipoId": "audi"
+    },
+    {
+      "orden": 9,
+      "posicion": 9,
+      "numero": 14,
+      "nombre": "Fernando",
+      "apellido": "Alonso",
+      "equipo": "Aston Martin",
+      "vueltas": 71,
+      "tiempo": "+1 lap",
+      "puntos": 2,
+      "neumaticos": [
+        "blando",
+        "blando",
+        "duro"
+      ],
+      "paradas": [
+        34
+      ],
+      "pilotoId": "alonso",
+      "equipoId": "aston-martin"
+    },
+    {
+      "orden": 10,
+      "posicion": 10,
+      "numero": 10,
+      "nombre": "Pierre",
+      "apellido": "Gasly",
+      "equipo": "Alpine",
+      "vueltas": 71,
+      "tiempo": "+1 lap",
+      "puntos": 1,
+      "neumaticos": [
+        "medio",
+        "medio",
+        "duro",
+        "medio"
+      ],
+      "paradas": [
+        18,
+        46
+      ],
+      "pilotoId": "gasly",
+      "equipoId": "alpine"
+    },
+    {
+      "orden": 11,
+      "posicion": 11,
+      "numero": 22,
+      "nombre": "Yuki",
+      "apellido": "Tsunoda",
+      "equipo": "Racing Bulls",
+      "vueltas": 71,
+      "tiempo": "+1 lap",
+      "puntos": 0,
+      "neumaticos": [
+        "blando",
+        "blando",
+        "duro",
+        "blando"
+      ],
+      "paradas": [
+        18,
+        44
+      ],
+      "pilotoId": "tsunoda",
+      "equipoId": "racing-bulls"
+    },
+    {
+      "orden": 12,
+      "posicion": 12,
+      "numero": 41,
+      "nombre": "Arvid",
+      "apellido": "Lindblad",
+      "equipo": "Racing Bulls",
+      "vueltas": 71,
+      "tiempo": "+1 lap",
+      "puntos": 0,
+      "neumaticos": [
+        "blando",
+        "medio",
+        "medio",
+        "duro"
+      ],
+      "paradas": [
+        36
+      ],
+      "pilotoId": "lindblad",
+      "equipoId": "racing-bulls"
+    },
+    {
+      "orden": 13,
+      "posicion": 13,
+      "numero": 5,
+      "nombre": "Gabriel",
+      "apellido": "Bortoleto",
+      "equipo": "Audi",
+      "vueltas": 71,
+      "tiempo": "+1 lap",
+      "puntos": 0,
+      "neumaticos": [
+        "blando",
+        "blando",
+        "medio",
+        "duro",
+        "blando"
+      ],
+      "paradas": [
+        11,
+        34,
+        53
+      ],
+      "pilotoId": "bortoleto",
+      "equipoId": "audi"
+    },
+    {
+      "orden": 14,
+      "posicion": 14,
+      "numero": 43,
+      "nombre": "Franco",
+      "apellido": "Colapinto",
+      "equipo": "Alpine",
+      "vueltas": 70,
+      "tiempo": "+2 laps",
+      "puntos": 0,
+      "neumaticos": [
+        "medio",
+        "medio",
+        "medio",
+        "duro",
+        "blando"
+      ],
+      "paradas": [
+        21,
+        45
+      ],
+      "pilotoId": "colapinto",
+      "equipoId": "alpine"
+    },
+    {
+      "orden": 15,
+      "posicion": 15,
+      "numero": 11,
+      "nombre": "Sergio",
+      "apellido": "Perez",
+      "equipo": "Cadillac",
+      "vueltas": 70,
+      "tiempo": "+2 laps",
+      "puntos": 0,
+      "neumaticos": [
+        "blando",
+        "duro",
+        "duro",
+        "blando"
+      ],
+      "paradas": [
+        29,
+        52
+      ],
+      "pilotoId": "perez",
+      "equipoId": "cadillac"
+    },
+    {
+      "orden": 16,
+      "posicion": 16,
+      "numero": 55,
+      "nombre": "Carlos",
+      "apellido": "Sainz",
+      "equipo": "Williams",
+      "vueltas": 70,
+      "tiempo": "+2 laps",
+      "puntos": 0,
+      "neumaticos": [
+        "blando",
+        "blando",
+        "duro",
+        "blando"
+      ],
+      "paradas": [
+        30,
+        65
+      ],
+      "pilotoId": "sainz",
+      "equipoId": "williams"
+    },
+    {
+      "orden": 17,
+      "posicion": 17,
+      "numero": 23,
+      "nombre": "Alexander",
+      "apellido": "Albon",
+      "equipo": "Williams",
+      "vueltas": 66,
+      "tiempo": "DNF",
+      "puntos": 0,
+      "neumaticos": [
+        "blando",
+        "duro",
+        "duro",
+        "medio"
+      ],
+      "paradas": [
+        26,
+        49
+      ],
+      "pilotoId": "albon",
+      "equipoId": "williams"
+    },
+    {
+      "orden": 18,
+      "posicion": "NC",
+      "numero": 77,
+      "nombre": "Valtteri",
+      "apellido": "Bottas",
+      "equipo": "Cadillac",
+      "vueltas": 61,
+      "tiempo": "DNF",
+      "puntos": 0,
+      "neumaticos": [
+        "duro",
+        "duro",
+        "duro",
+        "blando"
+      ],
+      "paradas": [
+        28,
+        51
+      ],
+      "pilotoId": "bottas",
+      "equipoId": "cadillac"
+    },
+    {
+      "orden": 19,
+      "posicion": "NC",
+      "numero": 31,
+      "nombre": "Esteban",
+      "apellido": "Ocon",
+      "equipo": "Haas",
+      "vueltas": 52,
+      "tiempo": "DNF",
+      "puntos": 0,
+      "neumaticos": [
+        "medio",
+        "blando",
+        "duro",
+        "duro"
+      ],
+      "paradas": [
+        16,
+        36
+      ],
+      "pilotoId": "ocon",
+      "equipoId": "haas"
+    },
+    {
+      "orden": 20,
+      "posicion": "NC",
+      "numero": 18,
+      "nombre": "Lance",
+      "apellido": "Stroll",
+      "equipo": "Aston Martin",
+      "vueltas": 45,
+      "tiempo": "DNF",
+      "puntos": 0,
+      "neumaticos": [
+        "blando",
+        "blando",
+        "duro",
+        "duro"
+      ],
+      "paradas": [
+        15,
+        35
+      ],
+      "pilotoId": "stroll",
+      "equipoId": "aston-martin"
+    },
+    {
+      "orden": 21,
+      "posicion": "NC",
+      "numero": 87,
+      "nombre": "Oliver",
+      "apellido": "Bearman",
+      "equipo": "Haas",
+      "vueltas": 2,
+      "tiempo": "DNF",
+      "puntos": 0,
+      "neumaticos": [
+        "blando",
+        "blando"
+      ],
+      "paradas": [],
+      "pilotoId": "bearman",
+      "equipoId": "haas"
+    },
+    {
+      "orden": 22,
+      "posicion": "NC",
+      "numero": 3,
+      "nombre": "Max",
+      "apellido": "Verstappen",
+      "equipo": "Red Bull Racing",
+      "vueltas": 0,
+      "tiempo": "DNF",
+      "puntos": 0,
+      "neumaticos": [
+        "blando"
+      ],
+      "paradas": [],
+      "pilotoId": "verstappen",
+      "equipoId": "red-bull-racing"
+    }
+  ]
+}

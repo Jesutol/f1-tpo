@@ -9,12 +9,26 @@ async function cargarSesion() {
   }
 
   try {
+    // Conservamos la elección aunque esta sesión todavía no esté cargada.
+    const direccion = new URLSearchParams(window.location.search);
+    if (direccion.has('temporada') && direccion.has('carreraId')) {
+      const temporada = direccion.get('temporada');
+      const carreraId = direccion.get('carreraId');
+      conservarCarrera(temporada, carreraId);
+      document.getElementById('nombre-sesion').textContent = 'Temporada ' + temporada + ' · Fecha ' + carreraId;
+      document.getElementById('titulo-tabla').textContent = titulo + ' · Fecha ' + carreraId;
+    }
+
     // 1. Pedimos la sesión al servidor y leemos su respuesta.
-    const respuesta = await fetch('/sesiones/' + tipo);
+    const respuesta = await fetch('/sesiones/' + tipo + parametrosCarrera());
+    if (respuesta.status === 404) {
+      throw new Error('Todavía no se cargó ' + titulo.toLowerCase() + ' de este GP en la base de datos.');
+    }
     if (!respuesta.ok) {
       throw new Error('No se pudo consultar la sesión');
     }
     const sesion = await respuesta.json();
+    conservarCarrera(sesion.temporada, sesion.carreraId);
 
     // 2. Completamos los títulos, el circuito y la fecha.
     document.getElementById('nombre-sesion').textContent = 'GP de ' + sesion.granPremio;
