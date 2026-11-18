@@ -1,3 +1,4 @@
+// 1. Cargamos las herramientas y preparamos el servidor.
 const express = require("express");
 const { MongoClient } = require("mongodb");
 const path = require("path");
@@ -6,8 +7,10 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../front")));
 
-// La dirección y la contraseña se configuran en la terminal o en Vercel.
+// 2. Conectamos con MongoDB usando la variable de la terminal o de Vercel.
+// Reutilizamos el mismo cliente para todas las consultas.
 let cliente;
+
 async function conectarBase() {
   if (!process.env.MONGODB_URI) {
     throw new Error("Falta configurar MONGODB_URI");
@@ -19,142 +22,277 @@ async function conectarBase() {
   return cliente.db("f1_tpo");
 }
 
-function temporadaConsulta(req) {
-  if (!req.query.temporada) return null;
+// 3. Estas ayudas se repiten en varias páginas.
+
+// Marca un dato incorrecto para responder con el código 400.
+function errorDeConsulta(mensaje) {
+  const error = new Error(mensaje);
+  error.status = 400;
+  return error;
+}
+
+// Ejemplo: /carrera?temporada=2026. Sin año, buscamos los datos más recientes.
+function leerTemporada(req) {
+  if (!req.query.temporada) {
+    return null;
+  }
   const temporada = Number(req.query.temporada);
   if (!Number.isInteger(temporada) || temporada < 1950 || temporada > 2100) {
-    const error = new Error("La temporada debe ser un año válido");
-    error.status = 400;
-    throw error;
+    throw errorDeConsulta("La temporada debe ser un año válido");
   }
   return temporada;
 }
 
-// Agrega a cada resultado las imágenes que están guardadas en los catálogos.
-async function agregarImagenes(db, documento) {
-  const pilotos = await db.collection("pilotos").find({}).toArray();
-  const equipos = await db.collection("equipos").find({}).toArray();
-  const resultados = documento.resultados.map(function (resultado) {
-    let piloto = pilotos.find(p => p._id === resultado.pilotoId);
-    if (!piloto && resultado.numero != null) {
-      piloto = pilotos.find(p => p.numero === resultado.numero);
-    }
-    const equipo = equipos.find(e => e._id === resultado.equipoId || e.nombre === resultado.equipo);
-    return {
-      ...resultado,
-      nombre: piloto?.nombre || resultado.nombre,
-      apellido: piloto?.apellido || resultado.apellido,
-      bandera: piloto?.bandera || null,
-      nacionalidad: piloto?.nacionalidad || "",
-      equipo: equipo?.nombre || resultado.equipo,
-      logo: equipo?.logo || null
-    };
+// Si no encontramos un documento, avisamos con 404.
+function mostrarSinDatos(res) {
+  return res.status(404).json({
+    mensaje: "No hay datos guardados para esta consulta"
   });
-  return { ...documento, resultados };
 }
 
-async function ultimaCarrera(db, temporada) {
-  // Acepta también las carreras antiguas que se importaron sin estado.
+// Los errores de conexión se responden con 500.
+function mostrarError(res, error) {
+  console.error(error.message);
+  if (error.status === 400) {
+    return res.status(400).json({ mensaje: error.message });
+  }
+  return res.status(500).json({
+    mensaje: "No se pudieron consultar los datos. Revisá la conexión con MongoDB."
+  });
+}
+
+// Buscamos los nombres y las imágenes de cada resultado en sus catálogos.
+// Solo completamos la respuesta para la web; no guardamos cambios en MongoDB.
+async function agregarImagenes(base, documento) {
+  const pilotos = await base.collection("pilotos").find({}).toArray();
+  const equipos = await base.collection("equipos").find({}).toArray();
+
+  for (const resultado of documento.resultados) {
+    let piloto = pilotos.find(function (pilotoGuardado) {
+      return pilotoGuardado._id === resultado.pilotoId;
+    });
+
+    // Los documentos antiguos pueden tener número en lugar de pilotoId.
+    if (!piloto && resultado.numero != null) {
+      piloto = pilotos.find(function (pilotoGuardado) {
+        return pilotoGuardado.numero === resultado.numero;
+      });
+    }
+
+    const equipo = equipos.find(function (equipoGuardado) {
+      return equipoGuardado._id === resultado.equipoId || equipoGuardado.nombre === resultado.equipo;
+    });
+
+    resultado.bandera = null;
+    resultado.nacionalidad = "";
+    resultado.logo = null;
+    if (piloto) {
+      resultado.nombre = piloto.nombre || resultado.nombre;
+      resultado.apellido = piloto.apellido || resultado.apellido;
+      resultado.bandera = piloto.bandera || null;
+      resultado.nacionalidad = piloto.nacionalidad || "";
+    }
+    if (equipo) {
+      resultado.equipo = equipo.nombre || resultado.equipo;
+      resultado.logo = equipo.logo || null;
+    }
+  }
+  return documento;
+}
+
+async function buscarUltimaCarrera(base, temporada) {
+  // $ne significa "distinto de": excluimos las carreras programadas.
+  // También permite leer documentos antiguos que no tienen estado.
   const filtro = { estado: { $ne: "programada" } };
-  if (temporada) filtro.temporada = temporada;
-  return db.collection("carreras").findOne(filtro, {
+  if (temporada) {
+    filtro.temporada = temporada;
+  }
+
+  // -1 ordena de mayor a menor: primero el año y luego el número de carrera.
+  return base.collection("carreras").findOne(filtro, {
     sort: { temporada: -1, carreraId: -1 }
   });
 }
 
-async function buscarCampeonato(db, tipo, temporada) {
-  const filtro = { tipo };
-  if (temporada) filtro.temporada = temporada;
-  const campeonato = await db.collection("campeonatos").findOne(filtro, {
+async function buscarCampeonato(base, tipo, temporada) {
+  const filtro = { tipo: tipo };
+  if (temporada) {
+    filtro.temporada = temporada;
+  }
+  const campeonato = await base.collection("campeonatos").findOne(filtro, {
     sort: { temporada: -1, carreraHasta: -1 }
   });
-  if (!campeonato) return null;
-  return agregarImagenes(db, campeonato);
+  if (!campeonato) {
+    return null;
+  }
+  return agregarImagenes(base, campeonato);
 }
 
-// Todas las rutas son de lectura. Ninguna modifica los documentos de MongoDB.
-function rutaConsulta(ruta, consultar) {
-  app.get(ruta, async (req, res) => {
-    try {
-      const temporada = temporadaConsulta(req);
-      const db = await conectarBase();
-      const datos = await consultar(db, req, temporada);
-      if (!datos) return res.status(404).json({ mensaje: "No hay datos guardados para esta consulta" });
-      res.json(datos);
-    } catch (error) {
-      console.error("Error en " + ruta + ":", error.message);
-      res.status(error.status || 500).json({
-        mensaje: error.status === 400 ? error.message : "No se pudieron consultar los datos. Revisá la conexión con MongoDB."
+// 4. Cada ruta sigue el mismo orden: conectar, buscar y responder.
+// Todas son de lectura: ninguna borra ni guarda documentos.
+
+// CARRERA: carrera.js pide los resultados en esta dirección.
+app.get("/carrera", async function (req, res) {
+  try {
+    const temporada = leerTemporada(req);
+    const base = await conectarBase();
+    const carrera = await buscarUltimaCarrera(base, temporada);
+    if (!carrera) {
+      return mostrarSinDatos(res);
+    }
+    const datos = await agregarImagenes(base, carrera);
+    res.json(datos);
+  } catch (error) {
+    mostrarError(res, error);
+  }
+});
+
+// PILOTOS: devuelve el catálogo completo.
+app.get("/pilotos", async function (req, res) {
+  try {
+    leerTemporada(req);
+    const base = await conectarBase();
+    const pilotos = await base.collection("pilotos").find({}).toArray();
+    res.json(pilotos);
+  } catch (error) {
+    mostrarError(res, error);
+  }
+});
+
+// EQUIPOS: devuelve el catálogo completo.
+app.get("/equipos", async function (req, res) {
+  try {
+    leerTemporada(req);
+    const base = await conectarBase();
+    const equipos = await base.collection("equipos").find({}).toArray();
+    res.json(equipos);
+  } catch (error) {
+    mostrarError(res, error);
+  }
+});
+
+// CAMPEONATOS: :tipo puede ser pilotos o constructores.
+app.get("/campeonato/:tipo", async function (req, res) {
+  try {
+    const temporada = leerTemporada(req);
+    const tipo = req.params.tipo;
+    if (tipo !== "pilotos" && tipo !== "constructores") {
+      throw errorDeConsulta("El campeonato debe ser pilotos o constructores");
+    }
+    const base = await conectarBase();
+    const campeonato = await buscarCampeonato(base, tipo, temporada);
+    if (!campeonato) {
+      return mostrarSinDatos(res);
+    }
+    res.json(campeonato);
+  } catch (error) {
+    mostrarError(res, error);
+  }
+});
+
+// SESIONES: devuelve clasificación o prácticas del último GP disputado.
+// Para otra carrera: /sesiones/clasificacion?temporada=2026&carreraId=20
+app.get("/sesiones/:tipo", async function (req, res) {
+  try {
+    let temporada = leerTemporada(req);
+    const tipo = req.params.tipo;
+    const tiposPermitidos = ["clasificacion", "practica1", "practica2", "practica3"];
+    if (!tiposPermitidos.includes(tipo)) {
+      throw errorDeConsulta("Tipo de sesión inválido");
+    }
+
+    const base = await conectarBase();
+    let carreraId;
+    if (req.query.carreraId) {
+      // Si nos piden una carrera concreta, comprobamos su año y su número.
+      carreraId = Number(req.query.carreraId);
+      if (!temporada || !Number.isInteger(carreraId) || carreraId < 1) {
+        throw errorDeConsulta("Indicá temporada y un número de carrera válido");
+      }
+    } else {
+      // Sin un número concreto, usamos la última carrera disputada.
+      const carrera = await buscarUltimaCarrera(base, temporada);
+      if (!carrera) {
+        return mostrarSinDatos(res);
+      }
+      temporada = carrera.temporada;
+      carreraId = carrera.carreraId;
+    }
+
+    const sesion = await base.collection("sesiones").findOne({
+      temporada: temporada,
+      carreraId: carreraId,
+      tipo: tipo
+    });
+    if (!sesion) {
+      return mostrarSinDatos(res);
+    }
+    const datos = await agregarImagenes(base, sesion);
+    res.json(datos);
+  } catch (error) {
+    mostrarError(res, error);
+  }
+});
+
+// INICIO: reúne los datos de las tarjetas de la página principal.
+app.get("/api/inicio", async function (req, res) {
+  try {
+    let temporada = leerTemporada(req);
+    const base = await conectarBase();
+    const carrera = await buscarUltimaCarrera(base, temporada);
+
+    // Si no se indicó un año, tomamos el de la última carrera.
+    if (!temporada && carrera) {
+      temporada = carrera.temporada;
+    }
+    // Si todavía no hay carreras, usamos el año del resumen guardado.
+    if (!temporada) {
+      const resumen = await base.collection("inicio").findOne({}, {
+        sort: { temporada: -1, fechaCorte: -1 }
       });
+      if (resumen) {
+        temporada = resumen.temporada;
+      }
     }
-  });
-}
-
-rutaConsulta("/carrera", async (db, req, temporada) => {
-  const carrera = await ultimaCarrera(db, temporada);
-  return carrera ? agregarImagenes(db, carrera) : null;
-});
-
-rutaConsulta("/pilotos", db => db.collection("pilotos").find({}).toArray());
-rutaConsulta("/equipos", db => db.collection("equipos").find({}).toArray());
-
-rutaConsulta("/campeonato/:tipo", async (db, req, temporada) => {
-  if (!["pilotos", "constructores"].includes(req.params.tipo)) {
-    const error = new Error("El campeonato debe ser pilotos o constructores");
-    error.status = 400;
-    throw error;
-  }
-  return buscarCampeonato(db, req.params.tipo, temporada);
-});
-
-rutaConsulta("/sesiones/:tipo", async (db, req, temporada) => {
-  if (!["clasificacion", "practica1", "practica2", "practica3"].includes(req.params.tipo)) {
-    const error = new Error("Tipo de sesión inválido");
-    error.status = 400;
-    throw error;
-  }
-  let carreraId;
-  if (req.query.carreraId) {
-    carreraId = Number(req.query.carreraId);
-    if (!temporada || !Number.isInteger(carreraId) || carreraId < 1) {
-      const error = new Error("Indicá temporada y un número de carrera válido");
-      error.status = 400;
-      throw error;
+    if (!temporada) {
+      return mostrarSinDatos(res);
     }
-  } else {
-    const carrera = await ultimaCarrera(db, temporada);
-    if (!carrera) return null;
-    temporada = carrera.temporada;
-    carreraId = carrera.carreraId;
+
+    // La fecha queda como año-mes-día. $gte significa "mayor o igual".
+    const hoy = new Date().toISOString().slice(0, 10);
+    const proximaCarrera = await base.collection("calendario").findOne({
+      temporada: temporada,
+      estado: "programada",
+      fecha: { $gte: hoy }
+    }, {
+      sort: { fecha: 1, carreraId: 1 }
+    });
+
+    // Preparamos el podio y las dos tablas del campeonato.
+    let ultimaCarrera = null;
+    if (carrera) {
+      ultimaCarrera = await agregarImagenes(base, carrera);
+    }
+    const pilotos = await buscarCampeonato(base, "pilotos", temporada);
+    const constructores = await buscarCampeonato(base, "constructores", temporada);
+
+    res.json({
+      temporada: temporada,
+      ultimaCarrera: ultimaCarrera,
+      proximaCarrera: proximaCarrera,
+      campeonatoPilotos: pilotos,
+      campeonatoConstructores: constructores
+    });
+  } catch (error) {
+    mostrarError(res, error);
   }
-  const sesion = await db.collection("sesiones").findOne({ temporada, carreraId, tipo: req.params.tipo });
-  return sesion ? agregarImagenes(db, sesion) : null;
 });
 
-rutaConsulta("/api/inicio", async (db, req, temporada) => {
-  const carrera = await ultimaCarrera(db, temporada);
-  const resumen = await db.collection("inicio").findOne(temporada ? { temporada } : {}, {
-    sort: { temporada: -1, fechaCorte: -1 }
-  });
-  temporada = temporada || carrera?.temporada || resumen?.temporada;
-  if (!temporada) return null;
-  const hoy = new Date().toISOString().slice(0, 10);
-  const proxima = await db.collection("calendario").findOne({
-    temporada, estado: "programada", fecha: { $gte: hoy }
-  }, { sort: { fecha: 1, carreraId: 1 } });
-  const pilotos = await buscarCampeonato(db, "pilotos", temporada);
-  const constructores = await buscarCampeonato(db, "constructores", temporada);
-  return {
-    temporada,
-    ultimaCarrera: carrera ? await agregarImagenes(db, carrera) : null,
-    proximaCarrera: proxima,
-    campeonatoPilotos: pilotos,
-    campeonatoConstructores: constructores
-  };
-});
-
+// 5. Arrancamos el servidor local. Vercel utiliza la última línea: module.exports.
 if (require.main === module) {
   const puerto = process.env.PORT || 3000;
-  app.listen(puerto, "0.0.0.0", () => console.log("Servidor en el puerto " + puerto));
+  app.listen(puerto, "0.0.0.0", function () {
+    console.log("Servidor en el puerto " + puerto);
+  });
 }
 module.exports = app;
