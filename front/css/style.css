@@ -67,12 +67,14 @@ a {
 }
 
 .menu-ultimo-gp,
-.menu-campeonato {
+.menu-campeonato,
+.menu-busqueda {
   position: relative;
 }
 
 .menu-ultimo-gp summary,
-.menu-campeonato summary {
+.menu-campeonato summary,
+.menu-busqueda summary {
   cursor: pointer;
 }
 
@@ -96,6 +98,32 @@ a {
   font-size: 0.9rem;
   background: transparent;
 }
+
+.panel-busqueda {
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  width: min(340px, calc(100vw - 32px));
+  margin-top: 6px;
+  padding: 12px;
+  background: #171e27;
+  border: 1px solid #aaa5;
+  border-radius: 6px;
+}
+.panel-busqueda form { display: flex; gap: 8px; }
+.panel-busqueda input { min-width: 0; width: 100%; }
+.panel-busqueda input,
+.panel-busqueda button {
+  padding: 8px;
+  font: inherit;
+  color: #fff;
+  background: #0b0e12;
+  border: 1px solid #aaa5;
+  border-radius: 4px;
+}
+.panel-busqueda button { cursor: pointer; }
+#coincidencias { list-style: none; padding: 0; max-height: 280px; overflow-y: auto; }
+#coincidencias a { display: block; margin-top: 6px; padding: 10px; }
 
 .bandera,
 .logo-equipo {
@@ -401,6 +429,9 @@ body,
 }
 
 @media (max-width: 700px) {
+  .navegacion { position: relative; }
+  .menu-busqueda { position: static; }
+  .panel-busqueda { top: 100%; }
   .inicio-contenido {
     grid-template-columns: 1fr;
   }

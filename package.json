@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "type": "commonjs",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "start": "node server.js",
-    "build": "node preparar-front.js"
+    "db:init": "node server.js --crear-tablas",
+    "importar:temporada": "node importar.js"
   },
   "dependencies": {
     "express": "^5.3.0",
-    "mongodb": "^7.8.0"
+    "pg": "^8.23.1"
   }
 }
