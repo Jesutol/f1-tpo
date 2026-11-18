@@ -82,6 +82,17 @@ configuración del deploy ni se hizo commit, push o importación en Atlas.
 
 ## Referencias de comprobación
 
+### Campeón del campeonato de pilotos
+
+El documento de pilotos de `campeonatos.json` incluye `campeonConfirmado: true`
+y `campeonPilotoId: "antonelli"`. Estos campos permiten mostrar la tarjeta
+y la fila doradas. El primer puesto por sí solo no activa el diseño.
+Si el documento ya estaba importado en Atlas, agregar estos dos campos al
+documento con `temporada: 2026` y `tipo: "pilotos"`; no importar otro duplicado.
+Con `campeonConfirmado: false` o sin un piloto válido, la tarjeta se oculta.
+
+El título de Antonelli fue confirmado por la [FIA](https://www.fia.com/news/f1-antonelli-crowned-f1s-youngest-world-champion-verstappen-wins-mexico-city).
+
 Se mantienen aquí, sin agregar un campo `fuente` a los JSON:
 
 - Calendario: https://www.formula1.com/en/racing/2026

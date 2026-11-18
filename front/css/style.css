@@ -655,3 +655,97 @@ body,
     display: none;
   }
 }
+
+/* Campeón confirmado: mantiene la tabla original y agrega un dorado suave. */
+.tarjeta-campeon {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 24px;
+  margin-bottom: 24px;
+  border: 1px solid #d2b35c66;
+  border-left: 3px solid #d2b35c;
+  background: linear-gradient(110deg, #d2b35c10, transparent 70%), #17171f;
+}
+
+.tarjeta-campeon[hidden] {
+  display: none;
+}
+
+.copa-campeon {
+  width: 42px;
+  height: 48px;
+  flex-shrink: 0;
+  color: #dfc16d;
+}
+
+.tarjeta-campeon .titulo-campeon {
+  margin: 0 0 8px;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  color: #dfc16d;
+}
+
+.tarjeta-campeon h2 {
+  margin: 0 0 6px;
+  font-size: 1.65rem;
+  color: #dfc16d;
+}
+
+.tarjeta-campeon .equipo-campeon {
+  margin: 0;
+  color: #b9c3d0;
+  font-size: 0.9rem;
+}
+
+.escudo-campeon {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.logo-campeon {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  opacity: 0.75;
+}
+
+tbody tr.campeon {
+  color: #ead18c;
+  background: #d2b35c14;
+}
+
+tbody tr.campeon td:first-child {
+  border-left: 3px solid #d2b35c;
+}
+
+tbody tr.campeon .logo-oscuro {
+  filter: brightness(0) invert(1);
+}
+
+.etiqueta-campeon {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 4px 7px;
+  border: 1px solid #d2b35c77;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  vertical-align: middle;
+}
+
+@media (max-width: 480px) {
+  .tarjeta-campeon {
+    gap: 12px;
+    padding: 18px 14px;
+  }
+
+  .tarjeta-campeon h2 {
+    font-size: 1.35rem;
+  }
+
+  .logo-campeon {
+    width: 36px;
+    height: 36px;
+  }
+}

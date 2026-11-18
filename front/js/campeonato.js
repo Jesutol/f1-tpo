@@ -1,3 +1,36 @@
+// Estar primero en la tabla no significa ser campeón: MongoDB debe confirmarlo.
+function buscarCampeonConfirmado(campeonato) {
+  if (campeonato.tipo !== 'pilotos' || campeonato.campeonConfirmado !== true) {
+    return null;
+  }
+  const campeon = campeonato.resultados.find(function (piloto) {
+    return piloto.pilotoId === campeonato.campeonPilotoId;
+  });
+  return campeon || null;
+}
+
+function mostrarTarjetaCampeon(campeonato, campeon) {
+  const tarjeta = document.getElementById('tarjeta-campeon');
+  if (!tarjeta) {
+    return;
+  }
+  tarjeta.hidden = true;
+  if (!campeon) {
+    return;
+  }
+  document.getElementById('titulo-campeon').textContent = 'CAMPEÓN DEL MUNDO ' + campeonato.temporada;
+  document.getElementById('nombre-campeon').textContent = nombrePiloto(campeon);
+  document.getElementById('equipo-campeon').textContent = campeon.equipo;
+  const logo = document.getElementById('logo-campeon');
+  logo.innerHTML = '';
+  let claseLogo = 'logo-campeon';
+  if (campeon.equipoId === 'mercedes' || campeon.equipo === 'Mercedes') {
+    claseLogo += ' logo-oscuro';
+  }
+  ponerImagen(logo, campeon.logo, claseLogo, campeon.equipo);
+  tarjeta.hidden = false;
+}
+
 async function cargarCampeonato() {
   // El HTML indica si esta página muestra pilotos o constructores.
   const tipo = document.body.dataset.campeonato;
@@ -14,6 +47,8 @@ async function cargarCampeonato() {
       throw new Error('No se pudo consultar el campeonato');
     }
     const campeonato = await respuesta.json();
+    const campeon = buscarCampeonConfirmado(campeonato);
+    mostrarTarjetaCampeon(campeonato, campeon);
 
     // 2. Completamos los títulos y la fecha.
     document.getElementById('temporada-campeonato').textContent = 'F1 Telemetry · Temporada ' + campeonato.temporada;
@@ -62,10 +97,23 @@ async function cargarCampeonato() {
         fila.className = 'colapinto';
       }
 
+      // El dorado sigue al piloto confirmado, aunque cambie el orden de la tabla.
+      if (campeon && resultado.pilotoId === campeon.pilotoId) {
+        fila.classList.add('campeon');
+        const etiqueta = document.createElement('span');
+        etiqueta.className = 'etiqueta-campeon';
+        etiqueta.textContent = 'CAMPEÓN';
+        fila.querySelector('.piloto').append(etiqueta);
+      }
+
       // 6. Agregamos la fila terminada a la tabla.
       tabla.append(fila);
     }
   } catch (error) {
+    const tarjeta = document.getElementById('tarjeta-campeon');
+    if (tarjeta) {
+      tarjeta.hidden = true;
+    }
     mensajeTabla(tabla, error.message, columnas);
     document.getElementById('detalle-campeonato').textContent = 'Datos no disponibles';
   }

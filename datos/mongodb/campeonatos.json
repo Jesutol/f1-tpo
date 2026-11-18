@@ -3,6 +3,8 @@
     "_id": "2026-pilotos-html",
     "temporada": 2026,
     "tipo": "pilotos",
+    "campeonConfirmado": true,
+    "campeonPilotoId": "antonelli",
     "carreraHasta": 20,
     "eventoId": "2026-sao-paulo",
     "fechaCorte": "2026-11-08",
