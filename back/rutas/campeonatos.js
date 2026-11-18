@@ -12,7 +12,7 @@ const {
 const rutas = express.Router();
 
 // CAMPEONATOS: :tipo puede ser pilotos o constructores.
-rutas.get("/campeonato/:tipo", async function (req, res) {
+rutas.get(["/campeonato/:tipo", "/api/campeonatos/:tipo"], async function (req, res) {
   try {
     const temporada = leerTemporada(req);
     const tipo = req.params.tipo;

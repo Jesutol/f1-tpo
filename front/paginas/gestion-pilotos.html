@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F1 Telemetry | Gestión de pilotos</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&amp;family=DM+Mono:wght@500&amp;display=swap" rel="stylesheet" />
+  </head>
+  <body class="gestion">
+    <header class="encabezado">
+      <nav class="navegacion">
+        <a href="../index.html">Inicio</a>
+        <details class="menu-ultimo-gp">
+          <summary>Último GP</summary>
+          <div class="submenu">
+            <a href="./resultado-carrera.html">Carrera</a>
+            <a href="./resultado-clasificacion.html">Clasificación</a>
+            <a href="./resultado-libres-3.html">Prácticas Libres 3</a>
+            <a href="./resultado-libres-2.html">Prácticas Libres 2</a>
+            <a href="./resultado-libres-1.html">Prácticas Libres 1</a>
+          </div>
+        </details>
+        <details class="menu-campeonato">
+          <summary>Campeonato</summary>
+          <div class="submenu">
+            <a href="./campeonato.html">Pilotos</a>
+            <a href="./constructores.html">Constructores</a>
+          </div>
+        </details>
+      </nav>
+      <p class="marca">F1 Telemetry · Catálogo</p>
+      <h1>Gestión de pilotos</h1>
+      <p>Agregá pilotos o corregí sus datos. Los cambios se guardan en la base de datos.</p>
+    </header>
+    <main>
+      <section class="gestion-panel" aria-labelledby="titulo-formulario">
+        <h2 id="titulo-formulario">Agregar piloto</h2>
+        <p class="nota">Nombre, apellido e ID son obligatorios. El ID identifica al piloto y no cambia al editarlo.</p>
+        <form id="formulario-piloto">
+          <div class="gestion-campos">
+            <label for="id-piloto">ID del piloto
+              <input id="id-piloto" name="_id" required maxlength="80" pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="nuevo-piloto" aria-describedby="ayuda-id" />
+              <small id="ayuda-id">Minúsculas, números y guiones.</small>
+            </label>
+            <label for="nombre-piloto">Nombre
+              <input id="nombre-piloto" name="nombre" required maxlength="80" autocomplete="off" />
+            </label>
+            <label for="apellido-piloto">Apellido
+              <input id="apellido-piloto" name="apellido" required maxlength="80" autocomplete="off" />
+            </label>
+            <label for="numero-piloto">Número
+              <input id="numero-piloto" name="numero" type="number" min="1" max="99" step="1" placeholder="Sin confirmar" />
+            </label>
+            <label for="pais-piloto">País de la bandera
+              <select id="pais-piloto" name="pais">
+                <option value="">Sin confirmar</option>
+                <option value="ar">Argentina</option><option value="au">Australia</option>
+                <option value="br">Brasil</option><option value="ca">Canadá</option>
+                <option value="de">Alemania</option><option value="es">España</option>
+                <option value="fi">Finlandia</option><option value="fr">Francia</option>
+                <option value="it">Italia</option><option value="jp">Japón</option>
+                <option value="mc">Mónaco</option><option value="mx">México</option>
+                <option value="nl">Países Bajos</option><option value="nz">Nueva Zelanda</option>
+                <option value="th">Tailandia</option><option value="uk">Reino Unido</option>
+              </select>
+            </label>
+            <label for="nacionalidad-piloto">Nacionalidad / país para mostrar
+              <input id="nacionalidad-piloto" name="nacionalidad" maxlength="80" placeholder="Sin confirmar" />
+            </label>
+          </div>
+          <div class="gestion-acciones">
+            <button type="submit" id="guardar-piloto">Crear piloto</button>
+            <button type="button" id="nuevo-piloto" class="boton-secundario">Limpiar / nuevo piloto</button>
+          </div>
+        </form>
+        <p id="mensaje-piloto" role="status" aria-live="polite"></p>
+      </section>
+      <section aria-labelledby="titulo-lista">
+        <div class="gestion-lista-cabecera">
+          <h2 id="titulo-lista">Pilotos guardados</h2>
+          <label for="cantidad-pilotos">Por página
+            <select id="cantidad-pilotos"><option value="5">5</option><option value="10" selected>10</option><option value="20">20</option></select>
+          </label>
+        </div>
+        <div class="tabla-contenedor">
+          <table>
+            <caption>Catálogo de pilotos</caption>
+            <thead><tr><th scope="col">ID</th><th scope="col">Piloto</th><th scope="col">Número</th><th scope="col">País</th><th scope="col">Acción</th></tr></thead>
+            <tbody id="lista-pilotos" aria-live="polite"><tr><td colspan="5">Cargando pilotos...</td></tr></tbody>
+          </table>
+        </div>
+        <div class="gestion-paginacion" aria-label="Páginas del catálogo">
+          <button id="pagina-anterior" type="button" disabled>Anterior</button>
+          <p id="detalle-pagina" role="status"></p>
+          <button id="pagina-siguiente" type="button" disabled>Siguiente</button>
+        </div>
+      </section>
+    </main>
+    <script src="../js/datos.js"></script>
+    <script src="../js/gestion-pilotos.js"></script>
+  </body>
+</html>

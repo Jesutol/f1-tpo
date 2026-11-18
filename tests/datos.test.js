@@ -42,8 +42,50 @@ function servidorPrueba() {
           });
           return encontrados[0] || null;
         },
-        find(filtro) {
-          return { toArray: async () => documentos[nombre].filter(d => coincide(d, filtro)) };
+        find(filtro, opciones = {}) {
+          let orden = {};
+          let desde = 0;
+          let cantidad = Infinity;
+          const cursor = {
+            sort(valor) { orden = valor; return cursor; },
+            skip(valor) { desde = valor; return cursor; },
+            limit(valor) { cantidad = valor; return cursor; },
+            async toArray() {
+              const encontrados = documentos[nombre].filter(d => coincide(d, filtro));
+              encontrados.sort((a, b) => {
+                for (const [campo, sentido] of Object.entries(orden)) {
+                  if (a[campo] > b[campo]) return sentido;
+                  if (a[campo] < b[campo]) return -sentido;
+                }
+                return 0;
+              });
+              return encontrados.slice(desde, desde + cantidad).map(documento => {
+                if (!opciones.projection) return documento;
+                const copia = {};
+                for (const campo of Object.keys(opciones.projection)) copia[campo] = documento[campo];
+                return copia;
+              });
+            }
+          };
+          return cursor;
+        },
+        async countDocuments(filtro) {
+          return documentos[nombre].filter(d => coincide(d, filtro)).length;
+        },
+        async insertOne(documento) {
+          if (documentos[nombre].some(d => d._id === documento._id)) {
+            const error = new Error('Id duplicado');
+            error.code = 11000;
+            throw error;
+          }
+          documentos[nombre].push(JSON.parse(JSON.stringify(documento)));
+          return { insertedId: documento._id };
+        },
+        async updateOne(filtro, cambios) {
+          const documento = documentos[nombre].find(d => coincide(d, filtro));
+          if (!documento) return { matchedCount: 0, modifiedCount: 0 };
+          Object.assign(documento, cambios.$set);
+          return { matchedCount: 1, modifiedCount: 1 };
         }
       };
     }
@@ -88,10 +130,11 @@ function servidorPrueba() {
     }
   }
   buscarRutas(app.router.stack);
-  async function consultar(ruta, params = {}, query = {}) {
-    const manejador = rutas.find(r => r.path === ruta).stack[0].handle;
+  async function consultar(ruta, params = {}, query = {}, metodo = 'get', body) {
+    const registro = rutas.find(r => (r.path === ruta || (Array.isArray(r.path) && r.path.includes(ruta))) && r.methods[metodo]);
+    const manejador = registro.stack[0].handle;
     const respuesta = { codigo: 200, status(codigo) { this.codigo = codigo; return this; }, json(datos) { this.datos = datos; return this; } };
-    await manejador({ params, query }, respuesta);
+    await manejador({ params, query, body, path: ruta, method: metodo.toUpperCase() }, respuesta);
     return respuesta;
   }
   return { app, documentos, consultar, fallar() { fallaConexion = true; } };
@@ -194,4 +237,109 @@ test('Sin documentos, parámetros inválidos y fallos de conexión muestran erro
   assert.equal((await prueba.consultar('/campeonato/:tipo', { tipo: 'pilotos' })).codigo, 404);
   prueba.fallar();
   assert.equal((await prueba.consultar('/pilotos')).codigo, 500);
+});
+
+test('La nueva lista de pilotos pagina en el servidor sin repetir elementos', async () => {
+  const { consultar, documentos } = servidorPrueba();
+  const primera = await consultar('/api/pilotos', {}, { cantidad: '10', from: '0' });
+  const segunda = await consultar('/api/pilotos', {}, { cantidad: '10', from: '10' });
+  assert.equal(primera.codigo, 200);
+  assert.equal(primera.datos.total, documentos.pilotos.length);
+  assert.equal(primera.datos.datos.length, 10);
+  assert.equal(segunda.datos.from, 10);
+  assert.equal(segunda.datos.datos.length, 10);
+  assert.ok(primera.datos.datos.every(p => !segunda.datos.datos.some(q => q._id === p._id)));
+  const vacia = await consultar('/api/pilotos', {}, { from: '1000' });
+  assert.equal(vacia.datos.datos.length, 0);
+  const anterior = await consultar('/pilotos');
+  assert.equal(anterior.datos.length, documentos.pilotos.length);
+});
+
+test('La API crea, consulta y actualiza un piloto conservando su id', async () => {
+  const { consultar, documentos } = servidorPrueba();
+  const datos = { _id: 'piloto-prueba', nombre: '  Piloto ', apellido: 'Prueba', numero: 90, pais: 'ar', nacionalidad: 'Argentina' };
+  const creado = await consultar('/api/pilotos', {}, {}, 'post', datos);
+  assert.equal(creado.codigo, 201);
+  assert.equal(creado.datos.nombre, 'Piloto');
+  assert.equal(creado.datos.bandera, '/recursos/iconos-banderas/ar.svg');
+  assert.equal((await consultar('/api/pilotos/:id', { id: datos._id })).datos.numero, 90);
+  assert.equal((await consultar('/api/pilotos', {}, {}, 'post', datos)).codigo, 409);
+  const actualizado = await consultar('/api/pilotos/:id', { id: datos._id }, {}, 'put', { nombre: 'Nombre corregido', apellido: 'Prueba', numero: null });
+  assert.equal(actualizado.codigo, 200);
+  assert.equal(actualizado.datos._id, datos._id);
+  const guardado = documentos.pilotos.find(p => p._id === datos._id);
+  assert.equal(guardado.nombre, 'Nombre corregido');
+  assert.equal(guardado.numero, null);
+  assert.equal(documentos.pilotos.filter(p => p._id === datos._id).length, 1);
+  assert.equal((await consultar('/api/pilotos/:id', { id: 'no-existe' })).codigo, 404);
+  assert.equal((await consultar('/api/pilotos/:id', { id: 'no-existe' }, {}, 'put', { nombre: 'A', apellido: 'B' })).codigo, 404);
+});
+
+test('Las nuevas operaciones rechazan entradas inválidas antes de escribir', async () => {
+  const { consultar, documentos } = servidorPrueba();
+  const total = documentos.pilotos.length;
+  const base = { _id: 'valido', nombre: 'Nombre', apellido: 'Apellido' };
+  const cuerposInvalidos = [null, [], {}, { ...base, nombre: ' ' }, { ...base, apellido: 123 },
+    { ...base, numero: '12' }, { ...base, numero: 0 }, { ...base, numero: 1.5 },
+    { ...base, pais: '../' }, { ...base, pais: 'zz' }, { ...base, nacionalidad: {} },
+    { ...base, _id: 'ID Invalido' }, { ...base, $set: { nombre: 'Otro' } }];
+  for (const cuerpo of cuerposInvalidos) {
+    const respuesta = await consultar('/api/pilotos', {}, {}, 'post', cuerpo);
+    assert.equal(respuesta.codigo, 400);
+    assert.ok(respuesta.datos.mensaje);
+  }
+  assert.equal(documentos.pilotos.length, total);
+  assert.equal((await consultar('/api/pilotos/:id', { id: 'antonelli' }, {}, 'put', { ...base, _id: 'otro' })).codigo, 400);
+  assert.equal((await consultar('/api/pilotos/:id', { id: '$invalido' })).codigo, 400);
+  for (const query of [{ cantidad: '0' }, { cantidad: '101' }, { cantidad: '1.5' }, { cantidad: '' },
+    { cantidad: ['10', '20'] }, { from: '-1' }, { from: 'texto' }, { from: '9007199254740992' }]) {
+    assert.equal((await consultar('/api/pilotos', {}, query)).codigo, 400);
+  }
+});
+
+test('Las rutas nuevas de lectura conviven con las anteriores', async () => {
+  const { consultar } = servidorPrueba();
+  const lista = await consultar('/api/carreras', {}, { cantidad: '5', from: '5' });
+  assert.equal(lista.datos.total, 20);
+  assert.equal(lista.datos.datos.length, 5);
+  assert.equal(lista.datos.datos[0].carreraId, 15);
+  assert.equal(lista.datos.datos[0].resultados, undefined);
+  assert.equal((await consultar('/api/carreras/:id', { id: '2026-sao-paulo' })).datos.carreraId, 20);
+  assert.equal((await consultar('/api/carreras/:id', { id: 'no-existe' })).codigo, 404);
+  assert.equal((await consultar('/api/carreras/ultima')).datos.carreraId, 20);
+  assert.equal((await consultar('/api/campeonatos/:tipo', { tipo: 'pilotos' })).datos.tipo, 'pilotos');
+  assert.equal((await consultar('/api/sesiones/:tipo', { tipo: 'clasificacion' })).datos.tipo, 'clasificacion');
+  assert.equal((await consultar('/api/resumenes/actual')).datos.ultimaCarrera.carreraId, 20);
+  assert.equal((await consultar('/api/equipos', {}, { cantidad: '5' })).datos.datos.length, 5);
+  assert.equal((await consultar('/equipos')).datos.length, 11);
+});
+
+test('HTTP real sirve la web, pagina, guarda y devuelve errores JSON claros', async () => {
+  const { app } = servidorPrueba();
+  const servidor = app.listen(0, '127.0.0.1');
+  await new Promise(resolve => servidor.once('listening', resolve));
+  const origen = 'http://127.0.0.1:' + servidor.address().port;
+  try {
+    const lista = await fetch(origen + '/api/pilotos?cantidad=5&from=0');
+    assert.equal((await lista.json()).datos.length, 5);
+    const opciones = { method: 'POST', headers: { 'Content-Type': 'application/json' } };
+    const mal = await fetch(origen + '/api/pilotos', { ...opciones, body: '{' });
+    assert.equal(mal.status, 400);
+    assert.match((await mal.json()).mensaje, /JSON válido/);
+    const creado = await fetch(origen + '/api/pilotos', { ...opciones, body: JSON.stringify({ _id: 'prueba-http', nombre: 'HTTP', apellido: 'Prueba' }) });
+    assert.equal(creado.status, 201);
+    const actualizado = await fetch(origen + '/api/pilotos/prueba-http', { ...opciones, method: 'PUT', body: JSON.stringify({ nombre: 'Corregido', apellido: 'Prueba' }) });
+    assert.equal(actualizado.status, 200);
+    assert.equal((await actualizado.json()).nombre, 'Corregido');
+    const ausente = await fetch(origen + '/api/no-existe');
+    assert.equal(ausente.status, 404);
+    assert.ok((await ausente.json()).mensaje);
+    const pagina = await fetch(origen + '/paginas/gestion-pilotos.html');
+    assert.equal(pagina.status, 200);
+    assert.match(await pagina.text(), /formulario-piloto/);
+    assert.equal((await fetch(origen + '/pilotos')).status, 200);
+  } finally {
+    servidor.closeAllConnections();
+    await new Promise(resolve => servidor.close(resolve));
+  }
 });

@@ -12,6 +12,22 @@ app.use(require("./rutas/sesiones"));
 app.use(require("./rutas/campeonatos"));
 app.use(require("./rutas/inicio"));
 app.use(require("./rutas/catalogos"));
+app.use(require("./rutas/pilotos"));
+
+// Los errores de la API también se entregan como JSON.
+app.use("/api", function (req, res) {
+  res.status(404).json({ mensaje: "La dirección solicitada no existe en la API" });
+});
+app.use(function (error, req, res, next) {
+  if (error.type === "entity.parse.failed") {
+    return res.status(400).json({ mensaje: "El cuerpo de la solicitud no contiene JSON válido" });
+  }
+  if (error.type === "entity.too.large") {
+    return res.status(413).json({ mensaje: "El contenido enviado es demasiado grande" });
+  }
+  console.error(error.message);
+  res.status(500).json({ mensaje: "Ocurrió un error en el servidor" });
+});
 
 // 3. Permite arrancar este archivo directamente con node back/server.js.
 // npm start y Vercel usan también el server.js de la raíz.

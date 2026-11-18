@@ -63,6 +63,12 @@ existentes. Las páginas consultan MongoDB; no contienen resultados fijos.
 
 ## Consultas y scripts
 
+Se agregó una página de **Gestión de pilotos** accesible desde el pie del inicio
+y en `/paginas/gestion-pilotos.html`. Permite crear, editar y consultar el catálogo
+por páginas usando `/api/pilotos`. Las rutas y páginas anteriores siguen disponibles.
+Los pasos, validaciones y ejemplos de POST y PUT están en
+[`documentacion/api-tpo3.md`](documentacion/api-tpo3.md).
+
 | Ruta | Datos |
 | --- | --- |
 | `/carrera` | Última carrera disputada, con imágenes de los catálogos |

@@ -749,3 +749,148 @@ tbody tr.campeon .logo-oscuro {
     height: 36px;
   }
 }
+
+/* Complemento del TPO: formulario y lista paginada del catálogo. */
+.gestion-panel {
+  padding: 24px;
+  margin-bottom: 28px;
+  border: 1px solid #ffffff20;
+  border-top: 3px solid #e10600;
+  background: #17171f;
+}
+
+.gestion h2 {
+  margin-top: 0;
+}
+
+.gestion-campos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.gestion label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #e6edf3;
+}
+
+.gestion input,
+.gestion select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #ffffff35;
+  border-radius: 4px;
+  background: #0b0e12;
+  color: #e6edf3;
+  font: inherit;
+}
+
+.gestion input[readonly] {
+  color: #b9c3d0;
+  border-style: dashed;
+}
+
+.gestion small {
+  color: #b9c3d0;
+  font-size: 0.8rem;
+}
+
+.gestion button {
+  padding: 10px 16px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: #e10600;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.gestion button:hover {
+  background: #b80500;
+}
+
+.gestion button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.gestion .boton-secundario {
+  border-color: #ffffff35;
+  background: transparent;
+}
+
+.gestion-acciones,
+.gestion-lista-cabecera,
+.gestion-paginacion {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gestion-acciones {
+  margin-top: 22px;
+}
+
+.gestion-lista-cabecera {
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.gestion-lista-cabecera h2 {
+  margin: 0;
+}
+
+.gestion-paginacion {
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.gestion-paginacion p {
+  margin: 0;
+  min-width: 120px;
+  text-align: center;
+}
+
+.gestion .mensaje-error {
+  color: #ff8d87;
+}
+
+.gestion .mensaje-correcto {
+  color: #6ce6c4;
+}
+
+.gestion tbody tr:first-child {
+  color: inherit;
+  background: transparent;
+}
+
+.gestion tbody tr:first-child td:first-child {
+  border-left: none;
+}
+
+.acceso-gestion {
+  max-width: 1000px;
+  margin: 28px auto 0;
+  color: #b9c3d0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 700px) {
+  .gestion-campos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .gestion-campos {
+    grid-template-columns: 1fr;
+  }
+
+  .gestion-panel {
+    padding: 18px;
+  }
+}

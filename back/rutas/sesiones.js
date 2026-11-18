@@ -14,7 +14,8 @@ const rutas = express.Router();
 
 // SESIONES: devuelve clasificación o prácticas del último GP disputado.
 // Para otra carrera: /sesiones/clasificacion?temporada=2026&carreraId=20
-rutas.get("/sesiones/:tipo", async function (req, res) {
+// Ambas direcciones usan la misma consulta; la anterior sigue funcionando.
+rutas.get(["/sesiones/:tipo", "/api/sesiones/:tipo"], async function (req, res) {
   try {
     let temporada = leerTemporada(req);
     const tipo = req.params.tipo;

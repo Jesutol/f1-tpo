@@ -13,7 +13,7 @@ const {
 const rutas = express.Router();
 
 // INICIO: reúne los datos de las tarjetas de la página principal.
-rutas.get("/api/inicio", async function (req, res) {
+rutas.get(["/api/inicio", "/api/resumenes/actual"], async function (req, res) {
   try {
     let temporada = leerTemporada(req);
     const base = await conectarBase();
