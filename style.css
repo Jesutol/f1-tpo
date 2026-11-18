@@ -345,6 +345,7 @@ tbody tr:nth-child(even) {
 }
 
 .buscador{
+  padding-left:7px;
   width:250px;
   border: none;
   background-color: #202a36;
