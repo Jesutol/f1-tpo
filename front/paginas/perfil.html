@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F1 Telemetry | Mi perfil</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&amp;family=DM+Mono:wght@500&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="../js/app.js"></script>
+  </head>
+  <body data-vista="perfil">
+    <header class="encabezado">
+      <!-- Navegación compartida -->
+      <p class="marca">F1 Telemetry</p>
+      <h1>Mi perfil</h1>
+      <p id="estado-cuenta" class="nota" role="status">Comprobando sesión…</p>
+    </header>
+    <main>
+      <noscript>Activá JavaScript para iniciar sesión y editar tu perfil.</noscript>
+      <div id="acceso-cuenta" class="cuenta-paneles" hidden>
+        <form id="iniciar-sesion" class="cuenta-tarjeta" method="post">
+          <h2>Iniciar sesión</h2>
+          <label>
+            Nombre de usuario
+            <input name="usuario" autocomplete="username" autocapitalize="none" maxlength="24" required />
+          </label>
+          <label>
+            Contraseña
+            <input name="clave" type="password" autocomplete="current-password" maxlength="128" required />
+          </label>
+          <button type="submit">Ingresar</button>
+        </form>
+
+        <form id="crear-cuenta" class="cuenta-tarjeta" method="post">
+          <h2>Crear cuenta</h2>
+          <label>
+            Nombre de usuario
+            <input name="usuario" autocomplete="username" autocapitalize="none"
+              minlength="3" maxlength="24" pattern="[a-zA-Z0-9_]+" required />
+          </label>
+          <label>
+            Nombre real
+            <input name="nombre" autocomplete="name" minlength="2" maxlength="80" required />
+          </label>
+          <label>
+            Contraseña
+            <input name="clave" type="password" autocomplete="new-password"
+              minlength="15" maxlength="128" aria-describedby="ayuda-clave" required />
+          </label>
+          <p id="ayuda-clave" class="nota">Usá al menos 15 caracteres.</p>
+          <button type="submit">Registrarme</button>
+        </form>
+      </div>
+
+      <form id="editar-perfil" class="cuenta-tarjeta" method="post" hidden>
+        <h2>Editar datos</h2>
+        <label>
+          Nombre de usuario
+          <input name="usuario" autocomplete="username" autocapitalize="none"
+            minlength="3" maxlength="24" pattern="[a-zA-Z0-9_]+" required />
+        </label>
+        <label>
+          Nombre real
+          <input name="nombre" autocomplete="name" minlength="2" maxlength="80" required />
+        </label>
+        <div class="cuenta-acciones">
+          <button type="submit">Guardar cambios</button>
+          <button id="cerrar-sesion" type="button">Cerrar sesión</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>

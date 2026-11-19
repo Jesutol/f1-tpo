@@ -1,97 +1,142 @@
-# F1 Telemetry Web
+# F1 Telemetry - proyecto local
 
-Web de telemetría de Fórmula 1 para visualizar informacion del campeonato.
+Una página de resultados de Fórmula 1 con JavaScript, Node.js y PostgreSQL.
+El sitio consulta los datos guardados en PostgreSQL. El servidor está en la raíz y el código del navegador está en `front/js/`, separado por responsabilidad.
 
-## Características
+| Archivo | Que hace |
+| --- | --- |
+| `server.js` | Conecta PostgreSQL, consulta resultados, suma campeonatos y entrega la pagina. |
+| `usuarios.js` | Maneja el registro, la sesión JWT y la edición del perfil. |
+| `front/js/app.js` | Arranca la búsqueda y elige qué vista cargar. |
+| `front/js/inicio.js` | Carga el podio, los rankings y la próxima fecha. |
+| `front/js/resultados.js` | Maneja los filtros y carga la sesión elegida. |
+| `front/js/campeonato.js` | Muestra la clasificación de pilotos o constructores. |
+| `front/js/busqueda.js` | Busca pilotos y equipos y carga sus historiales. |
+| `front/js/perfil.js` | Envía los formularios de cuenta y muestra el perfil. |
+| `front/js/tablas.js` | Dibuja las tablas y genera el HTML de pilotos y equipos. |
+| `front/js/comun.js` | Comparte las consultas HTTP, los parámetros y el formato básico. |
 
-- Posiciones
-- Campeonato
-- Neumaticos
-- Pit Stops
+Los HTML cargan `app.js` con `type="module"`. El navegador sigue los `import`
+para cargar los demás archivos.
 
-## Objetivo
+`base.sql` define las tablas de PostgreSQL, incluida `f1.usuarios`.
 
-El objetivo del proyecto es mostrar datos de telemetría de Fórmula 1 de forma visual e interactiva.
+| Vista | HTML |
+| --- | --- |
+| Inicio, con la próxima fecha, el podio y los rankings | `front/index.html` |
+| Resultados de la temporada, con filtros de GP y sesión | `front/paginas/resultados.html` |
+| Cada sesión de Último GP | `front/paginas/resultado-carrera.html`, `resultado-clasificacion.html`, `resultado-libres-1.html`, `resultado-libres-2.html`, `resultado-libres-3.html` y `resultado-sprint.html` |
+| Campeonatos de pilotos y constructores | `front/paginas/campeonato-pilotos.html` y `campeonato-constructores.html` |
+| Historial de un piloto o equipo | `front/paginas/historial.html` |
+| Registro, inicio de sesión y edición de perfil | `front/paginas/perfil.html` |
 
-## Estado del proyecto
+Express inserta `front/paginas/navegacion.html` en cada página. `app.js` lee
+`data-vista` y `data-tipo` del `<body>` para cargar los datos correspondientes.
+Los enlaces anteriores a `sesion.html` y `campeonato.html` redirigen a las nuevas páginas.
 
-En desarrollo.
+`front/css/style.css` tiene los estilos de todo el sitio. Las columnas y las tandas
+de neumáticos pueden ocupar más de una línea. En pantallas de hasta 760 px,
+cada fila se lee como una ficha con etiquetas, sin desplazarse a los costados.
 
-## Organización de archivos
+## Buscar pilotos y equipos
 
-- `front/index.html`: página de inicio. Abrir este archivo para recorrer el sitio.
-- `front/paginas/`: campeonatos de pilotos y constructores, resultados de carrera y clasificación.
-- `front/css/style.css`: estilos compartidos por todas las páginas.
-- `front/recursos/`: banderas y logos de equipos.
-- `back/`: servidor Express y conexión con MongoDB.
-- `documentacion/`: apuntes del proyecto.
+En cualquier pagina, abrir **🔍 Buscar**, escribir un nombre o parte del nombre
+(por ejemplo, `kimi antonelli` o `mercedes`), pulsar **Buscar** y elegir una coincidencia.
+La busqueda no distingue mayusculas de minusculas.
 
-Desde `front/index.html`, las rutas a las páginas empiezan con `./paginas/`.
-Desde las páginas interiores, `../` permite acceder al inicio, los estilos y los recursos.
+Se muestra una fila por piloto y sesion, con GP, carrera o sprint, posicion,
+piloto, equipo, puntos, tiempo o estado y vueltas. Arriba se suma el total de puntos
+de esos resultados. Solo aparecen los datos ya guardados de la temporada consultada.
+Un equipo incluye a todos sus pilotos, tambien reemplazantes, usando el equipo
+de cada resultado. Un piloto conserva sus resultados aunque haya cambiado de equipo.
 
-## Ejecutar el proyecto
+1. El formulario de la lupa usa `prepararBusqueda()` de `busqueda.js`.
+2. Al pulsar Buscar, `fetch` pide `/api/buscar?q=kimi+antonelli` a `server.js`.
+3. PostgreSQL busca coincidencias con `ILIKE` y el servidor devuelve nombre,
+   tipo (`piloto` o `equipo`) e identificador. Los valores se pasan como parametros SQL.
+4. `busqueda.js` crea enlaces como `historial.html?piloto=2&temporada=2026`.
+   El identificador depende de tu BD.
+5. Al abrir el enlace, `cargarHistorial()` pide `/api/historial/piloto/2?temporada=2026`.
+6. El servidor une grandes premios, sesiones, resultados, pilotos y equipos;
+   filtra por temporada, piloto o equipo y sesiones `carrera` y `sprint`.
+7. Devuelve JSON y `busqueda.js` arma las filas con ayuda de `tablas.js`.
 
-Con MongoDB local iniciado, ejecutar desde la raíz del proyecto:
+Los enlaces conservan el año de la busqueda. Sin `temporada` se usa
+`TEMPORADA_ACTUAL` del servidor o, si no esta definido, el año actual.
+Si el servidor ya estaba abierto al modificar el codigo, reiniciarlo con
+**Control+C** y `npm start`, y recargar el navegador.
 
-```powershell
-npm ci
+## Usar con la base ya cargada
+
+```sh
 npm start
 ```
 
-Abrir `http://localhost:3000`. La página de carrera consulta la colección
-`f1_tpo.carreras`. Importar `back/carrera-sao-paulo-2026.json` en esa colección
-para cargar el GP de ejemplo.
+Abrir **http://localhost:3000**. Detener el servidor con **Control+C**.
 
-## Publicar en Vercel y MongoDB Atlas
+## Primera instalación en otra computadora
 
-El archivo `server.js` de la raíz conecta Vercel con `back/server.js`.
-El comando `npm run build` copia `front` a `public`, la carpeta que Vercel
-publica. Editar siempre `front`. `public` es una copia generada que se puede
-borrar en la computadora; Vercel la vuelve a crear al publicar. Las dependencias
-se administran únicamente desde el `package.json` de la raíz.
+Necesitás Node.js 22 o superior y PostgreSQL. En pgAdmin, creá una base vacía `f1_tpo` y usá **Restore** sobre ella con el respaldo de la base original.
 
-En Vercel, importar el repositorio con estos valores:
+```sh
+npm install
+cp -n .env.example .env
+```
 
-| Campo | Valor |
+Completá `.env` con los datos del PostgreSQL de esa computadora y ejecutá `npm start`.
+
+`npm run db:init` permite crear el esquema y las tablas en una base vacía. Para ver los resultados en otra computadora necesitás el respaldo con los registros.
+
+## Recorrido de los datos
+
+1. PostgreSQL guarda el calendario, las sesiones y los resultados en `f1_tpo`, esquema `f1`.
+2. `resultados.js` o `campeonato.js` usan `pedir()` de `comun.js` para consultar al servidor con `fetch`.
+3. `server.js` ejecuta SQL y responde JSON. El módulo de la vista prepara las filas y `tablas.js` las dibuja.
+4. Los campeonatos usan `SUM(puntos)` sobre carreras y sprints, agrupando por
+   piloto o equipo. El desempate compara primeros, segundos y sucesivos puestos.
+
+El campeonato refleja los resultados guardados, que pueden ser una carga parcial.
+No incluye ajustes exclusivos al campeonato que no aparezcan en puntos por sesion.
+
+La tarjeta dorada y la etiqueta de campeón de pilotos usan la confirmación por
+temporada de `campeonesPilotos` en `server.js`. El registro de 2026 se tomó de
+`posibleAdaptacion` y se vincula con la referencia guardada del piloto.
+
+## Mi perfil
+
+Generá una clave secreta con el siguiente comando y guardá el resultado como
+`JWT_SECRET` en tu `.env`.
+
+```sh
+node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"
+npm install
+npm run db:init
+npm start
+```
+
+`db:init` agrega la tabla de usuarios a una base existente. En Render usá una
+clave propia en las variables del servicio web y `HOST=0.0.0.0`. Si ya restauraste
+un respaldo anterior a esta versión, ejecutá `base.sql` desde Query Tool de pgAdmin
+conectado a esa base.
+
+| Método y ruta | Qué hace |
 | --- | --- |
-| Framework Preset | Express |
-| Root Directory | Raíz del repositorio |
-| Install Command | `npm ci` |
-| Build Command | `npm run build` |
-| Output Directory | Valor predeterminado |
-| Variable `MONGODB_URI` | Dirección de conexión de Atlas |
+| `POST /api/usuarios` | Crea la cuenta con `usuario`, `nombre` y `clave`. Responde 201 e inicia sesión. |
+| `POST /api/sesion` | Comprueba `usuario` y `clave` e inicia sesión. |
+| `GET /api/usuarios/perfil` | Lee el perfil de la sesión actual. |
+| `PUT /api/usuarios/perfil` | Guarda el `usuario` y `nombre` del perfil de la sesión actual. |
+| `DELETE /api/sesion` | Quita del navegador la cookie de sesión. |
 
-La base debe llamarse `f1_tpo` y la colección de carreras `carreras`.
-Autorizar en Atlas las conexiones de Vercel. Con las IP dinámicas habituales,
-esto requiere permitir `0.0.0.0/0`; usar credenciales de solo lectura para la web.
-Guardar la dirección con contraseña únicamente en las variables de entorno.
+En el menú, abrí **Mi perfil**, creá una cuenta y guardá un cambio para demostrar
+el `POST` y el `PUT`. Los podés ver en **Network** de las herramientas del navegador.
+PostgreSQL guarda el hash de la contraseña generado con `scrypt` y una sal aleatoria.
+Express firma un JWT válido durante una hora y lo envía en una cookie `HttpOnly`.
+Al editar, Express toma del JWT el ID del usuario que puede actualizar.
 
-Después del deploy, comprobar `/`, `/carrera` y
-`/paginas/resultado-carrera.html`. Los cambios deben estar subidos al repositorio
-antes de desplegar desde GitHub.
+## Archivos de ayuda
 
-## Publicar en Render y MongoDB Atlas
+- `documentacion/Guia_F1_Telemetry.pdf`: documentación completa y recorrido para la presentación.
+- `documentacion/consultas.sql`: consultas de lectura para pegar en pgAdmin.
 
-Crear un cluster Free en Atlas, importar el JSON en `f1_tpo.carreras` y autorizar
-las direcciones de salida del servicio de Render en Network Access.
-
-Crear un Web Service en Render conectado al repositorio con estos valores:
-
-| Campo | Valor |
-| --- | --- |
-| Runtime | Node |
-| Root Directory | Vacío |
-| Build Command | `npm ci` |
-| Start Command | `npm start` |
-| Instance Type | Free |
-| Variable `MONGODB_URI` | Dirección de conexión de Atlas |
-
-Guardar la dirección y contraseña de Atlas únicamente en las variables de
-entorno de Render. No publicarlas en el repositorio. Render proporciona `PORT`;
-si no está definido, el servidor usa el puerto 3000.
-
-El servicio publica el frontend y las rutas de lectura `GET /carrera` y
-`GET /pilotos`. La inserción pública de pilotos está deshabilitada.
-
-Para desplegar estos cambios, primero deben estar subidos a la rama del
-repositorio que Render utiliza.
+`node_modules` se genera con npm. La contraseña de PostgreSQL y la clave JWT
+se guardan en `.env`, que está excluido de Git.

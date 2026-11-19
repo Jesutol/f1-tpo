@@ -3,36 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>F1 Telemetry | Inicio</title>
+    <title>F1 Telemetry | Último GP · Prácticas libres 3</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&amp;family=DM+Mono:wght@500&amp;display=swap"
       rel="stylesheet"
     />
+    <script type="module" src="../js/app.js"></script>
   </head>
-  <body class="inicio">
+  <body data-vista="sesion" data-tipo="libres-3">
     <header class="encabezado">
-      <nav class="navegacion">
-        <a href="../index.html">Inicio</a>
-        <details class="menu-ultimo-gp">
-          <summary>Último GP</summary>
-          <div class="submenu">
-            <a href="./resultado-carrera.html">Carrera</a>
-            <a href="./resultado-clasificacion.html">Clasificación</a>
-            <a href="./resultado-clasificacion.html">Prácticas Libres 3</a>
-            <a href="./resultado-clasificacion.html">Prácticas Libres 2</a>
-            <a href="./resultado-clasificacion.html">Prácticas Libres 1</a>
-          </div>
-        </details>
-        <details class="menu-campeonato">
-          <summary>Campeonato</summary>
-          <div class="submenu">
-            <a href="./campeonato.html">Pilotos</a>
-            <a href="./constructores.html">Constructores</a>
-          </div>
-        </details>
-      </nav>
-      <p class="marca">F1 Telemetry · Temporada 2026</p>
+      <!-- Navegación compartida -->
+      <p class="marca">F1 Telemetry</p>
+      <h1>Último GP · Prácticas libres 3</h1>
+      <p id="detalle-vista" class="nota" role="status"></p>
     </header>
+    <main>
+      <noscript>Activá JavaScript para consultar los resultados.</noscript>
+      <div class="tabla-contenedor">
+        <table role="table">
+          <caption>Último GP · Prácticas libres 3</caption>
+          <thead role="rowgroup"></thead>
+          <tbody role="rowgroup" aria-live="polite">
+            <tr class="mensaje-tabla" role="row">
+              <td role="cell">Cargando datos…</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
   </body>
 </html>

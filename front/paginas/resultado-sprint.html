@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F1 Telemetry | Último GP · Sprint</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&amp;family=DM+Mono:wght@500&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="../js/app.js"></script>
+  </head>
+  <body data-vista="sesion" data-tipo="sprint">
+    <header class="encabezado">
+      <!-- Navegación compartida -->
+      <p class="marca">F1 Telemetry</p>
+      <h1>Último GP · Sprint</h1>
+      <p id="detalle-vista" class="nota" role="status"></p>
+    </header>
+    <main>
+      <noscript>Activá JavaScript para consultar los resultados.</noscript>
+      <div class="tabla-contenedor">
+        <table role="table">
+          <caption>Último GP · Sprint</caption>
+          <thead role="rowgroup"></thead>
+          <tbody role="rowgroup" aria-live="polite">
+            <tr class="mensaje-tabla" role="row">
+              <td role="cell">Cargando datos…</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>

@@ -49,6 +49,7 @@ a {
 }
 
 .navegacion {
+  display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
@@ -67,12 +68,14 @@ a {
 }
 
 .menu-ultimo-gp,
-.menu-campeonato {
+.menu-campeonato,
+.menu-busqueda {
   position: relative;
 }
 
 .menu-ultimo-gp summary,
-.menu-campeonato summary {
+.menu-campeonato summary,
+.menu-busqueda summary {
   cursor: pointer;
 }
 
@@ -97,6 +100,83 @@ a {
   background: transparent;
 }
 
+.panel-busqueda {
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  width: min(340px, calc(100vw - 32px));
+  margin-top: 6px;
+  padding: 12px;
+  background: #171e27;
+  border: 1px solid #aaa5;
+  border-radius: 6px;
+}
+.panel-busqueda form { display: flex; gap: 8px; }
+.panel-busqueda input { min-width: 0; width: 100%; }
+.panel-busqueda input,
+.panel-busqueda button {
+  padding: 8px;
+  font: inherit;
+  color: #fff;
+  background: #0b0e12;
+  border: 1px solid #aaa5;
+  border-radius: 4px;
+}
+.panel-busqueda button { cursor: pointer; }
+#coincidencias { list-style: none; padding: 0; max-height: 280px; overflow-y: auto; }
+#coincidencias a { display: block; margin-top: 6px; padding: 10px; }
+
+.cuenta-paneles:not([hidden]) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  align-items: start;
+  gap: 16px;
+  max-width: 760px;
+}
+
+.cuenta-tarjeta {
+  max-width: 440px;
+  padding: 20px;
+  border: 1px solid #aaa5;
+  border-radius: 6px;
+  background: #171e27;
+}
+
+.cuenta-tarjeta h2 {
+  margin-top: 0;
+}
+
+.cuenta-tarjeta label {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.cuenta-tarjeta input,
+.cuenta-tarjeta button {
+  min-width: 0;
+  padding: 8px 12px;
+  font: inherit;
+  color: #fff;
+  background: #0b0e12;
+  border: 1px solid #aaa5;
+  border-radius: 4px;
+}
+
+.cuenta-tarjeta button[type="submit"] {
+  background: #b80500;
+}
+
+.cuenta-tarjeta button:not(:disabled) {
+  cursor: pointer;
+}
+
+.cuenta-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .bandera,
 .logo-equipo {
   width: 24px;
@@ -116,16 +196,15 @@ a {
 }
 
 .tabla-contenedor {
-  overflow-x: auto;
   border: 1px solid #ffffff12;
   background:
     repeating-linear-gradient(135deg, #ffffff03 0 32px, transparent 32px 80px),
     #17171f;
 }
 
+/* El contenido puede partirse y las columnas se ajustan al ancho disponible. */
 table {
   width: 100%;
-  min-width: 720px;
   border-collapse: collapse;
   font-size: 0.9rem;
   text-align: center;
@@ -148,7 +227,8 @@ thead {
 
 th,
 td {
-  padding: 15px 10px;
+  padding: 12px 8px;
+  overflow-wrap: anywhere;
   border-bottom: 1px solid #ffffff0d;
 }
 
@@ -159,7 +239,6 @@ thead th {
   font-style: italic;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  white-space: nowrap;
 }
 
 tbody tr:hover {
@@ -171,23 +250,19 @@ tbody tr:first-child {
   background: #e3e3e6;
 }
 
-tbody td:first-child {
+tbody tr:not(.mensaje-tabla) td:first-child {
   font-size: 1rem;
   font-weight: 700;
 }
 
-tbody tr:first-child td:first-child {
+tbody tr:first-child:not(.mensaje-tabla) td:first-child {
   border-left: 3px solid #e10600;
 }
 
-table .piloto,
-table .equipo {
+td:has(.piloto),
+td:has(.equipo) {
+  text-align: left;
   text-transform: uppercase;
-}
-
-table .puntos {
-  color: inherit;
-  font-weight: 700;
 }
 
 table .logo-equipo {
@@ -195,15 +270,8 @@ table .logo-equipo {
   height: 20px;
 }
 
-tbody tr:first-child .logo-mercedes,
 tbody tr:first-child .logo-oscuro {
   filter: brightness(0);
-}
-
-.piloto,
-.equipo {
-  text-align: left;
-  white-space: nowrap;
 }
 
 .piloto img,
@@ -211,18 +279,21 @@ tbody tr:first-child .logo-oscuro {
   margin-right: 8px;
 }
 
-.colapinto {
-  color: #60a5fa;
+.estrategia {
+  flex-wrap: wrap;
+  gap: 4px;
 }
 
-.estrategia {
-  gap: 6px;
+.tanda {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .neumatico {
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   border: 3px solid currentColor;
   border-radius: 50%;
   text-shadow: none;
@@ -249,7 +320,6 @@ tbody tr:first-child .logo-oscuro {
 .pit-stops summary {
   padding: 6px;
   cursor: pointer;
-  white-space: nowrap;
 }
 
 .pit-stops ul {
@@ -270,16 +340,40 @@ tbody tr:first-child .logo-oscuro {
 
 .inicio-contenido {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 20px;
 }
 
 .inicio-tarjeta {
-  padding: 16px;
+  min-width: 0;
+  padding: clamp(18px, 3vw, 28px);
+  border: 1px solid #ffffff12;
+}
+
+.inicio-etiqueta {
+  margin: 0 0 12px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
 .inicio-proxima {
   grid-column: 1 / -1;
+  border-left: 4px solid #e10600;
+}
+
+.inicio-proxima-resumen > div {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+.inicio #titulo-proxima {
+  font-size: clamp(2rem, 7vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
 }
 
 .inicio h2 {
@@ -288,23 +382,62 @@ tbody tr:first-child .logo-oscuro {
 
 .inicio h3 {
   font-size: 1rem;
+  overflow-wrap: anywhere;
 }
 
 .inicio-podio,
-.inicio-constructores,
+.inicio-ranking,
 .inicio-agenda {
   padding: 0;
   list-style: none;
 }
 
 .inicio-podio > li,
-.inicio-constructores > li {
+.inicio-ranking > li {
   display: grid;
   grid-template-columns: 20px 24px minmax(0, 1fr) auto;
   align-items: center;
   gap: 6px 8px;
   padding: 12px 0;
-  border-bottom: 1px solid #aaa5;
+  border-bottom: 1px solid #ffffff18;
+}
+
+.inicio-podio > li:first-child {
+  padding-left: 10px;
+  border-left: 3px solid #e10600;
+}
+
+.inicio-pestanas {
+  display: flex;
+  gap: 18px;
+  border-bottom: 1px solid #ffffff18;
+}
+
+.inicio-pestanas button {
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: #b9c3d0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.inicio-pestanas button[aria-selected="true"] {
+  border-bottom-color: #e10600;
+  color: #fff;
+}
+
+.inicio-ranking > li > p {
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.inicio-enlace {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  text-underline-offset: 4px;
 }
 
 .inicio-posicion,
@@ -333,12 +466,21 @@ tbody tr:first-child .logo-oscuro {
 }
 
 .inicio-fecha-carrera {
+  padding-left: 20px;
+  border-left: 1px solid #aaa5;
   text-align: right;
   line-height: 1.5;
 }
 
 .inicio-fecha-carrera strong {
-  font-size: 1.5rem;
+  color: #6ce6c4;
+  font-family: "DM Mono", monospace;
+  font-size: clamp(1.7rem, 4vw, 3rem);
+}
+
+.inicio-horarios summary {
+  cursor: pointer;
+  padding-block: 8px;
 }
 
 .inicio-datos-circuito,
@@ -390,22 +532,160 @@ body,
   background: #171e27;
 }
 
-.navegacion,
-.inicio-presentacion,
-.inicio-titulo-seccion {
+/* El dorado identifica al campeón declarado para esa temporada. */
+.tarjeta-campeon:not([hidden]) {
   display: flex;
+  align-items: center;
+  gap: clamp(10px, 3vw, 20px);
+  padding: clamp(14px, 3vw, 24px);
+  margin-bottom: 24px;
+  border: 1px solid #d2b35c66;
+  border-left: 3px solid #d2b35c;
+  background: linear-gradient(110deg, #d2b35c10, transparent 70%), #17171f;
+  color: #dfc16d;
 }
 
-.tiempo-pole {
-  color: #d66ce6;
+.copa-campeon {
+  position: relative;
+  width: clamp(38px, 7vw, 58px);
+  aspect-ratio: 1 / 1.9;
+  flex-shrink: 0;
+  overflow: hidden;
+  mix-blend-mode: lighten;
+}
+
+/* Acerca la copa para recortar los márgenes de la imagen original. */
+.copa-campeon img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 212%;
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -50%);
+}
+
+.titulo-campeon {
+  margin: 0 0 6px;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tarjeta-campeon h2 {
+  margin: 0;
+  font-size: clamp(1.35rem, 4vw, 1.65rem);
+  overflow-wrap: anywhere;
+}
+
+.tarjeta-campeon .nota {
+  margin: 6px 0 0;
+}
+
+#logo-campeon {
+  margin-left: auto;
+}
+
+#logo-campeon img {
+  width: clamp(28px, 7vw, 52px);
+  height: auto;
+}
+
+tbody tr.campeon {
+  color: #ead18c;
+  background: #d2b35c14;
+}
+
+tbody tr.campeon .logo-oscuro {
+  filter: brightness(0) invert(1);
+}
+
+.etiqueta-campeon {
+  display: inline-block;
+  padding: 3px 6px;
+  border: 1px solid #d2b35c77;
+  color: #ead18c;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+tbody .etiqueta-campeon {
+  margin-left: 8px;
+}
+
+/* Los filtros pertenecen a la vista del calendario de resultados. */
+#filtros-resultados:not([hidden]) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 24px 0;
+}
+#filtros-resultados label {
+  display: grid;
+  gap: 8px;
+  max-width: 100%;
+}
+#filtros-resultados select {
+  max-width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #aaa5;
+  border-radius: 6px;
+  background: #171e27;
+  color: #fff;
+  font: inherit;
+}
+.lluvia { color: #60a5fa; }
+
+/* En pantallas angostas cada fila muestra sus campos con etiqueta y valor. */
+@media (max-width: 760px) {
+  table, caption, tbody, tbody tr { display: block; }
+  thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  tbody tr { padding: 8px 12px; border-bottom: 1px solid #aaa5; }
+  tbody td {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 12px;
+    padding: 5px 0;
+    border: 0;
+    text-align: left;
+  }
+  tbody tr:first-child:not(.mensaje-tabla) td:first-child { border: 0; }
+  td[data-columna]::before { content: attr(data-columna); font-weight: 700; }
+  .mensaje-tabla td { display: block; }
+  .estrategia { justify-content: flex-start; }
 }
 
 @media (max-width: 700px) {
+  .navegacion { position: relative; }
+  .menu-busqueda { position: static; }
+  .panel-busqueda { top: 100%; }
   .inicio-contenido {
     grid-template-columns: 1fr;
   }
 
   .inicio-fecha-carrera {
+    padding-left: 0;
+    border-left: 0;
+    text-align: left;
+  }
+}
+
+@media (max-width: 380px) {
+  .inicio-podio > li {
+    grid-template-columns: 18px 24px minmax(0, 1fr);
+  }
+
+  .inicio-resultado,
+  .inicio-puntos-gp {
+    grid-column: 3;
+    grid-row: auto;
     text-align: left;
   }
 }

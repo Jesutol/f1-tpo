@@ -3,67 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>F1 Telemetry | Último GP</title>
+    <title>F1 Telemetry | Último GP · Carrera</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&amp;family=DM+Mono:wght@500&amp;display=swap"
       rel="stylesheet"
     />
+    <script type="module" src="../js/app.js"></script>
   </head>
-  <body>
+  <body data-vista="sesion" data-tipo="carrera">
     <header class="encabezado">
-      <nav class="navegacion">
-        <a href="../index.html">Inicio</a>
-        <details class="menu-ultimo-gp">
-          <summary>Último GP</summary>
-          <div class="submenu">
-            <a href="./resultado-carrera.html">Carrera</a>
-            <a href="./resultado-clasificacion.html">Clasificación</a>
-            <a href="./resultado-clasificacion.html">Prácticas Libres 3</a>
-            <a href="./resultado-clasificacion.html">Prácticas Libres 2</a>
-            <a href="./resultado-clasificacion.html">Prácticas Libres 1</a>
-          </div>
-        </details>
-        <details class="menu-campeonato">
-          <summary>Campeonato</summary>
-          <div class="submenu">
-            <a href="./campeonato.html">Pilotos</a>
-            <a href="./constructores.html">Constructores</a>
-          </div>
-        </details>
-      </nav>
-      <p class="marca" id="temporada-carrera">F1 Telemetry</p>
-      <h1 id="nombre-carrera">Último Gran Premio</h1>
-      <p id="detalle-carrera">Consultando los datos del GP...</p>
-      <p>
-        Resultados del último Gran Premio disputado, paradas en boxes y puntos
-        obtenidos.
-      </p>
+      <!-- Navegación compartida -->
+      <p class="marca">F1 Telemetry</p>
+      <h1>Último GP · Carrera</h1>
+      <p id="detalle-vista" class="nota" role="status"></p>
     </header>
     <main>
+      <noscript>Activá JavaScript para consultar los resultados.</noscript>
       <div class="tabla-contenedor">
-        <table>
-          <caption id="titulo-tabla-1">
-            Resultados de la carrera
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">Posición</th>
-              <th scope="col">Piloto</th>
-              <th scope="col">Equipo</th>
-              <th scope="col">Puntos</th>
-              <th scope="col">Neumáticos usados</th>
-              <th scope="col">Paradas</th>
-            </tr>
-          </thead>
-          <tbody id="resultados-carrera" aria-live="polite">
-            <tr>
-              <td colspan="6">Cargando resultados...</td>
+        <table role="table">
+          <caption>Último GP · Carrera</caption>
+          <thead role="rowgroup"></thead>
+          <tbody role="rowgroup" aria-live="polite">
+            <tr class="mensaje-tabla" role="row">
+              <td role="cell">Cargando datos…</td>
             </tr>
           </tbody>
         </table>
       </div>
     </main>
-    <script src="../js/carrera.js"></script>
   </body>
 </html>

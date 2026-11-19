@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F1 Telemetry | Campeonato de pilotos</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&amp;family=DM+Mono:wght@500&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="../js/app.js"></script>
+  </head>
+  <body data-vista="campeonato" data-tipo="pilotos">
+    <header class="encabezado">
+      <!-- Navegación compartida -->
+      <p class="marca">F1 Telemetry</p>
+      <h1>Campeonato de pilotos</h1>
+      <p id="detalle-vista" class="nota" role="status"></p>
+    </header>
+    <main>
+      <noscript>Activá JavaScript para consultar los resultados.</noscript>
+      <!-- campeonato.js completa la tarjeta si hay un campeón confirmado. -->
+      <section class="tarjeta-campeon" id="tarjeta-campeon" aria-labelledby="nombre-campeon" hidden>
+        <span class="copa-campeon">
+          <img src="../recursos/trofeos/copa-f1.png" alt="" />
+        </span>
+        <div>
+          <p class="titulo-campeon" id="titulo-campeon"></p>
+          <h2 id="nombre-campeon"></h2>
+          <p class="nota" id="equipo-campeon"></p>
+        </div>
+        <div id="logo-campeon"></div>
+      </section>
+      <div class="tabla-contenedor">
+        <table role="table">
+          <caption>Campeonato de pilotos</caption>
+          <thead role="rowgroup"></thead>
+          <tbody role="rowgroup" aria-live="polite">
+            <tr class="mensaje-tabla" role="row">
+              <td role="cell">Cargando datos…</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>
