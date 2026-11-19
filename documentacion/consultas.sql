@@ -5,7 +5,7 @@
 -- Q01. Confirmar a que base y usuario estamos conectados.
 SELECT current_database() AS base, current_user AS usuario;
 
--- Q02. Ver las siete tablas del esquema propio f1.
+-- Q02. Ver las tablas del esquema propio f1.
 SELECT table_name
 FROM information_schema.tables
 WHERE table_schema = 'f1'
@@ -18,11 +18,12 @@ UNION ALL SELECT 'pilotos', COUNT(*) FROM f1.pilotos
 UNION ALL SELECT 'inscripciones', COUNT(*) FROM f1.inscripciones
 UNION ALL SELECT 'equipos', COUNT(*) FROM f1.equipos
 UNION ALL SELECT 'sesiones', COUNT(*) FROM f1.sesiones
-UNION ALL SELECT 'resultados', COUNT(*) FROM f1.resultados;
+UNION ALL SELECT 'resultados', COUNT(*) FROM f1.resultados
+UNION ALL SELECT 'usuarios', COUNT(*) FROM f1.usuarios;
 
--- Q04. Calendario y sesiones efectivamente importadas.
+-- Q04. Calendario y sesiones guardadas.
 SELECT g.ronda, g.nombre, g.fecha_carrera,
-       s.id AS sesion_id, s.tipo, s.fuente, s.actualizada_en
+       s.id AS sesion_id, s.tipo, s.fecha AS fecha_sesion
 FROM f1.grandes_premios g
 LEFT JOIN f1.sesiones s ON s.gran_premio_id = g.id
 WHERE g.temporada = 2026
@@ -114,10 +115,12 @@ JOIN f1.grandes_premios g ON g.id = s.gran_premio_id
 GROUP BY g.temporada, g.ronda, s.tipo, r.piloto_id
 HAVING COUNT(*) > 1;
 
--- Q14. Revisar fecha e incidencias de la ultima importacion.
-SELECT anio, sincronizada_en, calendario_completo, incidencias
-FROM f1.temporadas
-WHERE anio = 2026;
+-- Q14. Ver cuántos grandes premios hay guardados por temporada.
+SELECT t.anio, COUNT(g.id) AS grandes_premios
+FROM f1.temporadas t
+LEFT JOIN f1.grandes_premios g ON g.temporada = t.anio
+GROUP BY t.anio
+ORDER BY t.anio;
 
 -- Q15. Ubicacion fisica de los archivos del servidor (si el usuario tiene permiso).
 SHOW data_directory;

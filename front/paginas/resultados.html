@@ -9,54 +9,15 @@
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&amp;family=DM+Mono:wght@500&amp;display=swap"
       rel="stylesheet"
     />
-    <script src="../js/app.js" defer></script>
+    <script type="module" src="../js/app.js"></script>
   </head>
-  <body>
+  <body data-vista="resultados">
     <header class="encabezado">
-      <nav class="navegacion" aria-label="Navegación principal">
-        <a href="../index.html">Inicio</a>
-        <a href="./resultados.html">Resultados</a>
-        <details class="menu-ultimo-gp">
-          <summary>Último GP</summary>
-          <div class="submenu">
-            <a href="./sesion.html?sesion=carrera">Carrera</a>
-            <a href="./sesion.html?sesion=clasificacion">Clasificación</a>
-            <a href="./sesion.html?sesion=libres-3">Prácticas libres 3</a>
-            <a href="./sesion.html?sesion=libres-2">Prácticas libres 2</a>
-            <a href="./sesion.html?sesion=libres-1">Prácticas libres 1</a>
-          </div>
-        </details>
-        <details class="menu-campeonato">
-          <summary>Campeonato</summary>
-          <div class="submenu">
-            <a href="./campeonato.html?tipo=pilotos">Pilotos</a>
-            <a href="./campeonato.html?tipo=constructores">Constructores</a>
-          </div>
-        </details>
-        <details class="menu-busqueda">
-          <summary aria-label="Buscar pilotos y equipos">🔍 Buscar</summary>
-          <div class="panel-busqueda">
-            <form id="form-busqueda" role="search">
-              <input
-                id="buscar-nombre"
-                type="search"
-                aria-label="Nombre del piloto o equipo"
-                placeholder="Piloto o equipo…"
-                maxlength="80"
-                required
-              />
-              <button type="submit">Buscar</button>
-            </form>
-            <p id="estado-busqueda" class="nota" role="status"></p>
-            <ul id="coincidencias"></ul>
-          </div>
-        </details>
-      </nav>
+      <!-- Navegación compartida -->
       <p class="marca">F1 Telemetry</p>
       <h1>Resultados</h1>
       <p id="detalle-vista" class="nota" role="status"></p>
-      <!-- Los selectores aparecen solo en la vista Resultados. -->
-      <div id="filtros-resultados" hidden>
+      <div id="filtros-resultados">
         <label
           >Gran Premio
           <select id="seleccionar-gp" disabled></select>

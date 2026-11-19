@@ -1,0 +1,40 @@
+<nav class="navegacion" aria-label="Navegación principal">
+  <a href="/index.html">Inicio</a>
+  <a href="/paginas/resultados.html">Resultados</a>
+  <details class="menu-ultimo-gp">
+    <summary>Último GP</summary>
+    <div class="submenu">
+      <a href="/paginas/resultado-carrera.html">Carrera</a>
+      <a href="/paginas/resultado-clasificacion.html">Clasificación</a>
+      <a href="/paginas/resultado-libres-3.html">Prácticas libres 3</a>
+      <a href="/paginas/resultado-libres-2.html">Prácticas libres 2</a>
+      <a href="/paginas/resultado-libres-1.html">Prácticas libres 1</a>
+    </div>
+  </details>
+  <details class="menu-campeonato">
+    <summary>Campeonato</summary>
+    <div class="submenu">
+      <a href="/paginas/campeonato-pilotos.html">Pilotos</a>
+      <a href="/paginas/campeonato-constructores.html">Constructores</a>
+    </div>
+  </details>
+  <details class="menu-busqueda">
+    <summary aria-label="Buscar pilotos y equipos">🔍 Buscar</summary>
+    <div class="panel-busqueda">
+      <form id="form-busqueda" role="search">
+        <input
+          id="buscar-nombre"
+          type="search"
+          aria-label="Nombre del piloto o equipo"
+          placeholder="Piloto o equipo…"
+          maxlength="80"
+          required
+        />
+        <button type="submit">Buscar</button>
+      </form>
+      <p id="estado-busqueda" class="nota" role="status"></p>
+      <ul id="coincidencias"></ul>
+    </div>
+  </details>
+  <a href="/paginas/perfil.html">Mi perfil</a>
+</nav>

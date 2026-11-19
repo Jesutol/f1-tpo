@@ -1,6 +1,13 @@
 BEGIN;
 CREATE SCHEMA IF NOT EXISTS f1;
 
+CREATE TABLE IF NOT EXISTS f1.usuarios (
+  id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  usuario varchar(24) NOT NULL UNIQUE,
+  nombre varchar(80) NOT NULL,
+  clave_hash text NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS f1.temporadas (
   anio integer PRIMARY KEY,
   sincronizada_en timestamptz,
